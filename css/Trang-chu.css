@@ -1,0 +1,145 @@
+/* --- TỔNG THỂ --- */
+:root {
+    --mau-nau: #8B4513;
+    --mau-vang: #FFD700;
+}
+
+/* --- HEADER --- */
+#nav {
+    background-color: #ffffff !important;
+    border-bottom: 1px solid #f0f0f0;
+    padding: 10px 0;
+}
+
+#nav .navbar-brand img {
+    height: 90px; /* giảm lại cho gọn hơn */
+    width: auto;
+    object-fit: contain;
+}
+
+#nav .nav-link {
+    color: var(--mau-nau) !important;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+#nav .nav-link:hover {
+    color: var(--mau-vang) !important;
+}
+
+/* Search */
+#nav .form-control {
+    border: 1px solid var(--mau-nau);
+}
+
+#nav .btn-light {
+    background-color: var(--mau-nau);
+    color: white;
+}
+
+#nav .btn-light:hover {
+    background-color: var(--mau-vang);
+    color: var(--mau-nau);
+}
+
+/* --- BANNER (QUAN TRỌNG) --- */
+#bannerSlider {
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+}
+
+#bannerSlider .carousel-inner {
+    width: 100%;
+}
+
+.banner-img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    display: block;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .banner-img {
+        height: 250px;
+    }
+}
+
+/* --- PRODUCT --- */
+.product-card {
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.product-card img {
+    height: 200px;
+    object-fit: cover;
+}
+
+.product-card:hover img {
+    transform: scale(1.05);
+}
+
+/* --- BUTTON --- */
+.btn-outline-brown {
+    color: var(--mau-nau);
+    border: 1px solid var(--mau-nau);
+    transition: 0.3s;
+}
+
+.btn-outline-brown:hover {
+    background-color: var(--mau-nau);
+    color: var(--mau-vang);
+}
+
+.btn-brown {
+    background-color: var(--mau-nau);
+    color: white;
+    font-weight: bold;
+}
+
+.btn-brown:hover {
+    background-color: var(--mau-vang);
+    color: var(--mau-nau);
+}
+
+/* --- FOOTER --- */
+#footer {
+    background-color: #ffffff;
+    color: var(--mau-nau);
+    border-top: 1px solid #eee;
+}
+
+#footer img {
+    height: 80px;
+}
+
+#footer a {
+    color: var(--mau-nau);
+}
+
+#footer a:hover {
+    color: var(--mau-vang);
+}
+
+/* --- DROPDOWN --- */
+.dropdown-item {
+    color: var(--mau-nau);
+}
+
+.dropdown-item:hover {
+    background-color: var(--mau-nau);
+    color: var(--mau-vang);
+}
+
+/* TEXT */
+.text-brown {
+    color: var(--mau-nau);
+}

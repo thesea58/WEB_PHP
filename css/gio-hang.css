@@ -1,0 +1,117 @@
+/* Màu sắc chủ đạo */
+:root {
+    --brown-primary: #8B4513;
+    --brown-dark: #5D2E0D;
+    --gold-hover: #FFD700;
+}
+
+/* Phần Section và Nền Banner Mờ */
+.cart-section {
+    position: relative;
+    padding: 60px 0;
+    background-color: #fcfcfc;
+    min-height: 600px;
+    overflow: hidden;
+}
+
+.cart-bg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Bạn có thể đổi sang ảnh khác nếu muốn nền khác cho giỏ hàng */
+    background-image: url('../img/Anh/Banner/banner.jpg'); 
+    background-size: cover;
+    background-position: center;
+    opacity: 0.18; /* Độ mờ nhẹ nhàng */
+    pointer-events: none;
+    z-index: 0;
+}
+
+.cart-container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Tiêu đề và Văn bản */
+.cart-title {
+    font-weight: 800;
+    color: var(--brown-primary);
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+}
+
+.text-brown, .product-name {
+    color: var(--brown-primary);
+}
+
+/* Bảng giỏ hàng */
+.table-cart img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid #eee;
+}
+
+.quantity-input {
+    width: 70px;
+    text-align: center;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.btn-remove {
+    color: #dc3545;
+    transition: 0.2s;
+}
+
+.btn-remove:hover {
+    color: #a71d2a;
+    transform: scale(1.1);
+}
+
+.back-link {
+    color: var(--brown-primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.back-link:hover {
+    color: var(--brown-dark);
+    text-decoration: underline;
+}
+
+/* Thẻ tóm tắt hóa đơn */
+.summary-card {
+    background-color: #ffffff;
+    border: 1px solid #f0f0f0 !important;
+}
+
+.total-price {
+    color: var(--brown-primary);
+}
+
+.btn-checkout {
+    background-color: var(--brown-primary);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.btn-checkout:hover {
+    background-color: var(--brown-dark);
+    color: var(--gold-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(139, 69, 19, 0.3);
+}
+
+/* Cài đặt chung cho Navigation (Nếu chưa có ở file kia) */
+.brand-text {
+    color: var(--brown-primary);
+    font-weight: 800;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+}

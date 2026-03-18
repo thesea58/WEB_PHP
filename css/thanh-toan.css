@@ -1,0 +1,21 @@
+#section {
+    background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../IMG/background.png );
+    /* background-size:  auto; */
+    min-height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#btn-pay {
+    background-color: #fe0000;
+}
+
+.btn-xoa{
+    background-color: white;
+}
+
+input.form-control,
+textarea.form-control {
+    border: 2px solid #b4a2a2;
+    border-radius: 10px;
+}

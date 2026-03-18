@@ -1,0 +1,27 @@
+body {
+  background: radial-gradient(circle at top left, #fff6f6, #ffeedd);
+}
+
+.history-header {
+  background-color: #fe0000;
+  color: white;
+  border-radius: 8px 8px 0 0;
+}
+.history-item img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border-radius: 10px;
+}
+.history-item h5 {
+  font-weight: 600;
+  margin-bottom: 0;
+}
+.btn-outline-danger {
+  border: 2px solid #fe0000;
+  color: #fe0000;
+}
+.btn-outline-danger:hover {
+  background-color: #fe0000;
+  color: white;
+}
