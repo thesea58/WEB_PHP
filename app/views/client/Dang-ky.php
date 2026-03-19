@@ -144,7 +144,7 @@
         </div>
         <div class="card-body p-4">
           
-          <form id="registerForm" method="POST">
+          <form id="registerForm" method="POST" action="index.php?controller=TaiKhoan&action=dangky">
             <div class="row g-3">
               <div class="col-md-6">
                 <label>Tên đăng nhập</label>
@@ -192,9 +192,20 @@
 
               <div class="col-md-6">
                 <label>Nhập lại mật khẩu</label>
-                <input type="password" name="confirmPassword" class="form-control border-brown" required>
+                <input type="password" name="password_confirm" class="form-control border-brown" required>
               </div>
             </div>
+            
+            <?php if (isset($errors) && is_array($errors)): ?>
+              <div class="alert alert-danger mt-3" role="alert">
+                <strong>Lỗi đăng ký:</strong>
+                <ul class="mb-0 mt-2">
+                  <?php foreach ($errors as $error): ?>
+                    <li><?php echo htmlspecialchars($error); ?></li>
+                  <?php endforeach; ?>
+                </ul>
+              </div>
+            <?php endif; ?>
 
             <button type="submit" class="btn btn-register w-100 mt-4 py-2 fs-5 shadow-sm">TẠO TÀI KHOẢN</button>
 
@@ -282,20 +293,6 @@
 </body>
 </html>
 
-  <script>
-    // Đảm bảo script chạy sau khi DOM đã load xong
-    document.addEventListener('DOMContentLoaded', function() {
-      const form = document.getElementById('registerForm');
-      
-      form.addEventListener('submit', function(e) {
-        e.preventDefault(); // Chặn gửi form thật để kiểm tra giao diện modal
-        
-        // Cách gọi Modal thủ công chắc chắn nhất
-        var myModalElement = document.getElementById('successModal');
-        var modalInstance = new bootstrap.Modal(myModalElement);
-        modalInstance.show();
-      });
-    });
-  </script>
+
 </body>
 </html>

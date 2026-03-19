@@ -152,6 +152,26 @@
         </div>
 
         <div class="card-body p-4">
+          
+          <?php if (isset($success) || isset($_SESSION['success'])): ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+              <i class="bi bi-check-circle-fill me-2"></i>
+              <strong>Thành công!</strong> 
+              <?php echo htmlspecialchars($success ?? $_SESSION['success']); ?>
+              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            <?php unset($_SESSION['success']); // Clear message after display ?>
+          <?php endif; ?>
+
+          <?php if (isset($error)): ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <i class="bi bi-exclamation-circle-fill me-2"></i>
+              <strong>Lỗi!</strong> 
+              <?php echo htmlspecialchars($error); ?>
+              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+          <?php endif; ?>
+
   		  <form action="index.php?controller=TaiKhoan&action=dangnhap" method="post">
             <div class="mb-3">
               <label class="form-label fw-bold text-brown">Tên đăng nhập</label>

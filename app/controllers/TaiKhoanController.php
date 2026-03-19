@@ -78,8 +78,9 @@ class TaiKhoanController extends BaseController {
             if (empty($errors)) {
                 // Đăng ký thành công
                 if ($userModel->dangKy($ten_dang_nhap, $mat_khau, $email, $dien_thoai)) {
-                    $success = "Đăng ký thành công! Vui lòng đăng nhập.";
-                    $this->render('Dang-nhap', ['success' => $success]);
+                    $_SESSION['success'] = "Đăng ký thành công! Vui lòng đăng nhập.";
+                    header('Location: index.php?controller=TaiKhoan&action=dangnhap');
+                    exit();
                 } else {
                     $errors[] = "Có lỗi khi đăng ký. Vui lòng thử lại!";
                     $this->render('Dang-ky', ['errors' => $errors]);
