@@ -90,111 +90,133 @@
     </nav>
 
     <section class="cart-section">
-      <div class="cart-bg-overlay"></div> <div class="container cart-container">
+      <div class="cart-bg-overlay"></div>
+      <div class="container cart-container">
         <h2 class="cart-title text-center"><i class=""></i> GIỎ HÀNG CỦA BẠN</h2>
         
-        <div class="row g-4 mt-2">
-          <div class="col-lg-8">
-            <div class="table-responsive shadow-sm rounded-4 bg-white border">
-              <table class="table align-middle m-0 table-cart">
-                <thead class="bg-light">
-                  <tr>
-                    <th class="ps-4 py-3">Sản phẩm</th>
-                    <th>Giá</th>
-                    <th>Số lượng</th>
-                    <th>Tổng cộng</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="ps-4 d-flex align-items-center">
-                      <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=200" alt="Bánh Cốm">
-                      <div class="ms-3">
-                        <div class="fw-bold product-name">Bánh Cốm Hà Nội</div>
-                        <small class="text-muted">Miền Bắc</small>
-                      </div>
-                    </td>
-                    <td>50.000đ</td>
-                    <td><input type="number" class="form-control quantity-input" value="1" min="1"></td>
-                    <td class="fw-bold text-brown">50.000đ</td>
-                    <td><button class="btn btn-sm btn-remove"><i class="bi bi-x-lg"></i></button></td>
-                  </tr>
-                  <tr>
-                    <td class="ps-4 d-flex align-items-center">
-                      <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=200" alt="Nem Chua">
-                      <div class="ms-3">
-                        <div class="fw-bold product-name">Nem Chua Thanh Hóa</div>
-                        <small class="text-muted">Miền Trung</small>
-                      </div>
-                    </td>
-                    <td>45.000đ</td>
-                    <td><input type="number" class="form-control quantity-input" value="2" min="1"></td>
-                    <td class="fw-bold text-brown">90.000đ</td>
-                    <td><button class="btn btn-sm btn-remove"><i class="bi bi-x-lg"></i></button></td>
-                  </tr>
-                  <tr>
-                    <td class="ps-4 d-flex align-items-center">
-                      <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=200" alt="Khô Cá">
-                      <div class="ms-3">
-                        <div class="fw-bold product-name">Khô Cá Miền Tây</div>
-                        <small class="text-muted">Miền Nam</small>
-                      </div>
-                    </td>
-                    <td>120.000đ</td>
-                    <td><input type="number" class="form-control quantity-input" value="1" min="1"></td>
-                    <td class="fw-bold text-brown">120.000đ</td>
-                    <td><button class="btn btn-sm btn-remove"><i class="bi bi-x-lg"></i></button></td>
-                  </tr>
-                  <tr>
-                    <td class="ps-4 d-flex align-items-center">
-                      <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=200" alt="Chả Quế">
-                      <div class="ms-3">
-                        <div class="fw-bold product-name">Chả Quế Ước Lễ</div>
-                        <small class="text-muted">Miền Bắc</small>
-                      </div>
-                    </td>
-                    <td>85.000đ</td>
-                    <td><input type="number" class="form-control quantity-input" value="1" min="1"></td>
-                    <td class="fw-bold text-brown">85.000đ</td>
-                    <td><button class="btn btn-sm btn-remove"><i class="bi bi-x-lg"></i></button></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="mt-4">
-              <a href="index.php?controller=SanPham&action=index" class="back-link"><i class="bi bi-arrow-left"></i> Tiếp tục chọn đặc sản</a>
+        <?php if (isset($notLoggedIn) && $notLoggedIn): ?>
+          <!-- Chưa đăng nhập -->
+          <div class="row g-4 mt-4">
+            <div class="col-lg-8 mx-auto">
+              <div class="card shadow-lg p-5 rounded-4 text-center border-0">
+                <i class="bi bi-lock-fill" style="font-size: 4rem; color: #8B4513; margin-bottom: 20px;"></i>
+                <h3 class="fw-bold text-brown mb-3">Bạn chưa đăng nhập</h3>
+                <p class="text-muted mb-4">Vui lòng đăng nhập để xem giỏ hàng của bạn.</p>
+                <div class="d-flex gap-3 justify-content-center">
+                  <a href="index.php?controller=DangNhap&action=index" class="btn btn-lg" style="background-color: #8B4513; color: white; padding: 12px 40px;">
+                    <i class="bi bi-box-arrow-in-right me-2"></i>Đăng nhập
+                  </a>
+                  <a href="index.php?controller=DangKy&action=index" class="btn btn-lg btn-outline-brown" style="padding: 12px 40px;">
+                    <i class="bi bi-person-plus me-2"></i>Đăng ký
+                  </a>
+                </div>
+                <p class="text-muted mt-4">
+                  <i class="bi bi-info-circle"></i>
+                  Bạn là khách mới? <a href="index.php?controller=GioiThieu&action=index" class="text-brown fw-bold">Tìm hiểu thêm</a>
+                </p>
+              </div>
             </div>
           </div>
+        <?php else: ?>
+          <!-- Đã đăng nhập -->
+          <div class="row g-4 mt-2">
+            <div class="col-lg-8">
+              <?php if (empty($gioHang)): ?>
+                <div class="card shadow-sm rounded-4 bg-white border text-center p-5">
+                  <i class="bi bi-inbox" style="font-size: 3rem; color: #ccc; margin-bottom: 15px;"></i>
+                  <p class="text-muted mb-3">Giỏ hàng của bạn còn trống</p>
+                  <a href="index.php?controller=SanPham&action=index" class="btn btn-brown">
+                    <i class="bi bi-shop me-2"></i>Tiếp tục mua sắm
+                  </a>
+                </div>
+              <?php else: ?>
+                <div class="table-responsive shadow-sm rounded-4 bg-white border">
+                  <table class="table align-middle m-0 table-cart">
+                    <thead class="bg-light">
+                      <tr>
+                        <th class="ps-4 py-3">Sản phẩm</th>
+                        <th>Giá</th>
+                        <th>Số lượng</th>
+                        <th>Tổng cộng</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php foreach ($gioHang as $item): ?>
+                      <tr>
+                        <td class="ps-4 d-flex align-items-center">
+                          <img src="app/views/client/<?php echo htmlspecialchars($item['path_img']); ?>" 
+                               alt="<?php echo htmlspecialchars($item['ten_sp']); ?>"
+                               style="width: 80px; height: 80px; object-fit: cover; border-radius: 5px;">
+                          <div class="ms-3">
+                            <div class="fw-bold product-name"><?php echo htmlspecialchars($item['ten_sp']); ?></div>
+                            <small class="text-muted">Mã SP: <?php echo $item['ma_sp']; ?></small>
+                          </div>
+                        </td>
+                        <td><?php echo number_format($item['gia'], 0, ',', '.'); ?>đ</td>
+                        <td>
+                          <div class="input-group" style="width: 100px;">
+                            <button class="btn btn-sm btn-outline-secondary" onclick="capNhatSoLuong(<?php echo $item['ma_sp']; ?>, <?php echo $item['so_luong'] - 1; ?>)">−</button>
+                            <input type="number" class="form-control text-center quantity-input" 
+                                   value="<?php echo $item['so_luong']; ?>" 
+                                   min="1" 
+                                   onchange="capNhatSoLuong(<?php echo $item['ma_sp']; ?>, this.value)"
+                                   style="max-width: 60px;">
+                            <button class="btn btn-sm btn-outline-secondary" onclick="capNhatSoLuong(<?php echo $item['ma_sp']; ?>, <?php echo $item['so_luong'] + 1; ?>)">+</button>
+                          </div>
+                        </td>
+                        <td class="fw-bold text-brown">
+                          <?php echo number_format($item['gia'] * $item['so_luong'], 0, ',', '.'); ?>đ
+                        </td>
+                        <td>
+                          <button class="btn btn-sm btn-remove" onclick="xoaKhoiGio(<?php echo $item['ma_sp']; ?>)">
+                            <i class="bi bi-x-lg"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <?php endforeach; ?>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="mt-4">
+                  <a href="index.php?controller=SanPham&action=index" class="back-link"><i class="bi bi-arrow-left"></i> Tiếp tục chọn đặc sản</a>
+                </div>
+              <?php endif; ?>
+            </div>
 
-          <div class="col-lg-4">
-            <div class="card summary-card border-0 shadow-sm p-4 rounded-4">
-              <h4 class="fw-bold mb-4 border-bottom pb-2">Hóa đơn của bạn</h4>
-              <div class="d-flex justify-content-between mb-3">
-                <span>Tạm tính (4 món):</span>
-                <span>345.000đ</span>
-              </div>
-              <div class="d-flex justify-content-between mb-3 text-success fw-medium">
-                <span>Khuyến mãi đặc biệt:</span>
-                <span>-15.000đ</span>
-              </div>
-              <hr>
-              <div class="d-flex justify-content-between mb-4 fs-4 fw-bold total-price">
-                <span>Tổng cộng:</span>
-                <span>330.000đ</span>
-              </div>
-              <a href="index.php?controller=ThanhToan&action=index" 
-                   class="btn btn-checkout btn-lg w-100 py-3 fw-bold shadow">
-                  ĐẶT HÀNG NGAY
-                </a>
-                   <small class="text-muted text-center d-block">
-  Cam kết chuẩn vị truyền thống 100%
-</small>
+            <div class="col-lg-4">
+              <div class="card summary-card border-0 shadow-sm p-4 rounded-4">
+                <h4 class="fw-bold mb-4 border-bottom pb-2">Hóa đơn của bạn</h4>
+                <div class="d-flex justify-content-between mb-3">
+                  <span>Sản phẩm (<?php echo count($gioHang); ?> món):</span>
+                  <span><?php echo number_format($tongTien, 0, ',', '.'); ?>đ</span>
+                </div>
+                <div class="d-flex justify-content-between mb-3 text-success fw-medium">
+                  <span>Khuyến mãi đặc biệt:</span>
+                  <span>-0đ</span>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between mb-4 fs-4 fw-bold total-price">
+                  <span>Tổng cộng:</span>
+                  <span><?php echo number_format($tongTien, 0, ',', '.'); ?>đ</span>
+                </div>
+                <?php if (!empty($gioHang)): ?>
+                  <a href="index.php?controller=ThanhToan&action=index" 
+                       class="btn btn-checkout btn-lg w-100 py-3 fw-bold shadow">
+                      ĐẶT HÀNG NGAY
+                    </a>
+                <?php else: ?>
+                  <button class="btn btn-checkout btn-lg w-100 py-3 fw-bold shadow" disabled>
+                      ĐẶT HÀNG NGAY
+                    </button>
+                <?php endif; ?>
+                <small class="text-muted text-center d-block mt-3">
+                  Cam kết chuẩn vị truyền thống 100%
+                </small>
               </div>
             </div>
           </div>
-          </div>
-    </section>
+        <?php endif; ?>
 
    
     <footer id="footer" class="pt-5 pb-2 border-top bg-white">
@@ -231,4 +253,87 @@
 
   </div>
 </body>
+
+<script>
+/**
+ * Thêm sản phẩm vào giỏ hàng
+ */
+function themVaoGio(ma_sp, so_luong = 1) {
+    const formData = new FormData();
+    formData.append('ma_sp', ma_sp);
+    formData.append('so_luong', so_luong);
+    
+    fetch('index.php?controller=GioHang&action=themVaoGio', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert(data.message);
+            location.reload();
+        } else {
+            alert('Lỗi: ' + data.message);
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+/**
+ * Xoá sản phẩm khỏi giỏ hàng
+ */
+function xoaKhoiGio(ma_sp) {
+    if (!confirm('Bạn có chắc chắn muốn xoá sản phẩm này?')) {
+        return;
+    }
+    
+    const formData = new FormData();
+    formData.append('ma_sp', ma_sp);
+    
+    fetch('index.php?controller=GioHang&action=xoaKhoiGio', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert(data.message);
+            location.reload();
+        } else {
+            alert('Lỗi: ' + data.message);
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+/**
+ * Cập nhật số lượng sản phẩm
+ */
+function capNhatSoLuong(ma_sp, so_luong) {
+    so_luong = parseInt(so_luong);
+    
+    if (so_luong < 1) {
+        alert('Số lượng phải lớn hơn 0!');
+        return;
+    }
+    
+    const formData = new FormData();
+    formData.append('ma_sp', ma_sp);
+    formData.append('so_luong', so_luong);
+    
+    fetch('index.php?controller=GioHang&action=capNhatSoLuong', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            location.reload();
+        } else {
+            alert('Lỗi: ' + data.message);
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
+</script>
 </html>

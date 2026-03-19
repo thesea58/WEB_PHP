@@ -125,7 +125,15 @@
               <h5 class="card-title fw-bold text-brown"><?php echo htmlspecialchars($sanPham['ten_sp']); ?></h5>
               <p class="card-text text-muted small"><?php echo htmlspecialchars($sanPham['ten_danh_muc']); ?></p>
               <p class="card-text text-danger fw-bold"><?php echo number_format($sanPham['gia'], 0, ',', '.'); ?>đ</p>
-              <button class="btn btn-outline-brown w-100">Thêm vào giỏ</button>
+              <?php if (isset($_SESSION['user'])): ?>
+                <button class="btn btn-outline-brown w-100" onclick="themVaoGio(<?php echo $sanPham['ma_sp']; ?>, 1)">
+                  <i class="bi bi-box-arrow-in-down me-2"></i>Thêm vào giỏ
+                </button>
+              <?php else: ?>
+                <a href="index.php?controller=DangNhap&action=index" class="btn btn-outline-brown w-100" style="text-decoration: none;">
+                  <i class="bi bi-box-arrow-in-down me-2"></i>Thêm vào giỏ
+                </a>
+              <?php endif; ?>
             </div>
           </div>
         </div>
@@ -176,4 +184,33 @@
 
   </div>
 </body>
+
+<script>
+/**
+ * Thêm sản phẩm vào giỏ hàng
+ */
+function themVaoGio(ma_sp, so_luong = 1) {
+    const formData = new FormData();
+    formData.append('ma_sp', ma_sp);
+    formData.append('so_luong', so_luong);
+    
+    fetch('index.php?controller=GioHang&action=themVaoGio', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('✅ ' + data.message);
+            location.reload();
+        } else {
+            alert('❌ ' + data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('❌ Có lỗi xảy ra. Vui lòng thử lại!');
+    });
+}
+</script>
 </html>
