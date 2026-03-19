@@ -272,8 +272,9 @@ document.getElementById('checkoutForm').addEventListener('submit', function(e) {
       const data = JSON.parse(text);
       if (data.success) {
         showAlert('success', data.message || 'Đặt hàng thành công!');
+        // Sau khi hiển thị thông báo, chuyển về trang chủ
         setTimeout(() => {
-          window.location.href = 'index.php?controller=TaiKhoan&action=index';
+          window.location.href = 'index.php?controller=TrangChu&action=index';
         }, 2000);
       } else {
         showAlert('error', data.message || 'Đặt hàng thất bại');
