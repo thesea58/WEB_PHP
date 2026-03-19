@@ -78,9 +78,9 @@ class ThanhToanController extends BaseController {
             $tong_tien += $item['gia'] * $item['so_luong'];
         }
         
-        // Lấy ID người dùng
-        $id_nguoi_dung = $_SESSION['user']['id'] ?? null;
-        if (!$id_nguoi_dung) {
+        // Lấy mã người dùng từ session (sử dụng key `ma_nguoi_dung` theo chuẩn project)
+        $ma_nguoi_dung = $_SESSION['user']['ma_nguoi_dung'] ?? null;
+        if (!$ma_nguoi_dung) {
             http_response_code(400);
             echo json_encode(['success' => false, 'message' => 'Người dùng không hợp lệ']);
             exit();
@@ -92,7 +92,7 @@ class ThanhToanController extends BaseController {
             
             // Tạo hóa đơn
             $ma_hd = $hoaDonModel->taoHoaDon(
-                $id_nguoi_dung,
+                $ma_nguoi_dung,
                 $tong_tien,
                 'dang_xu_ly',
                 $ten_ng,
