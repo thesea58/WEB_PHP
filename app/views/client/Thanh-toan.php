@@ -133,35 +133,25 @@
             </thead>
 
             <tbody>
-              <tr class="text-center">
-                <td class="d-flex align-items-center">
-                  <img src="app/views/client/img/Anh/Trung/banhcomsua_binhthuan.jpg" width="60" class="rounded">
-                  <span class="ms-2 fw-semibold">Bánh Cốm</span>
-                </td>
-                <td>50.000đ</td>
-                <td>1</td>
-                <td class="fw-bold text-danger">50.000đ</td>
-              </tr>
-
-              <tr class="text-center">
-                <td class="d-flex align-items-center">
-                  <img src="app/views/client/img/Anh/Trung/nemchua_thanhhoa.jpg" width="60" class="rounded">
-                  <span class="ms-2 fw-semibold">Nem Chua</span>
-                </td>
-                <td>45.000đ</td>
-                <td>2</td>
-                <td class="fw-bold text-danger">90.000đ</td>
-              </tr>
-
-              <tr class="text-center">
-                <td class="d-flex align-items-center">
-                  <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=200" width="60" class="rounded">
-                  <span class="ms-2 fw-semibold">Khô cá</span>
-                </td>
-                <td>120.000đ</td>
-                <td>1</td>
-                <td class="fw-bold text-danger">120.000đ</td>
-              </tr>
+              <?php if (!empty($gioHang)): ?>
+                <?php foreach ($gioHang as $item): ?>
+                <tr class="text-center">
+                  <td class="d-flex align-items-center">
+                    <img src="app/views/client/<?php echo htmlspecialchars($item['path_img']); ?>" 
+                         width="60" class="rounded"
+                         onerror="this.src='app/views/client/img/icon.png'">
+                    <span class="ms-2 fw-semibold"><?php echo htmlspecialchars($item['ten_sp']); ?></span>
+                  </td>
+                  <td><?php echo number_format($item['gia'], 0, ',', '.'); ?>đ</td>
+                  <td><?php echo $item['so_luong']; ?></td>
+                  <td class="fw-bold text-danger"><?php echo number_format($item['gia'] * $item['so_luong'], 0, ',', '.'); ?>đ</td>
+                </tr>
+                <?php endforeach; ?>
+              <?php else: ?>
+                <tr>
+                  <td colspan="4" class="text-center text-muted py-4">Giỏ hàng trống</td>
+                </tr>
+              <?php endif; ?>
             </tbody>
           </table>
 
@@ -170,18 +160,20 @@
 
       <!-- FORM -->
       <div class="col-lg-5">
-        <form action="xu-ly-thanh-toan.php" method="POST">
+        <div id="alertBox"></div>
+        <form id="checkoutForm">
 
           <div class="card border-0 shadow rounded-4 p-4">
 
             <h4 class="fw-bold mb-3" style="color:#8B4513;">Thông tin nhận hàng</h4>
 
-            <input type="text" name="ten" class="form-control mb-3 rounded-3" placeholder="Họ tên" required>
-<input type="text" name="sdt" class="form-control mb-3 rounded-3" placeholder="Số điện thoại" required>
-            <input type="text" name="diachi" class="form-control mb-3 rounded-3" placeholder="Địa chỉ giao hàng" required>
+            <input type="text" name="ten" id="ten" class="form-control mb-3 rounded-3" placeholder="Họ tên" 
+                   value="<?php echo htmlspecialchars($user['ten_dang_nhap'] ?? ''); ?>" required>
+            <input type="tel" name="sdt" id="sdt" class="form-control mb-3 rounded-3" placeholder="Số điện thoại (ví dụ: 0981234567)" required>
+            <input type="text" name="diachi" id="diachi" class="form-control mb-3 rounded-3" placeholder="Địa chỉ giao hàng" required>
 
             <label class="fw-semibold mb-2">Phương thức thanh toán</label>
-            <select name="thanhtoan" class="form-select mb-3 rounded-3" onchange="showQR(this.value)">
+            <select name="thanhtoan" id="thanhtoan" class="form-select mb-3 rounded-3" onchange="showQR(this.value)">
               <option value="cod">Thanh toán khi nhận (COD)</option>
               <option value="bank">Chuyển khoản QR</option>
             </select>
@@ -197,7 +189,7 @@
 
             <div class="d-flex justify-content-between mb-2">
               <span>Tạm tính:</span>
-              <span>260.000đ</span>
+              <span><?php echo number_format($tongTien, 0, ',', '.'); ?>đ</span>
             </div>
 
             <div class="d-flex justify-content-between mb-3 text-success">
@@ -207,11 +199,10 @@
 
             <div class="d-flex justify-content-between fs-5 fw-bold mb-4">
               <span>Tổng:</span>
-              <span class="text-danger">260.000đ</span>
+              <span class="text-danger"><?php echo number_format($tongTien, 0, ',', '.'); ?>đ</span>
             </div>
 
-
-            <button class="btn w-100 py-3 fw-bold text-white rounded-3"
+            <button type="submit" class="btn w-100 py-3 fw-bold text-white rounded-3" id="submitBtn"
               style="background:#8B4513;">
               XÁC NHẬN THANH TOÁN
             </button>
@@ -226,9 +217,98 @@
 </section>
 
 <script>
+// Show/hide QR code based on payment method
 function showQR(value){
   const qr = document.getElementById("qr-box");
   qr.style.display = (value === "bank") ? "block" : "none";
+}
+
+// Handle checkout form submission
+document.getElementById('checkoutForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const ten = document.getElementById('ten').value.trim();
+  const sdt = document.getElementById('sdt').value.trim();
+  const diachi = document.getElementById('diachi').value.trim();
+  const thanhtoan = document.getElementById('thanhtoan').value;
+  
+  // Validate
+  if (!ten || !sdt || !diachi) {
+    showAlert('error', 'Vui lòng điền đầy đủ thông tin');
+    return;
+  }
+  
+  // Validate phone number
+  if (!/^0\d{9}$/.test(sdt)) {
+    showAlert('error', 'Số điện thoại không hợp lệ (ví dụ: 0981234567)');
+    return;
+  }
+  
+  const formData = new FormData();
+  formData.append('ten', ten);
+  formData.append('sdt', sdt);
+  formData.append('diachi', diachi);
+  formData.append('thanhtoan', thanhtoan);
+  
+  const submitBtn = document.getElementById('submitBtn');
+  const originalText = submitBtn.innerHTML;
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = '<i class="bi bi-hourglass-split me-1"></i>Đang xử lý...';
+  
+  fetch('index.php?controller=ThanhToan&action=xulyThanhToan', {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => {
+    if (!response.ok) {
+      return response.text().then(text => {
+        throw new Error(`HTTP ${response.status}: ${text}`);
+      });
+    }
+    return response.text();
+  })
+  .then(text => {
+    try {
+      const data = JSON.parse(text);
+      if (data.success) {
+        showAlert('success', data.message || 'Đặt hàng thành công!');
+        setTimeout(() => {
+          window.location.href = 'index.php?controller=TaiKhoan&action=index';
+        }, 2000);
+      } else {
+        showAlert('error', data.message || 'Đặt hàng thất bại');
+      }
+    } catch (e) {
+      showAlert('error', 'Lỗi phản hồi từ server: ' + text);
+    }
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    showAlert('error', 'Có lỗi xảy ra: ' + error.message);
+  })
+  .finally(() => {
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = originalText;
+  });
+});
+
+// Show alert message
+function showAlert(type, message) {
+  const alertBox = document.getElementById('alertBox');
+  const alertClass = type === 'success' ? 'alert alert-success' : 'alert alert-danger';
+  alertBox.innerHTML = `
+    <div class="${alertClass} alert-dismissible fade show" role="alert">
+      ${message}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  `;
+  
+  // Auto close after 5 seconds
+  if (type === 'success') {
+    setTimeout(() => {
+      alertBox.innerHTML = '';
+    }, 5000);
+  }
 }
 </script>
    

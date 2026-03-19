@@ -47,15 +47,17 @@ class HoaDonModel {
     /**
      * Tạo hóa đơn mới
      */
-    public function taoHoaDon($ma_nguoi_dung, $ten_khach_hang, $dien_thoai, $dia_chi, $tong_tien) {
-        $sql = "INSERT INTO hoadon (ma_nguoi_dung, ten_khach_hang, dien_thoai, dia_chi, tong_tien, ngay_dat) 
-                VALUES (:ma_nguoi_dung, :ten_khach_hang, :dien_thoai, :dia_chi, :tong_tien, NOW())";
+    public function taoHoaDon($ma_nguoi_dung, $tong_tien, $trang_thai = 'dang_xu_ly', $ten_khach_hang = '', $dien_thoai = '', $dia_chi = '', $phuong_thuc_tt = 'cod') {
+        $sql = "INSERT INTO hoadon (ma_nguoi_dung, ten_khach_hang, dien_thoai, dia_chi, tong_tien, trang_thai, phuong_thuc_tt, ngay_dat) 
+                VALUES (:ma_nguoi_dung, :ten_khach_hang, :dien_thoai, :dia_chi, :tong_tien, :trang_thai, :phuong_thuc_tt, NOW())";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindParam(':ma_nguoi_dung', $ma_nguoi_dung, PDO::PARAM_INT);
         $stmt->bindParam(':ten_khach_hang', $ten_khach_hang);
         $stmt->bindParam(':dien_thoai', $dien_thoai);
         $stmt->bindParam(':dia_chi', $dia_chi);
         $stmt->bindParam(':tong_tien', $tong_tien);
+        $stmt->bindParam(':trang_thai', $trang_thai);
+        $stmt->bindParam(':phuong_thuc_tt', $phuong_thuc_tt);
         
         if ($stmt->execute()) {
             return $this->pdo->lastInsertId();
