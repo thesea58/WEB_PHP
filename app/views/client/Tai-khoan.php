@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="app/views/client/css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="app/views/client/css/Trang-chu.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link rel="icon" href="app/views/client/img/icon.png" type="image/png">
 
   <script src="app/views/client/js/bootstrap.bundle.js"></script>
 
@@ -21,52 +22,56 @@
       color: #8B4513;
     }
 
-    .account-container {
+    .coming-soon-container {
+      min-height: 70vh;
       display: flex;
-      gap: 20px;
-      padding: 30px;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
     }
 
-    .account-sidebar {
-      width: 260px;
-      background: #fff;
-      border-radius: 10px;
-      padding: 20px;
+    .coming-soon-card {
+      background: white;
+      border-radius: 15px;
+      padding: 60px 40px;
+      text-align: center;
+      max-width: 600px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
     }
 
-    .account-content {
-      flex: 1;
-      background: #fff;
-      border-radius: 10px;
-      padding: 25px;
+    .coming-soon-icon {
+      font-size: 5rem;
+      color: #8B4513;
+      margin-bottom: 20px;
     }
 
-    .user-avatar img {
-      width: 80px;
-      border-radius: 50%;
-    }
-
-    .menu-item {
-      padding: 10px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .menu-item:hover,
-    .menu-item.active {
-      background: #f3e5d8;
+    .coming-soon-title {
+      font-size: 2rem;
       color: #8B4513;
       font-weight: bold;
+      margin-bottom: 15px;
     }
 
-    .btn-brown {
+    .coming-soon-text {
+      color: #666;
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+    }
+
+    .btn-back {
       background: #8B4513;
       color: white;
-      border: none;
+      padding: 12px 40px;
+      border-radius: 10px;
+      text-decoration: none !important;
+      display: inline-block;
+      transition: 0.3s;
     }
 
-    .btn-brown:hover {
+    .btn-back:hover {
       background: #6b3210;
+      color: white;
+      text-decoration: none;
     }
   </style>
 </head>
@@ -141,63 +146,25 @@
       </div>
     </nav>
 
-  <!-- ACCOUNT -->
-  <div class="account-container">
-
-    <!-- SIDEBAR -->
-    <div class="account-sidebar text-center">
-      <div class="user-avatar">
-        <img src="app/views/client/img/avt.jpg">
+    <!-- Coming Soon -->
+    <div class="coming-soon-container">
+      <div class="coming-soon-card">
+        <div class="coming-soon-icon">
+          <i class="bi bi-wrench-adjustable"></i>
+        </div>
+        <h1 class="coming-soon-title">Trang Tài Khoản</h1>
+        <p class="coming-soon-text">
+          Trang này đang được cập nhật với các tính năng mới.<br>
+          Vui lòng quay lại sau!
+        </p>
+        <a href="index.php?controller=TrangChu&action=index" class="btn-back">
+          <i class="bi bi-arrow-left me-2"></i>Quay lại Trang Chủ
+        </a>
       </div>
-      <div class="fw-bold mt-2">Nguyễn Văn A</div>
-      <a href="#" class="text-brown"><i class="bi bi-pencil-square"></i> Sửa hồ sơ</a>
-
-      <hr>
-
-      <div class="menu-item active">Tài khoản của tôi</div>
-      <div class="menu-item">Đơn mua</div>
-      <div class="menu-item">Thông báo</div>
-      <div class="menu-item">Ví</div>
     </div>
 
-    <!-- CONTENT -->
-    <div class="account-content">
-
-      <h4 class="text-brown">Hồ sơ cá nhân</h4>
-
-      <div class="mb-3">
-        <label>Tên đăng nhập</label>
-        <input class="form-control" value="nguyenvana">
-      </div>
-
-      <div class="mb-3">
-        <label>Họ tên</label>
-        <input class="form-control" value="Nguyễn Văn A">
-      </div>
-
-      <div class="mb-3">
-        <label>Email</label>
-        <input class="form-control" value="nguyenvana@gmail.com">
-      </div>
-
-      <button class="btn btn-brown">Lưu thay đổi</button>
-
-      <hr>
-
-      <h4 class="text-brown mt-3">Đổi mật khẩu</h4>
-
-      <input class="form-control mb-2" type="password" placeholder="Mật khẩu cũ">
-      <input class="form-control mb-2" type="password" placeholder="Mật khẩu mới">
-      <input class="form-control mb-2" type="password" placeholder="Nhập lại mật khẩu">
-
-      <button class="btn btn-brown mt-2">Cập nhật mật khẩu</button>
-
-    </div>
-
-  </div>
-
-  <!-- FOOTER (giữ style giống trang chủ) -->
-  <footer id="footer" class="pt-5 pb-2 border-top bg-white">
+    <!-- FOOTER -->
+    <footer id="footer" class="pt-5 pb-2 border-top bg-white">
       <div class="container">
         <div class="row">
           <div class="col-md-4 mb-3 text-brown">
@@ -205,7 +172,7 @@
             <p class="mt-3">
               Đặc sản ba miền – Tinh hoa ẩm thực Việt!<br>
               Mang đến hương vị truyền thống chuẩn vị Bắc – Trung – Nam.
-</p>
+            </p>
           </div>
 
           <div class="col-md-4 mb-3">
@@ -229,7 +196,7 @@
       </div>
     </footer>
 
-</div>
+  </div>
 
 </body>
 </html>
