@@ -91,6 +91,9 @@
             <li class="nav-item">
               <a class="nav-link" href="trang-chu.php">Trang chủ</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="gioi-thieu.php">Giới thiệu</a>
+            </li>
 
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="san-pham.php" role="button" data-bs-toggle="dropdown">
@@ -101,7 +104,7 @@
                 <li><a class="dropdown-item" href="Dac-san-mien-trung.php">Đặc sản miền Trung</a></li>
                 <li><a class="dropdown-item" href="Dac-san-mien-nam.php">Đặc sản miền Nam</a></li>
                 	<li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item fw-bold" href="San-pham-ban-chay">Sản phẩm bán chạy</a></li>
+                <li><a class="dropdown-item fw-bold" href="San-pham-ban-chay.php">🔥Sản phẩm bán chạy</a></li>
              
               </ul>
             </li>

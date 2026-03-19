@@ -75,36 +75,31 @@
       <div class="container-fluid">
         <a class="navbar-brand d-flex align-items-center" href="trang-chu.php">
           <img src="img/Anh/Banner/logo.jpg" alt="Logo" class="nav-logo" style="height: 120px;">
-          <span class="brand-text ms-2" style="color: #8B4513; font-weight: 800; font-size: 1.4rem; text-transform: uppercase;">ĐẶC SẢN BA MIỀN</span>
+<span class="brand-text ms-2" style="color: #8B4513; font-weight: 800; font-size: 1.4rem; text-transform: uppercase;">ĐẶC SẢN BA MIỀN</span>
         </a>
 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
           <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-              <ul class="navbar-nav fs-5">
-        <li class="nav-item">
-            <a class="nav-link" href="trang-chu.php">Trang chủ</a>
-        </li>
-        <li class="nav-item">
+          <ul class="navbar-nav fs-5">
+            <li class="nav-item"><a class="nav-link" href="trang-chu.php">Trang chủ</a></li>
+            <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link" href="gioi-thieu.php">Giới thiệu</a>
             </li>
-    
-        <li class="nav-item">
-            <a class="nav-link" href="bai-viet.php">Bài viết</a>
-        </li>
-    
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle active fw-bold" href="san-pham.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Sản phẩm
-            </a>
-            <ul class="dropdown-menu border-brown">
+              <a class="nav-link" href="bai-viet.php">Bài viết</a>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle active fw-bold" href="san-pham.php" role="button" data-bs-toggle="dropdown">Sản phẩm</a>
+              <ul class="dropdown-menu border-brown">
                 <li><a class="dropdown-item" href="Dac-san-mien-bac.php">Đặc sản miền Bắc</a></li>
                 <li><a class="dropdown-item" href="Dac-san-mien-trung.php">Đặc sản miền Trung</a></li>
                 <li><a class="dropdown-item" href="Dac-san-mien-nam.php">Đặc sản miền Nam</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item fw-bold" href="San-pham-ban-chay.php">🔥Sản phẩm bán chạy</a></li>
-            </ul>
+              </ul>
             </li>
               <li class="nav-item">
               <a class="nav-link position-relative" href="gio-hang.php">
@@ -135,50 +130,51 @@
       </div>
     </nav>
     
-<div class="container my-5">
+<div class="banner-background-section">
+    <div class="container bg-white p-5 shadow-sm rounded">
+        
         <div class="text-center mb-5">
-            <h2 class="fw-bold text-brown" style="text-transform: uppercase;">Bài Viết Đặc Sản Ba Miền</h2>
-            <p class="text-center mb-5 text-muted">
-            Việt Nam không chỉ nổi tiếng với cảnh đẹp mà còn là thiên đường ẩm thực đa dạng và đặc sắc. 
-            Trải dài từ Bắc vào Nam, mỗi vùng miền đều mang đến những hương vị riêng biệt, phản ánh rõ nét 
-            bản sắc văn hóa và truyền thống địa phương. Những món đặc sản tiêu biểu không chỉ làm say lòng 
-            người thưởng thức mà còn góp phần lưu giữ tinh hoa ẩm thực dân tộc, tạo nên một bức tranh ẩm thực 
-            Việt Nam đầy màu sắc và hấp dẫn.
-            </p>
+            <h1 class="fw-bold text-brown" style="font-family: 'Times New Roman', serif; text-transform: uppercase;">Trà Oolong Sen – Hương Vị Thanh Khiết Từ Sen Hồng</h1>
+            <p class="text-muted"><i>“Hoa sen sao khéo giữ màu, nắng nồng không nhạt, mưa dầu không phai”</i></p>
         </div>
 
-        <div class="row">
-            <div class="col-md-4 text-center mb-4">
-                <div class="p-4 border rounded shadow-sm h-100 d-flex flex-column bg-light product-card">
-                    <img src="img/Anh/Bac/banhchung_langdam_HaNam.png" alt="Ảnh đặc sản miền Bắc" class="img-fluid mb-3 rounded shadow-sm" style="height: 200px; object-fit: cover; background-color: #ddd;">
-                    
-                    <h4 class="fw-bold text-brown">Bánh chưng làng Đầm Hà Nam - Đặc sản miền Bắc</h4>
-                    <p class="text-muted flex-grow-1">Giá trị văn hoá và bí quyết làm nên tên tuổi bánh chưng làng Đầm</p>
-                    <a href="bai-viet-mien-bac.php" class="btn btn-outline-brown w-100 mt-3">Xem thêm</a>
-                </div>
-            </div>
-<div class="col-md-4 text-center mb-4">
-                <div class="p-4 border rounded shadow-sm h-100 d-flex flex-column bg-light product-card">
-                    <img src="img/Anh/Nam/trasen_dongthap.jpg" alt="Cua Cà Mau" class="img-fluid mb-3 rounded shadow-sm" style="height: 200px; object-fit: cover; background-color: #ddd;">
-                    
-                    <h4 class="fw-bold text-brown">Trà sen Đồng Tháp - Đặc sản miền Nam</h4>
-                    <p class="text-muted flex-grow-1">Trà Oolong Sen, dược liệu quý từ thiên nhiên Đồng Tháp</p>
-                    <a href="bai-viet-mien-nam.php" class="btn btn-outline-brown w-100 mt-3">Xem thêm</a>
-                </div>
-            </div>
+        <div class="row justify-content-center">
+            <div class="col-md-10 fs-5" style="line-height: 1.8; text-align: justify;">
+<p>Vài năm nay, những người am hiểu dược liệu dân gian và chăm sóc sức khỏe đã dần quen thuộc với <b>Trà Oolong Sen</b> sản xuất từ lá và hoa sen tỉnh Đồng Tháp. Hương thơm tự nhiên cao sang ấy nay đã dịu dàng lan tỏa trên các bàn trà thanh tao, khiến ai một lần thưởng thức cũng sẽ nhớ mãi.</p>
 
-            <div class="col-md-4 text-center mb-4">
-                <div class="p-4 border rounded shadow-sm h-100 d-flex flex-column bg-light product-card">
-                    <img src="img/Anh/Trung/ruoubauda_binhdinh.jpg" alt="Ảnh đặc sản miền Trung" class="img-fluid mb-3 rounded shadow-sm" style="height: 200px; object-fit: cover; background-color: #ddd;">
-                    
-                    <h4 class="fw-bold text-brown">Rượu bầu đá Bình Định - Đặc sản miền Trung</h4>
-                    <p class="text-muted flex-grow-1">Cội nguồn rượu Bầu Đá Bình Định</p>
-                    <a href="bai-viet-mien-trung.php" class="btn btn-outline-brown w-100 mt-3">Xem thêm</a>
+                <div class="my-4 text-center">
+                    <img src="img/Anh/Nam/sen.jpg" alt="Cánh đồng sen và nhà máy chế biến" class="img-fluid rounded shadow-sm" style="max-height: 400px; width: 100%; object-fit: cover; background-color: #f0f0f0;">
+                    <p class="text-muted mt-2" style="font-size: 0.9rem;"><i>Hình 1: Cánh đồng sen nguyên liệu và công đoạn chế biến tại nhà máy</i></p>
                 </div>
+
+                <h3 class="text-brown fw-bold mt-5">1. Dược liệu quý từ thiên nhiên</h3>
+                <p>Khác với các loại trà ướp hương thông thường, Trà Oolong Sen Đồng Tháp sở hữu công nghệ bí quyết giúp lưu giữ trọn vẹn tinh dầu sen – vốn rất nhẹ và dễ bay hơi. Trà thuộc loại vo viên (bán lên men), lá sen tươi sau khi thu hoạch phải trải qua nhiều công đoạn chế biến nghiêm ngặt mới có thể phục vụ quý khách.</p>
+
+                <div class="my-4 text-center">
+                    <img src="img/Anh/Nam/hopsen.jpg" alt="Sản phẩm Trà Oolong Sen" class="img-fluid rounded shadow-sm" style="max-height: 350px; background-color: #f0f0f0;">
+                    <p class="text-muted mt-2" style="font-size: 0.9rem;"><i>Hình 2: Các sản phẩm Trà Oolong Sen đang được người tiêu dùng tín nhiệm</i></p>
+                </div>
+
+                <h3 class="text-brown fw-bold mt-5">2. Công dụng tuyệt vời cho sức khỏe</h3>
+                <p>Y học cổ truyền và hiện đại đã công nhận lá sen là một dược liệu quý với danh sách công dụng kéo dài:</p>
+                
+                <ul class="list-group list-group-flush mb-4">
+                    <li class="list-group-item bg-transparent"><i class="bi bi-check2-circle text-success"></i> <b>Giảm Cholesterol:</b> Nhờ hàm lượng Kali và Natri giúp cân bằng mỡ máu.</li>
+                    <li class="list-group-item bg-transparent"><i class="bi bi-check2-circle text-success"></i> <b>Chữa mất ngủ:</b> Hoạt chất Pyridoxine giúp thư giãn mạch máu, dễ đi vào giấc ngủ sâu.</li>
+                    <li class="list-group-item bg-transparent"><i class="bi bi-check2-circle text-success"></i> <b>Thanh nhiệt, giải độc gan:</b> Chứa Quercetin và Flavonoid chống oxy hóa mạnh mẽ.</li>
+                    <li class="list-group-item bg-transparent"><i class="bi bi-check2-circle text-success"></i> <b>Hỗ trợ giảm cân:</b> Hàm lượng Calo thấp và Carbohydrate giúp dạ dày no lâu, nhuận tràng.</li>
+<li class="list-group-item bg-transparent"><i class="bi bi-check2-circle text-success"></i> <b>Cải thiện tim mạch:</b> Giúp ổn định huyết áp nhờ các Alkaloid tự nhiên.</li>
+                </ul>
+
+                <div class="p-4 my-4 border-start border-4 border-brown bg-light italic">
+                    <p class="mb-0"><i>"Nâng ly trà, hương sen tỏa dịu ngọt thanh tao. Đó không chỉ là thưởng trà, mà còn là thưởng thức tinh túy của đất trời miền Tây."</i></p>
+                </div>
+
+                <p class="text-end fw-bold text-brown mt-4">Nguồn: Ecohome Đồng Tháp & Tổng hợp</p>
             </div>
         </div>
-    </div>    
-
+    </div>
+</div>
 
 
 
@@ -208,7 +204,7 @@
             <p><i class="bi bi-envelope"></i> contact@dacsan3mien.vn</p>
           </div>
         </div>
-<hr style="border-color: #8B4513;">
+        <hr style="border-color: #8B4513;">
         <p class="text-center text-brown">&copy; 2026 Đặc sản ba miền</p>
       </div>
     </footer>

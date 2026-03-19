@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  db:
+    image: mariadb:10.6
+    container_name: nongsan_db_container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: nongsan_db
+      MYSQL_USER: user_nongsan
+      MYSQL_PASSWORD: user_password
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+      - ./database.sql:/docker-entrypoint-initdb.d/database.sql
+    networks:
+      - app-network
+
+  app:
+    build: .
+    container_name: nongsan_app_container
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      PORT: 80
+      DB_HOST: db
+      DB_NAME: nongsan_db
+      DB_USER: user_nongsan
+      DB_PASS: user_password
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: nongsan_pma_container
+    restart: always
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306 # Cổng của MariaDB container
+      PMA_ARBITRARY: 1 # Cho phép kết nối đến host bất kỳ
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

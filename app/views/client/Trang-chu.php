@@ -33,6 +33,7 @@
             <li class="nav-item">
               <a class="nav-link" href="trang-chu.php">Trang chủ</a>
             </li>
+            <li class="nav-item"><a class="nav-link" href="Gioi-thieu.php">Giới thiệu</a></li>
             <li class="nav-item">
               <a class="nav-link" href="bai-viet.php">Bài viết</a>
             </li>
@@ -67,8 +68,8 @@
       </div>
     </nav>
 
-    <div class="row m-0 py-5" id="section">
-      <div id="section-text" class="container text-center">
+    <div class="container-fluid p-0" id="section">
+  <div id="section-text" class="w-100">
         
             <div id="bannerSlider" class="carousel slide shadow rounded overflow-hidden my-5" data-bs-ride="carousel">
       <div class="carousel-inner">

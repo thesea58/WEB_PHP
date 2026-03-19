@@ -70,32 +70,26 @@
         </button>
 
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-          <ul class="navbar-nav fs-5">
+         <ul class="navbar-nav fs-5">
             <li class="nav-item">
-                <a class="nav-link" href="trang-chu.php">Trang chủ</a>
+                <a class="nav-link" href="xu-ly-don-hang.php">Xử lý đơn hàng</a>
             </li>
-        
             <li class="nav-item">
-                <a class="nav-link" href="bai-viet.php">Bài viết</a>
+                <a class="nav-link" href="thong-ke-don-hang.php">Thống kê đơn hàng</a>
             </li>
-        
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle active fw-bold" href="san-pham.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Sản phẩm
-                </a>
-                <ul class="dropdown-menu border-brown">
-                    <li><a class="dropdown-item" href="Dac-san-mien-bac.php">Đặc sản miền Bắc</a></li>
-                    <li><a class="dropdown-item" href="Dac-san-mien-trung.php">Đặc sản miền Trung</a></li>
-                    <li><a class="dropdown-item" href="Dac-san-mien-nam.php">Đặc sản miền Nam</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item fw-bold" href="san-pham-ban-chay.php">Sản phẩm bán chạy</a></li>
-                </ul>
+            <li class="nav-item">
+                <a class="nav-link" href="post.php">Quản lý đăng tải</a>
             </li>
-
-    <li class="nav-item"><a class="nav-link" href="gio-hang.php">Giỏ hàng</a></li>
-    <li class="nav-item"><a class="nav-link" href="dang-ky.php">Đăng ký</a></li>
-    <li class="nav-item"><a class="nav-link" href="dang-nhap.php">Đăng nhập</a></li>
-</ul>
+          
+            <li class="nav-item dropdown ms-lg-3">
+              <a class="nav-link dropdown-toggle" href="san-pham.php" role="button" data-bs-toggle="dropdown">
+                Quản trị
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end border-brown shadow">
+                <li><a class="dropdown-item text-danger" href="trang-chu.php"><i class="bi bi-box-arrow-right me-2"></i>Đăng xuất</a></li>
+              </ul>
+            </li>
+          </ul>
         </div>
 
         <form class="d-flex ms-3" role="search">

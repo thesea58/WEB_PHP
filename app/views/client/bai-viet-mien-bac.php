@@ -75,36 +75,31 @@
       <div class="container-fluid">
         <a class="navbar-brand d-flex align-items-center" href="trang-chu.php">
           <img src="img/Anh/Banner/logo.jpg" alt="Logo" class="nav-logo" style="height: 120px;">
-          <span class="brand-text ms-2" style="color: #8B4513; font-weight: 800; font-size: 1.4rem; text-transform: uppercase;">ĐẶC SẢN BA MIỀN</span>
+<span class="brand-text ms-2" style="color: #8B4513; font-weight: 800; font-size: 1.4rem; text-transform: uppercase;">ĐẶC SẢN BA MIỀN</span>
         </a>
 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
           <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-              <ul class="navbar-nav fs-5">
-        <li class="nav-item">
-            <a class="nav-link" href="trang-chu.php">Trang chủ</a>
-        </li>
-        <li class="nav-item">
+          <ul class="navbar-nav fs-5">
+            <li class="nav-item"><a class="nav-link" href="trang-chu.php">Trang chủ</a></li>
+            <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link" href="gioi-thieu.php">Giới thiệu</a>
             </li>
-    
-        <li class="nav-item">
-            <a class="nav-link" href="bai-viet.php">Bài viết</a>
-        </li>
-    
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle active fw-bold" href="san-pham.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Sản phẩm
-            </a>
-            <ul class="dropdown-menu border-brown">
+              <a class="nav-link" href="bai-viet.php">Bài viết</a>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle active fw-bold" href="san-pham.php" role="button" data-bs-toggle="dropdown">Sản phẩm</a>
+              <ul class="dropdown-menu border-brown">
                 <li><a class="dropdown-item" href="Dac-san-mien-bac.php">Đặc sản miền Bắc</a></li>
                 <li><a class="dropdown-item" href="Dac-san-mien-trung.php">Đặc sản miền Trung</a></li>
                 <li><a class="dropdown-item" href="Dac-san-mien-nam.php">Đặc sản miền Nam</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item fw-bold" href="San-pham-ban-chay.php">🔥Sản phẩm bán chạy</a></li>
-            </ul>
+             </ul>
             </li>
               <li class="nav-item">
               <a class="nav-link position-relative" href="gio-hang.php">
@@ -135,50 +130,51 @@
       </div>
     </nav>
     
-<div class="container my-5">
+<div class="banner-background-section">
+    <div class="container bg-white p-5 shadow-sm rounded">
+        
         <div class="text-center mb-5">
-            <h2 class="fw-bold text-brown" style="text-transform: uppercase;">Bài Viết Đặc Sản Ba Miền</h2>
-            <p class="text-center mb-5 text-muted">
-            Việt Nam không chỉ nổi tiếng với cảnh đẹp mà còn là thiên đường ẩm thực đa dạng và đặc sắc. 
-            Trải dài từ Bắc vào Nam, mỗi vùng miền đều mang đến những hương vị riêng biệt, phản ánh rõ nét 
-            bản sắc văn hóa và truyền thống địa phương. Những món đặc sản tiêu biểu không chỉ làm say lòng 
-            người thưởng thức mà còn góp phần lưu giữ tinh hoa ẩm thực dân tộc, tạo nên một bức tranh ẩm thực 
-            Việt Nam đầy màu sắc và hấp dẫn.
-            </p>
+            <h1 class="fw-bold text-brown" style="font-family: 'Times New Roman', serif; text-transform: uppercase;">Bánh Chưng Làng Đầm – Tinh Hoa Ẩm Thực Đất Hà Nam</h1>
+            <p class="text-muted"><i>Thức quà truyền thống đậm tình xứ Bắc</i></p>
         </div>
 
-        <div class="row">
-            <div class="col-md-4 text-center mb-4">
-                <div class="p-4 border rounded shadow-sm h-100 d-flex flex-column bg-light product-card">
-                    <img src="img/Anh/Bac/banhchung_langdam_HaNam.png" alt="Ảnh đặc sản miền Bắc" class="img-fluid mb-3 rounded shadow-sm" style="height: 200px; object-fit: cover; background-color: #ddd;">
-                    
-                    <h4 class="fw-bold text-brown">Bánh chưng làng Đầm Hà Nam - Đặc sản miền Bắc</h4>
-                    <p class="text-muted flex-grow-1">Giá trị văn hoá và bí quyết làm nên tên tuổi bánh chưng làng Đầm</p>
-                    <a href="bai-viet-mien-bac.php" class="btn btn-outline-brown w-100 mt-3">Xem thêm</a>
-                </div>
-            </div>
-<div class="col-md-4 text-center mb-4">
-                <div class="p-4 border rounded shadow-sm h-100 d-flex flex-column bg-light product-card">
-                    <img src="img/Anh/Nam/trasen_dongthap.jpg" alt="Cua Cà Mau" class="img-fluid mb-3 rounded shadow-sm" style="height: 200px; object-fit: cover; background-color: #ddd;">
-                    
-                    <h4 class="fw-bold text-brown">Trà sen Đồng Tháp - Đặc sản miền Nam</h4>
-                    <p class="text-muted flex-grow-1">Trà Oolong Sen, dược liệu quý từ thiên nhiên Đồng Tháp</p>
-                    <a href="bai-viet-mien-nam.php" class="btn btn-outline-brown w-100 mt-3">Xem thêm</a>
-                </div>
-            </div>
+        <div class="row justify-content-center">
+            <div class="col-md-10 fs-5" style="line-height: 1.8; text-align: justify;">
+<p>Bánh chưng làng Đầm, đặc sản nổi bật của vùng Hà Nam xưa, là món quà truyền thống giàu ý nghĩa mỗi độ Tết đến xuân về. Hương nếp thơm quyện trong từng chiếc bánh không chỉ gợi nhắc không khí sum họp, mà còn là thức quà biếu được yêu thích trải dài khắp các tỉnh phía Bắc.</p>
 
-            <div class="col-md-4 text-center mb-4">
-                <div class="p-4 border rounded shadow-sm h-100 d-flex flex-column bg-light product-card">
-                    <img src="img/Anh/Trung/ruoubauda_binhdinh.jpg" alt="Ảnh đặc sản miền Trung" class="img-fluid mb-3 rounded shadow-sm" style="height: 200px; object-fit: cover; background-color: #ddd;">
-                    
-                    <h4 class="fw-bold text-brown">Rượu bầu đá Bình Định - Đặc sản miền Trung</h4>
-                    <p class="text-muted flex-grow-1">Cội nguồn rượu Bầu Đá Bình Định</p>
-                    <a href="bai-viet-mien-trung.php" class="btn btn-outline-brown w-100 mt-3">Xem thêm</a>
+                <h3 class="text-brown fw-bold mt-4">1. Biểu tượng ẩm thực Hà Nam</h3>
+                <p>Nằm tại thôn Bích Trì, Liêm Tuyền, làng Đầm nổi tiếng với nghề làm bánh chưng truyền thống được truyền từ đời này sang đời khác. Điểm đặc biệt của bánh nơi đây là kỹ thuật <b>gói thủ công không dùng khuôn</b> nhưng vẫn vuông vắn, chắc tay. Vỏ bánh xanh mướt từ lá dong ôm trọn nhân nếp cái hoa vàng, đậu xanh bùi và thịt lợn ba chỉ đậm đà.</p>
+
+                <div class="my-4 text-center">
+                    <img src="img/Anh/Bac/BanhChung.jpg" alt="Bánh chưng làng Đầm trứ danh" class="img-fluid rounded shadow-sm" style="max-height: 400px; width: 100%; object-fit: cover; background-color: #f0f0f0;">
+                    <p class="text-muted mt-2" style="font-size: 0.9rem;"><i>Hình 1: Bánh chưng làng Đầm nổi tiếng với vẻ ngoài vuông vắn dù không dùng khuôn</i></p>
                 </div>
+
+                <h3 class="text-brown fw-bold mt-5">2. Quy trình chế biến tỉ mỉ</h3>
+                <p>Để có một chiếc bánh đạt chuẩn, người thợ phải chọn gạo nếp cái hoa vàng Hải Hậu dẻo thơm, đỗ xanh mẩy hạt và thịt lợn ba chỉ tươi ngon được tẩm ướp vừa vặn. Lá dong phải chọn loại lá to, xanh, không quá già cũng không quá non.</p>
+                
+                <p><b>Bí quyết làm nên thương hiệu:</b> Người dân làng Đầm sử dụng <b>nước mưa</b> để luộc bánh trong nồi tôn truyền thống suốt 10 tiếng đồng hồ. Sự kết hợp này giúp bánh chín dền, dẻo và giữ được mùi thơm tự nhiên đặc trưng mà không loại bánh nào có được.</p>
+
+                <div class="my-4 text-center">
+                    <img src="img/Anh/Bac/GoiBanh.jpg" alt="Quy trình làm bánh chưng" class="img-fluid rounded shadow-sm" style="max-height: 400px; background-color: #f0f0f0;">
+                    <p class="text-muted mt-2" style="font-size: 0.9rem;"><i>Hình 2: Công đoạn luộc bánh bằng nước mưa và nồi tôn truyền thống</i></p>
+                </div>
+
+                <h3 class="text-brown fw-bold mt-5">3. Cách thưởng thức đúng vị</h3>
+                <p>Khi thưởng thức, nên rọc lá dong theo bốn góc để giữ nguyên khối bánh. Từng miếng bánh xanh bóng, thơm ngậy nhân đậu thịt, ăn kèm với dưa hành muối hoặc củ kiệu sẽ tạo nên sự cân bằng hoàn hảo, tôn vinh tinh hoa ẩm thực Việt.</p>
+<h3 class="text-brown fw-bold mt-5">4. Giá trị văn hóa và kinh tế</h3>
+                <p>Năm 2025, bánh chưng làng Đầm không chỉ là món ăn mà còn là sợi dây gắn kết cộng đồng, giải quyết việc làm cho hàng chục hộ dân địa phương. Mỗi dịp Tết, làng nghề có thể cung ứng hàng nghìn chiếc bánh đi khắp các đô thị lớn như Hà Nội, Hải Phòng, mang theo câu chuyện truyền thống của cha ông đi xa hơn.</p>
+
+                <div class="p-4 my-4 border-start border-4 border-brown bg-light">
+                    <p class="mb-0"><i>"Hương vị bánh chưng làng Đầm chạm tới ký ức về những mùa Tết sum vầy, là thành quả của sự kiên nhẫn và lòng yêu nghề của người dân đất Bắc."</i></p>
+                </div>
+
+                <p class="text-end fw-bold text-brown mt-4">Nguồn: Đặc sản Ba Miền tổng hợp</p>
             </div>
         </div>
-    </div>    
 
+    </div>
+</div>
 
 
 
@@ -208,7 +204,7 @@
             <p><i class="bi bi-envelope"></i> contact@dacsan3mien.vn</p>
           </div>
         </div>
-<hr style="border-color: #8B4513;">
+        <hr style="border-color: #8B4513;">
         <p class="text-center text-brown">&copy; 2026 Đặc sản ba miền</p>
       </div>
     </footer>
