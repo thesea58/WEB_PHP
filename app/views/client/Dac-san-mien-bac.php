@@ -1,3 +1,7 @@
+<?php
+// Dữ liệu `products` được truyền từ controller
+$products = isset($products) ? $products : [];
+?>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -151,93 +155,20 @@
         </div>
 
         <div class="row">
-            <div class="col-md-3 col-sm-6 mb-4">
-                <div class="card h-100 shadow-sm product-card p-2">
-                    <img src="app/views/client/img/Anh/Bac/banhchung_langdam_HaNam.png" class="card-img-top img-sp" alt="Trà sen Đồng Tháp">
-                    <div class="card-body text-center d-flex flex-column">
-                        <h5 class="card-title fw-bold text-brown">Bánh chưng làng Đầm</h5>
-<p class="card-text text-danger fw-bold">120.000đ</p>
-<button class="btn btn-outline-brown mt-auto w-100">Thêm vào giỏ</button>
+            <?php if(!empty($products)): foreach($products as $p): ?>
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="card h-100 shadow-sm product-card p-2">
+                        <img src="<?php echo 'app/views/client/' . htmlspecialchars($p['path_img']); ?>" class="card-img-top img-sp" alt="<?php echo htmlspecialchars($p['ten_sp']); ?>">
+                        <div class="card-body text-center d-flex flex-column">
+                            <h5 class="card-title fw-bold text-brown"><?php echo htmlspecialchars($p['ten_sp']); ?></h5>
+                            <p class="card-text text-danger fw-bold"><?php echo number_format($p['gia'],0,',','.'); ?>đ</p>
+                            <button class="btn btn-outline-brown mt-auto w-100">Thêm vào giỏ</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6 mb-4">
-                <div class="card h-100 shadow-sm product-card p-2">
-                    <img src="app/views/client/img/Anh/Bac/banhdauxanh_haiduong.png" class="card-img-top img-sp" alt="Tôm khô Cà Mau">
-                    <div class="card-body text-center d-flex flex-column">
-                        <h5 class="card-title fw-bold text-brown">Bánh đậu xanh Hải Dương</h5>
-                        <p class="card-text text-danger fw-bold">80.000đ</p>
-                        <button class="btn btn-outline-brown mt-auto w-100">Thêm vào giỏ</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6 mb-4">
-                <div class="card h-100 shadow-sm product-card p-2">
-                    <img src="app/views/client/img/Anh/Bac/comlam_backan.jpg" class="card-img-top img-sp" alt="Nem bưởi Tây Ninh">
-                    <div class="card-body text-center d-flex flex-column">
-                        <h5 class="card-title fw-bold text-brown">Cơm lam Bắc Cạn</h5>
-                        <p class="card-text text-danger fw-bold">60.000đ</p>
-                        <button class="btn btn-outline-brown mt-auto w-100">Thêm vào giỏ</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6 mb-4">
-                <div class="card h-100 shadow-sm product-card p-2">
-                    <img src="app/views/client/img/Anh/Bac/chamuc_halong.jpg" class="card-img-top img-sp" alt="Mật ong Cà Mau">
-                    <div class="card-body text-center d-flex flex-column">
-                        <h5 class="card-title fw-bold text-brown">Chả mực Hạ Long</h5>
-                        <p class="card-text text-danger fw-bold">350.000đ</p>
-                        <button class="btn btn-outline-brown mt-auto w-100">Thêm vào giỏ</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6 mb-4">
-                <div class="card h-100 shadow-sm product-card p-2">
-                    <img src="app/views/client/img/Anh/Bac/lapxuong_dienbien.jpg" class="card-img-top img-sp" alt="Mắm chua Bạc Liêu">
-                    <div class="card-body text-center d-flex flex-column">
-                        <h5 class="card-title fw-bold text-brown">Lạp xưởng Điện Biên</h5>
-                        <p class="card-text text-danger fw-bold">200.000đ</p>
-                        <button class="btn btn-outline-brown mt-auto w-100">Thêm vào giỏ</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6 mb-4">
-                <div class="card h-100 shadow-sm product-card p-2">
-<img src="app/views/client/img/Anh/Bac/longnhan_hungyen.jpg" class="card-img-top img-sp" alt="Khô mực Kiên Giang">
-                    <div class="card-body text-center d-flex flex-column">
-                        <h5 class="card-title fw-bold text-brown">Long nhãn Hưng Yên</h5>
-                        <p class="card-text text-danger fw-bold">150.000đ</p>
-                        <button class="btn btn-outline-brown mt-auto w-100">Thêm vào giỏ</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6 mb-4">
-                <div class="card h-100 shadow-sm product-card p-2">
-                    <img src="app/views/client/img/Anh/Bac/omai_hanoi.jpg" class="card-img-top img-sp" alt="Kẹo dừa Bến Tre">
-                    <div class="card-body text-center d-flex flex-column">
-                        <h5 class="card-title fw-bold text-brown">Ô mai Hà Nội</h5>
-                        <p class="card-text text-danger fw-bold">90.000đ</p>
-                        <button class="btn btn-outline-brown mt-auto w-100">Thêm vào giỏ</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6 mb-4">
-                <div class="card h-100 shadow-sm product-card p-2">
-                    <img src="app/views/client/img/Anh/Bac/ruoumo_YenTu_QuangNinh.png" class="card-img-top img-sp" alt="Hạt điều Bình Phước">
-                    <div class="card-body text-center d-flex flex-column">
-                        <h5 class="card-title fw-bold text-brown">Rượu mơ Yên Tử</h5>
-                        <p class="card-text text-danger fw-bold">250.000đ</p>
-                        <button class="btn btn-outline-brown mt-auto w-100">Thêm vào giỏ</button>
-                    </div>
-                </div>
-            </div>
+            <?php endforeach; else: ?>
+                <div class="col-12"><p class="text-muted">Không có sản phẩm nào.</p></div>
+            <?php endif; ?>
         </div>
     </div>
 

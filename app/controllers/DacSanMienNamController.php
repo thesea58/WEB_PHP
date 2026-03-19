@@ -11,7 +11,7 @@ class DacSanMienNamController extends BaseController {
         
         $this->render('Dac-san-mien-nam', [
             'danhMuc' => $danhMuc,
-            'sanPham' => $sanPham
+            'products' => $sanPham
         ]);
     }
 }
