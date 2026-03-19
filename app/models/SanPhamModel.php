@@ -1,42 +1,91 @@
 <?php
-// app/models/SanPhamModel.php
-
+/**
+ * SanPhamModel - Quản lý dữ liệu sản phẩm
+ */
 class SanPhamModel {
-    private $db;
-
+    protected $pdo;
+    
     public function __construct($pdo) {
-        $this->db = $pdo;
+        $this->pdo = $pdo;
     }
-
-    // Lấy tất cả sản phẩm
+    
+    /**
+     * Lấy tất cả sản phẩm
+     */
     public function layTatCaSanPham() {
-        $stmt = $this->db->prepare("SELECT * FROM sanpham ORDER BY ngay_tao DESC");
+        $sql = "SELECT sp.*, dm.ten_danh_muc, ncc.ten_ncc 
+                FROM sanpham sp
+                LEFT JOIN danhmuc dm ON sp.id_danh_muc = dm.id
+                LEFT JOIN nhacungcap ncc ON sp.ma_ncc = ncc.ma_ncc
+                ORDER BY sp.ma_sp DESC";
+        $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
-        return $stmt->fetchAll();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
-    // Lấy sản phẩm theo danh mục (ID)
-    public function laySanPhamTheoDanhMuc($id_danh_muc) {
-        $stmt = $this->db->prepare("SELECT * FROM sanpham WHERE id_danh_muc = ?");
-        $stmt->execute([$id_danh_muc]);
-        return $stmt->fetchAll();
+    
+    /**
+     * Lấy sản phẩm theo danh mục (miền)
+     */
+    public function laySanPhamTheoMien($id_danh_muc) {
+        $sql = "SELECT sp.*, dm.ten_danh_muc, ncc.ten_ncc 
+                FROM sanpham sp
+                LEFT JOIN danhmuc dm ON sp.id_danh_muc = dm.id
+                LEFT JOIN nhacungcap ncc ON sp.ma_ncc = ncc.ma_ncc
+                WHERE sp.id_danh_muc = :id_danh_muc
+                ORDER BY sp.ma_sp DESC";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(':id_danh_muc', $id_danh_muc, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
-    // Lấy chi tiết một sản phẩm
-    public function layChiTietSanPham($ma_sp) {
-        $stmt = $this->db->prepare("SELECT s.*, d.ten_danh_muc, n.ten_ncc 
-                                    FROM sanpham s
-                                    JOIN danhmuc d ON s.id_danh_muc = d.id
-                                    JOIN nhacungcap n ON s.ma_ncc = n.ma_ncc
-                                    WHERE s.ma_sp = ?");
-        $stmt->execute([$ma_sp]);
-        return $stmt->fetch();
+    
+    /**
+     * Lấy chi tiết sản phẩm theo ID
+     */
+    public function laySanPhamTheoId($ma_sp) {
+        $sql = "SELECT sp.*, dm.ten_danh_muc, ncc.ten_ncc 
+                FROM sanpham sp
+                LEFT JOIN danhmuc dm ON sp.id_danh_muc = dm.id
+                LEFT JOIN nhacungcap ncc ON sp.ma_ncc = ncc.ma_ncc
+                WHERE sp.ma_sp = :ma_sp";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(':ma_sp', $ma_sp, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
-
-    // Tìm kiếm sản phẩm
-    public function timKiemSanPham($tu_khoa) {
-        $stmt = $this->db->prepare("SELECT * FROM sanpham WHERE ten_sp LIKE ?");
-        $stmt->execute(["%$tu_khoa%"]);
-        return $stmt->fetchAll();
+    
+    /**
+     * Lấy sản phẩm bán chạy (có số lượng)
+     */
+    public function laySanPhamBanChay($limit = 8) {
+        $sql = "SELECT sp.*, dm.ten_danh_muc, ncc.ten_ncc 
+                FROM sanpham sp
+                LEFT JOIN danhmuc dm ON sp.id_danh_muc = dm.id
+                LEFT JOIN nhacungcap ncc ON sp.ma_ncc = ncc.ma_ncc
+                WHERE sp.so_luong > 0
+                ORDER BY sp.ma_sp DESC
+                LIMIT :limit";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+    /**
+     * Tìm kiếm sản phẩm
+     */
+    public function timKiemSanPham($keyword) {
+        $sql = "SELECT sp.*, dm.ten_danh_muc, ncc.ten_ncc 
+                FROM sanpham sp
+                LEFT JOIN danhmuc dm ON sp.id_danh_muc = dm.id
+                LEFT JOIN nhacungcap ncc ON sp.ma_ncc = ncc.ma_ncc
+                WHERE sp.ten_sp LIKE :keyword OR sp.mo_ta LIKE :keyword
+                ORDER BY sp.ma_sp DESC";
+        $stmt = $this->pdo->prepare($sql);
+        $keyword = '%' . $keyword . '%';
+        $stmt->bindParam(':keyword', $keyword);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
+?>

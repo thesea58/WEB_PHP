@@ -6,22 +6,18 @@ class TrangChuController extends BaseController {
     public function index() {
         // Khởi tạo model
         $sanPhamModel = new SanPhamModel($this->pdo);
+        $danhMucModel = new DanhMucModel($this->pdo);
         
-        // Lấy dữ liệu sản phẩm mới nhất
-        $tatCaSanPham = $sanPhamModel->layTatCaSanPham();
+        // Lấy dữ liệu sản phẩm bán chạy
+        $sanPhamBanChay = $sanPhamModel->laySanPhamBanChay(4);
         
-        // // Lấy sản phẩm theo từng miền để hiển thị các mục riêng
-        // $mienBac = $sanPhamModel->laySanPhamTheoMien(1);
-        // $mienTrung = $sanPhamModel->laySanPhamTheoMien(2);
-        // $mienNam = $sanPhamModel->laySanPhamTheoMien(3);
+        // Lấy danh sách danh mục
+        $danhMucList = $danhMucModel->layTatCaDanhMuc();
 
         // Truyền dữ liệu sang view Trang-chu.php
-        // $this->render('Trang-chu', [
-        //     'tatCaSanPham' => $tatCaSanPham,
-        //     'mienBac' => $mienBac,
-        //     'mienTrung' => $mienTrung,
-        //     'mienNam' => $mienNam
-        // ]);
-        $this->render('Trang-chu');
+        $this->render('Trang-chu', [
+            'sanPhamBanChay' => $sanPhamBanChay,
+            'danhMucList' => $danhMucList
+        ]);
     }
 }
