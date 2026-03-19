@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -115,6 +116,9 @@
             <li class="nav-item"><a class="nav-link" href="trang-chu.php">Trang chủ</a></li>
             <li class="nav-item dropdown">
             <li class="nav-item">
+            <li class="nav-item">
+                <a class="nav-link" href="gioi-thieu.php">Giới thiệu</a>
+            </li>
               <a class="nav-link" href="bai-viet.php">Bài viết</a>
             </li>
               <a class="nav-link dropdown-toggle" href="san-pham.php" role="button" data-bs-toggle="dropdown">Sản phẩm</a>
@@ -123,8 +127,7 @@
                 <li><a class="dropdown-item" href="Dac-san-mien-trung.php">Đặc sản miền Trung</a></li>
                 <li><a class="dropdown-item" href="Dac-san-mien-nam.php">Đặc sản miền Nam</a></li>
                 	<li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item fw-bold" href="San-pham-ban-chay.php">Sản phẩm bán chạy</a></li>
-             
+<li><a class="dropdown-item fw-bold" href="San-pham-ban-chay.php">🔥Sản phẩm bán chạy</a></li>             
               </ul>
             </li>
             <li class="nav-item"><a class="nav-link" href="gio-hang.php">Giỏ hàng</a></li>
@@ -149,15 +152,16 @@
         </div>
 
         <div class="card-body p-4">
-  		  <form action="trang-chu-2.php">
+  		  <form action="xulylogin.php" method="post">
             <div class="mb-3">
               <label class="form-label fw-bold text-brown">Tên đăng nhập</label>
-              <input type="text" class="form-control border-brown" placeholder="Nhập username">
+              <input type="text" name="username" class="form-control border-brown" placeholder="Nhập username">
+
             </div>
 
             <div class="mb-3">
               <label class="form-label fw-bold text-brown">Mật khẩu</label>
-              <input type="password" class="form-control border-brown" placeholder="Nhập mật khẩu">
+              <input type="password" name="password" class="form-control border-brown" placeholder="Nhập mật khẩu">
             </div>
 
             <div class="d-flex justify-content-between mb-4">

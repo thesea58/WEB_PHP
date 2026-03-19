@@ -32,7 +32,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="trang-chu.php">Trang chủ</a>
             </li>
-        
+        <li class="nav-item">
+                <a class="nav-link" href="gioi-thieu.php">Giới thiệu</a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="bai-viet.php">Bài viết</a>
             </li>
@@ -46,7 +48,7 @@
                     <li><a class="dropdown-item" href="Dac-san-mien-trung.php">Đặc sản miền Trung</a></li>
                     <li><a class="dropdown-item" href="Dac-san-mien-nam.php">Đặc sản miền Nam</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item fw-bold" href="san-pham-ban-chay.php">Sản phẩm bán chạy</a></li>
+                    <li><a class="dropdown-item fw-bold" href="San-pham-ban-chay.php">🔥Sản phẩm bán chạy</a></li>
                 </ul>
             </li>
             </li>
@@ -69,6 +71,15 @@
               </ul>
             </li>
           </ul>
+          </div>
+
+        <form class="d-flex ms-3" role="search">
+          <input class="form-control me-2 border-brown" type="search" placeholder="Tìm kiếm..." required>
+          <button class="btn btn-search-custom" type="submit" style="background-color: #8B4513; color: white; border: none;">
+            <i class="bi bi-search"></i>
+          </button>
+        </form>
+
         </div>
     </nav>
 
@@ -166,14 +177,17 @@
                 <span>Tổng cộng:</span>
                 <span>330.000đ</span>
               </div>
-              <button class="btn btn-checkout btn-lg w-100 py-3 fw-bold shadow">ĐẶT HÀNG NGAY</button>
-              <div class="text-center mt-3">
-                <small class="text-muted italic">Cam kết chuẩn vị truyền thống 100%</small>
+              <a href="Thanh-toan.php" 
+                   class="btn btn-checkout btn-lg w-100 py-3 fw-bold shadow">
+                  ĐẶT HÀNG NGAY
+                </a>
+                   <small class="text-muted text-center d-block">
+  Cam kết chuẩn vị truyền thống 100%
+</small>
               </div>
             </div>
           </div>
-        </div>
-      </div>
+          </div>
     </section>
 
    

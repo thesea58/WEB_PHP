@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['vai_tro']) || $_SESSION['vai_tro'] != 'admin') {
+    header("location: Dang-nhap.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -31,39 +39,20 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
           <ul class="navbar-nav fs-5">
             <li class="nav-item">
-                <a class="nav-link" href="trang-chu.php">Trang chủ</a>
+                <a class="nav-link" href="xu-ly-don-hang.php">Xử lý đơn hàng</a>
             </li>
-        
             <li class="nav-item">
-                <a class="nav-link" href="bai-viet.php">Bài viết</a>
+                <a class="nav-link" href="thong-ke-don-hang.php">Thống kê đơn hàng</a>
             </li>
-        
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle active fw-bold" href="san-pham.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Sản phẩm
-                </a>
-                <ul class="dropdown-menu border-brown">
-                    <li><a class="dropdown-item" href="Dac-san-mien-bac.php">Đặc sản miền Bắc</a></li>
-                    <li><a class="dropdown-item" href="Dac-san-mien-trung.php">Đặc sản miền Trung</a></li>
-                    <li><a class="dropdown-item" href="Dac-san-mien-nam.php">Đặc sản miền Nam</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item fw-bold" href="san-pham-ban-chay.php">Sản phẩm bán chạy</a></li>
-                </ul>
+            <li class="nav-item">
+                <a class="nav-link" href="post.php">Quản lý đăng tải</a>
             </li>
-              <li class="nav-item">
-              <a class="nav-link position-relative" href="gio-hang.php">
-                Giỏ hàng
-                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.7rem;">3</span>
-              </a>
-            </li>
+          
             <li class="nav-item dropdown ms-lg-3">
               <a class="nav-link dropdown-toggle" href="san-pham.php" role="button" data-bs-toggle="dropdown">
                 Quản trị
               </a>
               <ul class="dropdown-menu dropdown-menu-end border-brown shadow">
-                <li><a class="dropdown-item" href="xu-ly-don-hang.php"><i class="bi bi-cart-check me-2"></i>Xử lý đơn hàng</a></li>
-                <li><a class="dropdown-item" href="thong-ke-don-hang.php"><i class="bi bi-graph-up-arrow me-2"></i>Thống kê đơn hàng</a></li>
-                <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item text-danger" href="trang-chu.php"><i class="bi bi-box-arrow-right me-2"></i>Đăng xuất</a></li>
               </ul>
             </li>
@@ -115,10 +104,10 @@
         
         <div class="col-md-3 col-sm-6 mb-4">
           <div class="card h-100 border-0 shadow-sm product-card">
-            <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=400" class="card-img" alt="Bánh Cốm">
+            <img src="img/Anh/Trung/tre_binhdinh.jpg" class="card-img" alt="Tré Bình Định">
             <div class="card-body text-center">
-              <h5 class="card-title fw-bold text-brown">Bánh Cốm Hà Nội</h5>
-              <p class="card-text text-danger fw-bold">50.000đ</p>
+              <h5 class="card-title fw-bold text-brown">Tré Bình Định</h5>
+              <p class="card-text text-danger fw-bold">130.000đ</p>
               <button class="btn btn-outline-brown w-100">Thêm vào giỏ</button>
             </div>
           </div>
@@ -126,10 +115,10 @@
 
         <div class="col-md-3 col-sm-6 mb-4">
           <div class="card h-100 border-0 shadow-sm product-card">
-            <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=400" class="card-img" alt="Nem Chua">
+            <img src="img/Anh/Nam/banhpia_soctrang.jpg" class="card-img" alt="Bánh Pía Sóc Trăng">
             <div class="card-body text-center">
-              <h5 class="card-title fw-bold text-brown">Nem Chua Thanh Hóa</h5>
-              <p class="card-text text-danger fw-bold">45.000đ</p>
+              <h5 class="card-title fw-bold text-brown">Bánh Pía Sóc Trăng</h5>
+              <p class="card-text text-danger fw-bold">90.000đ</p>
               <button class="btn btn-outline-brown w-100">Thêm vào giỏ</button>
             </div>
           </div>
@@ -137,10 +126,10 @@
 
         <div class="col-md-3 col-sm-6 mb-4">
           <div class="card h-100 border-0 shadow-sm product-card">
-            <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=400" class="card-img" alt="Khô Cá">
+            <img src="img/Anh/Bac/traugacbep_TayBac.png" class="card-img" alt="Thịt Trâu Gác Bếp">
             <div class="card-body text-center">
-              <h5 class="card-title fw-bold text-brown">Khô Cá Miền Tây</h5>
-              <p class="card-text text-danger fw-bold">120.000đ</p>
+              <h5 class="card-title fw-bold text-brown">Thịt Trâu Gác Bếp</h5>
+              <p class="card-text text-danger fw-bold">500.000đ</p>
               <button class="btn btn-outline-brown w-100">Thêm vào giỏ</button>
             </div>
           </div>
@@ -148,10 +137,10 @@
 
         <div class="col-md-3 col-sm-6 mb-4">
           <div class="card h-100 border-0 shadow-sm product-card">
-            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400" class="card-img" alt="Chả Quế">
+            <img src="img/Anh/Trung/yenxao_khanhhoa.jpg" class="card-img" alt="Yến Xào Khánh Hòa">
             <div class="card-body text-center">
-              <h5 class="card-title fw-bold text-brown">Chả Quế Ước Lễ</h5>
-              <p class="card-text text-danger fw-bold">85.000đ</p>
+              <h5 class="card-title fw-bold text-brown">Yến Xào Khách Hòa</h5>
+              <p class="card-text text-danger fw-bold">500.000đ</p>
               <button class="btn btn-outline-brown w-100">Thêm vào giỏ</button>
             </div>
           </div>

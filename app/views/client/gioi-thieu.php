@@ -1,17 +1,9 @@
-<?php
-session_start();
-
-if (!isset($_SESSION['user'])) {
-    header("location: Dang-nhap.php");
-    exit();
-}
-?>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trang chủ - Đặc Sản Ba Miền</title>
+  <title>Giới thiệu - Đặc Sản Ba Miền</title>
 
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/Trang-chu.css">
@@ -19,23 +11,41 @@ if (!isset($_SESSION['user'])) {
   <link rel="icon" href="img/icon.png" type="image/png">
 
   <script src="js/bootstrap.bundle.js"></script>
-   <style>
-    /* Đồng bộ các màu sắc chủ đạo */
-    .text-brown { color: #8B4513 !important; }
-    .border-brown { border-color: #8B4513 !important; }
-    .btn-outline-brown { color: #8B4513; border-color: #8B4513; }
-    .btn-outline-brown:hover { background-color: #8B4513; color: white; }
-    .nav-link.active { color: #8B4513 !important; font-weight: bold; }
-    
-    /* Avatar thành viên */
-    .user-avatar { 
-      width: 35px; 
-      height: 35px; 
-      border-radius: 50%; 
-      object-fit: cover; 
-      border: 2px solid #8B4513; 
+  <style>
+    /* 1. Tối ưu Banner: Căn giữa chữ tuyệt đối */
+    .about-header {
+      background-image: url('img/Anh/Banner/banner.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 450px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* Căn giữa dọc */
+      align-items: center;     /* Căn giữa ngang */
+      position: relative;
+	
     }
-    .product-card:hover { transform: translateY(-5px); transition: 0.3s; }
+
+    /* 2. Khung chữ mờ trên Banner */
+    .banner-content-box {
+      background-color: rgba(255, 255, 255, 0.7); /* Nền trắng mờ */
+      padding: 30px 60px;
+      border-radius: 15px;
+      text-align: center;
+      border: 2px solid #8B4513;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    /* 3. Tiện ích bổ sung */
+    .text-brown { color: #8B4513 !important; }
+    .bg-light-brown { background-color: #fdf5e6; }
+    .border-brown { border-color: #8B4513 !important; }
+    .img-hover:hover {
+      transform: scale(1.02);
+      transition: 0.3s;
+    }
   </style>
 </head>
 
@@ -44,16 +54,15 @@ if (!isset($_SESSION['user'])) {
 
     <nav id="nav" class="navbar navbar-expand-lg bg-white navbar-light sticky-top shadow-sm">
       <div class="container-fluid">
-        <a class="navbar-brand d-flex align-items-center" href="trang-chu-2.php">
+        <a class="navbar-brand d-flex align-items-center" href="trang-chu.php">
           <img src="img/Anh/Banner/logo.jpg" alt="Logo" class="nav-logo" style="height: 120px;">
           <span class="brand-text ms-2" style="color: #8B4513; font-weight: 800; font-size: 1.4rem; text-transform: uppercase;">ĐẶC SẢN BA MIỀN</span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
           <span class="navbar-toggler-icon"></span>
         </button>
-
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-          <ul class="navbar-nav fs-5">
+         <ul class="navbar-nav fs-5">
             <li class="nav-item">
                 <a class="nav-link" href="trang-chu.php">Trang chủ</a>
             </li>
@@ -72,21 +81,18 @@ if (!isset($_SESSION['user'])) {
                 <ul class="dropdown-menu border-brown">
                     <li><a class="dropdown-item" href="Dac-san-mien-bac.php">Đặc sản miền Bắc</a></li>
                     <li><a class="dropdown-item" href="Dac-san-mien-trung.php">Đặc sản miền Trung</a></li>
-                    <li><a class="dropdown-item" href="Dac-san-mien-nam.php">Đặc sản miền Nam</a></li>
+<li><a class="dropdown-item" href="Dac-san-mien-nam.php">Đặc sản miền Nam</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item fw-bold" href="San-pham-ban-chay.php">🔥Sản phẩm bán chạy</a></li>
                 </ul>
             </li>
-
-
-            <li class="nav-item">
+              <li class="nav-item">
               <a class="nav-link position-relative" href="gio-hang.php">
                 Giỏ hàng
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.7rem;">3</span>
               </a>
             </li>
-
-            <li class="nav-item dropdown ms-lg-3">
+           <li class="nav-item dropdown ms-lg-3">
               <a class="nav-link dropdown-toggle" href="san-pham.php" role="button" data-bs-toggle="dropdown">
                 Tài khoản
               </a>
@@ -99,98 +105,60 @@ if (!isset($_SESSION['user'])) {
             </li>
           </ul>
         </div>
-
         <form class="d-flex ms-3" role="search">
           <input class="form-control me-2 border-brown" type="search" placeholder="Tìm kiếm..." required>
-          <button class="btn btn-search-custom" type="submit" style="background-color: #8B4513; color: white; border: none;">
+          <button class="btn btn-brown" type="submit" style="background-color: #8B4513; color: white; border: none; padding: 5px 15px;">
             <i class="bi bi-search"></i>
           </button>
         </form>
-
       </div>
     </nav>
 
-    <div class="row m-0 py-5" id="section">
-      <div id="section-text" class="container text-center">
-        
-            <div id="bannerSlider" class="carousel slide shadow rounded overflow-hidden my-5" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="img/Anh/Banner/banner.jpg" class="d-block w-100 banner-img" alt="Banner 1">
+    <div class="about-header shadow-sm mb-5">
+        <div class="banner-content-box">
+            <h1 class="display-4 fw-bold text-brown mb-0">VỀ CHÚNG TÔI</h1>
+            <p class="lead fw-bold text-brown mt-2 mb-0">Tinh hoa ẩm thực Việt - Gói trọn tâm tình trong từng đặc sản</p>
         </div>
-        <div class="carousel-item">
-          <img src="img/Anh/Trung/nemchua_thanhhoa.jpg" class="d-block w-100 banner-img" alt="Banner 2">
+    </div>
+
+    <div class="container my-5">
+      <div class="row align-items-center mb-5 g-5">
+        <div class="col-md-6">
+          <h2 class="fw-bold text-brown mb-4 border-bottom border-2 border-brown d-inline-block">Câu chuyện thương hiệu</h2>
+          <p class="fs-5 text-justify">Được thành lập từ niềm đam mê với những hương vị truyền thống, <strong>Đặc Sản Ba Miền</strong> ra đời với sứ mệnh kết nối người tiêu dùng với những món ăn tinh túy nhất từ mọi miền Tổ quốc.</p>
+          <p class="fs-5 text-justify">Chúng tôi tin rằng mỗi món đặc sản là một đại sứ văn hóa. Từ miếng <i>Thịt trâu gác bếp</i> đậm đà vùng Tây Bắc đến chiếc <i>Bánh pía</i> thơm nức Sóc Trăng, tất cả đều được chúng tôi tuyển chọn với tiêu chuẩn khắt khe nhất.</p>
         </div>
-        <div class="carousel-item">
-          <img src="img/Anh/Nam/banhpia_soctrang.jpg" class="d-block w-100 banner-img" alt="Banner 3">
-        </div>
-        <div class="carousel-item">
-          <img src="img/Anh/Bac/banhdauxanh_haiduong.png" class="d-block w-100 banner-img" alt="Banner 4">
+        <div class="col-md-6 text-center">
+            <img src="img/Anh/Banner/banner.jpg" class="img-fluid rounded-4 shadow-lg img-hover" alt="Về chúng tôi">
         </div>
       </div>
-  
-  <button class="carousel-control-prev" type="button" data-bs-target="#bannerSlider" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#bannerSlider" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-  </button>
-</div>
+
+      <div class="row text-center mt-5">
+        <div class="col-md-4 mb-4">
+          <div class="p-5 border border-brown rounded-4 h-100 bg-light-brown shadow-sm">
+            <i class="bi bi-patch-check-fill fs-1 text-brown"></i>
+            <h4 class="mt-3 fw-bold text-brown">Chất lượng thật</h4>
+            <p>100% sản phẩm có nguồn gốc rõ ràng, đạt chuẩn vệ sinh an toàn thực phẩm.</p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="p-5 border border-brown rounded-4 h-100 bg-light-brown shadow-sm">
+            <i class="bi bi-truck-flatbed fs-1 text-brown"></i>
+            <h4 class="mt-3 fw-bold text-brown">Giao hàng nhanh</h4>
+            <p>Quy trình đóng gói chuyên nghiệp, đảm bảo hàng đến tay vẫn giữ nguyên vị ngon.</p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="p-5 border border-brown rounded-4 h-100 bg-light-brown shadow-sm">
+            <i class="bi bi-stars fs-1 text-brown"></i>
+            <h4 class="mt-3 fw-bold text-brown">Trải nghiệm tốt</h4>
+            <p>Luôn lắng nghe và hỗ trợ khách hàng nhiệt tình như người thân trong gia đình.</p>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="container my-5" id="san-pham-ban-chay">
-      <h2 class="text-center fw-bold mb-5" style="color: #8B4513;">SẢN PHẨM BÁN CHẠY</h2>
-      <div class="row">
-        
-        <div class="col-md-3 col-sm-6 mb-4">
-          <div class="card h-100 border-0 shadow-sm product-card">
-            <img src="img/Anh/Trung/tre_binhdinh.jpg" class="card-img" alt="Tré Bình Định">
-            <div class="card-body text-center">
-              <h5 class="card-title fw-bold text-brown">Tré Bình Định</h5>
-              <p class="card-text text-danger fw-bold">130.000đ</p>
-              <button class="btn btn-outline-brown w-100">Thêm vào giỏ</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-3 col-sm-6 mb-4">
-          <div class="card h-100 border-0 shadow-sm product-card">
-            <img src="img/Anh/Nam/banhpia_soctrang.jpg" class="card-img" alt="Bánh Pía Sóc Trăng">
-            <div class="card-body text-center">
-              <h5 class="card-title fw-bold text-brown">Bánh Pía Sóc Trăng</h5>
-              <p class="card-text text-danger fw-bold">90.000đ</p>
-              <button class="btn btn-outline-brown w-100">Thêm vào giỏ</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-3 col-sm-6 mb-4">
-          <div class="card h-100 border-0 shadow-sm product-card">
-            <img src="img/Anh/Bac/traugacbep_TayBac.png" class="card-img" alt="Thịt Trâu Gác Bếp">
-            <div class="card-body text-center">
-              <h5 class="card-title fw-bold text-brown">Thịt Trâu Gác Bếp</h5>
-              <p class="card-text text-danger fw-bold">500.000đ</p>
-              <button class="btn btn-outline-brown w-100">Thêm vào giỏ</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-3 col-sm-6 mb-4">
-          <div class="card h-100 border-0 shadow-sm product-card">
-            <img src="img/Anh/Trung/yenxao_khanhhoa.jpg" class="card-img" alt="Yến Xào Khánh Hòa">
-            <div class="card-body text-center">
-              <h5 class="card-title fw-bold text-brown">Yến Xào Khách Hòa</h5>
-              <p class="card-text text-danger fw-bold">500.000đ</p>
-              <button class="btn btn-outline-brown w-100">Thêm vào giỏ</button>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <footer id="footer" class="pt-5 pb-2 border-top bg-white">
+     <footer id="footer" class="pt-5 pb-2 border-top bg-white">
       <div class="container">
         <div class="row">
           <div class="col-md-4 mb-3 text-brown">
@@ -212,9 +180,9 @@ if (!isset($_SESSION['user'])) {
 
           <div class="col-md-4 mb-2 text-brown">
             <h3 style="color: #8B4513;">Liên hệ</h3>
-            <p><i class="bi bi-geo-alt"></i> TP.Hồ Chí Minh, Việt Nam</p>
+<p><i class="bi bi-geo-alt"></i> TP.Hồ Chí Minh, Việt Nam</p>
             <p><i class="bi bi-telephone"></i> 0274 3743 118</p>
-            <p><i class="bi bi-envelope"></i> contact@dacsan3mien.vn</p>
+<p><i class="bi bi-envelope"></i> contact@dacsan3mien.vn</p>
           </div>
         </div>
         <hr style="border-color: #8B4513;">

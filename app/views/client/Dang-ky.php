@@ -11,6 +11,7 @@
   <link rel="icon" href="img/icon.png" type="image/png">
 
   <script src="js/bootstrap.bundle.js"></script>
+  
   <style>
     body {
       background: url("img/Anh/Banner/banner.jpg") no-repeat center center fixed;
@@ -25,7 +26,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.4); /* Làm tối nền một chút để form nổi bật hơn */
+      background: rgba(0,0,0,0.4);
       z-index: -1;
     }
 
@@ -63,6 +64,7 @@
       border-radius: 10px;
       font-weight: bold;
       transition: 0.3s;
+      border: none;
     }
 
     .btn-register:hover {
@@ -80,6 +82,9 @@
         border-color: #8B4513;
         box-shadow: 0 0 0 0.25rem rgba(139, 69, 19, 0.25);
     }
+	a {
+  text-decoration: none !important;
+}
   </style>
 </head>
 
@@ -100,18 +105,20 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
           <ul class="navbar-nav fs-5">
             <li class="nav-item"><a class="nav-link" href="trang-chu.php">Trang chủ</a></li>
-            <li class="nav-item dropdown">
+            <li class="nav-item">
+                <a class="nav-link" href="gioi-thieu.php">Giới thiệu</a>
+            </li>
             <li class="nav-item">
               <a class="nav-link" href="bai-viet.php">Bài viết</a>
             </li>
+            <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="san-pham.php" role="button" data-bs-toggle="dropdown">Sản phẩm</a>
               <ul class="dropdown-menu border-brown">
                 <li><a class="dropdown-item" href="Dac-san-mien-bac.php">Đặc sản miền Bắc</a></li>
                 <li><a class="dropdown-item" href="Dac-san-mien-trung.php">Đặc sản miền Trung</a></li>
                 <li><a class="dropdown-item" href="Dac-san-mien-nam.php">Đặc sản miền Nam</a></li>
-                	<li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item fw-bold" href="San-pham-ban-chay.php">Sản phẩm bán chạy</a></li>
-             
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item fw-bold" href="San-pham-ban-chay.php">🔥Sản phẩm bán chạy</a></li>              
               </ul>
             </li>
             <li class="nav-item"><a class="nav-link" href="gio-hang.php">Giỏ hàng</a></li>
@@ -135,9 +142,9 @@
           <h2><i class="bi bi-person-plus-fill"></i> ĐĂNG KÝ</h2>
           <p class="text-muted">Tham gia cùng chúng tôi để nhận ưu đãi hấp dẫn</p>
         </div>
-
         <div class="card-body p-4">
-          <form method="POST">
+          
+          <form id="registerForm" method="POST">
             <div class="row g-3">
               <div class="col-md-6">
                 <label>Tên đăng nhập</label>
@@ -200,7 +207,26 @@
       </div>
     </div>
 
-    <footer id="footer" class="pt-5 pb-2 border-top bg-white mt-5">
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="border-radius: 15px; border: none; overflow: hidden;">
+          <div class="modal-header" style="background-color: #8B4513; color: white; border: none;">
+            <h5 class="modal-title" id="successModalLabel"><i class="bi bi-check-circle-fill me-2"></i>Thông báo</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body text-center py-4">
+            <div class="mb-3">
+                <i class="bi bi-bag-check-fill" style="font-size: 3rem; color: #8B4513;"></i>
+            </div>
+            <h4 style="color: #8B4513; font-weight: bold;">ĐĂNG KÝ THÀNH CÔNG!</h4>
+            <p class="text-muted px-3">Chào mừng bạn đến với <b>Đặc Sản Ba Miền</b>. Tài khoản của bạn đã được khởi tạo thành công.</p>
+            <button type="button" class="btn btn-register px-5 py-2 mt-2" data-bs-dismiss="modal">TUYỆT VỜI</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer id="footer" class="pt-5 pb-2 border-top bg-white">
       <div class="container">
         <div class="row">
           <div class="col-md-4 mb-3 text-brown">
@@ -214,9 +240,9 @@
           <div class="col-md-4 mb-3">
             <h3 style="color: #8B4513;">Liên kết nhanh</h3>
             <ul class="list-unstyled">
-              <li><a href="trang-chu.php" class="text-decoration-none text-brown">Trang chủ</a></li>
-              <li><a href="gio-hang.php" class="text-decoration-none text-brown">Giỏ hàng</a></li>
-              <li><a href="dang-nhap.php" class="text-decoration-none text-brown">Đăng nhập</a></li>
+              <li><a href="trang-chu.php" class="text-brown">Trang chủ</a></li>
+              <li><a href="gio-hang.php" class="text-brown">Giỏ hàng</a></li>
+              <li><a href="dang-nhap.php" class="text-brown">Đăng nhập</a></li>
             </ul>
           </div>
 
@@ -233,5 +259,43 @@
     </footer>
 
   </div>
+
+  <div class="modal fade" id="forgotModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header border-0">
+          <h5 class="modal-title fw-bold text-brown">Khôi phục mật khẩu</h5>
+          <button class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <p>Vui lòng nhập email để nhận mã khôi phục:</p>
+          <input type="email" class="form-control border-brown" placeholder="email@example.com">
+        </div>
+        <div class="modal-footer border-0">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+          <button class="btn btn-login px-4">Gửi</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
+
+  <script>
+    // Đảm bảo script chạy sau khi DOM đã load xong
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('registerForm');
+      
+      form.addEventListener('submit', function(e) {
+        e.preventDefault(); // Chặn gửi form thật để kiểm tra giao diện modal
+        
+        // Cách gọi Modal thủ công chắc chắn nhất
+        var myModalElement = document.getElementById('successModal');
+        var modalInstance = new bootstrap.Modal(myModalElement);
+        modalInstance.show();
+      });
+    });
+  </script>
 </body>
 </html>

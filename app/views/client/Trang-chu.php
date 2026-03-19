@@ -33,6 +33,7 @@
             <li class="nav-item">
               <a class="nav-link" href="trang-chu.php">Trang chủ</a>
             </li>
+            <li class="nav-item"><a class="nav-link" href="Gioi-thieu.php">Giới thiệu</a></li>
             <li class="nav-item">
               <a class="nav-link" href="bai-viet.php">Bài viết</a>
             </li>
@@ -67,8 +68,8 @@
       </div>
     </nav>
 
-    <div class="row m-0 py-5" id="section">
-      <div id="section-text" class="container text-center">
+    <div class="container-fluid p-0" id="section">
+  <div id="section-text" class="w-100">
         
             <div id="bannerSlider" class="carousel slide shadow rounded overflow-hidden my-5" data-bs-ride="carousel">
       <div class="carousel-inner">
@@ -102,10 +103,10 @@
         
         <div class="col-md-3 col-sm-6 mb-4">
           <div class="card h-100 border-0 shadow-sm product-card">
-            <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=400" class="card-img" alt="Bánh Cốm">
+            <img src="img/Anh/Trung/tre_binhdinh.jpg" class="card-img" alt="Tré Bình Định">
             <div class="card-body text-center">
-              <h5 class="card-title fw-bold text-brown">Bánh Cốm Hà Nội</h5>
-              <p class="card-text text-danger fw-bold">50.000đ</p>
+              <h5 class="card-title fw-bold text-brown">Tré Bình Định</h5>
+              <p class="card-text text-danger fw-bold">130.000đ</p>
               <button class="btn btn-outline-brown w-100">Thêm vào giỏ</button>
             </div>
           </div>
@@ -113,10 +114,10 @@
 
         <div class="col-md-3 col-sm-6 mb-4">
           <div class="card h-100 border-0 shadow-sm product-card">
-            <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=400" class="card-img" alt="Nem Chua">
+            <img src="img/Anh/Nam/banhpia_soctrang.jpg" class="card-img" alt="Bánh Pía Sóc Trăng">
             <div class="card-body text-center">
-              <h5 class="card-title fw-bold text-brown">Nem Chua Thanh Hóa</h5>
-              <p class="card-text text-danger fw-bold">45.000đ</p>
+              <h5 class="card-title fw-bold text-brown">Bánh Pía Sóc Trăng</h5>
+              <p class="card-text text-danger fw-bold">90.000đ</p>
               <button class="btn btn-outline-brown w-100">Thêm vào giỏ</button>
             </div>
           </div>
@@ -124,10 +125,10 @@
 
         <div class="col-md-3 col-sm-6 mb-4">
           <div class="card h-100 border-0 shadow-sm product-card">
-            <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=400" class="card-img" alt="Khô Cá">
+            <img src="img/Anh/Bac/traugacbep_TayBac.png" class="card-img" alt="Thịt Trâu Gác Bếp">
             <div class="card-body text-center">
-              <h5 class="card-title fw-bold text-brown">Khô Cá Miền Tây</h5>
-              <p class="card-text text-danger fw-bold">120.000đ</p>
+              <h5 class="card-title fw-bold text-brown">Thịt Trâu Gác Bếp</h5>
+              <p class="card-text text-danger fw-bold">500.000đ</p>
               <button class="btn btn-outline-brown w-100">Thêm vào giỏ</button>
             </div>
           </div>
@@ -135,10 +136,10 @@
 
         <div class="col-md-3 col-sm-6 mb-4">
           <div class="card h-100 border-0 shadow-sm product-card">
-            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400" class="card-img" alt="Chả Quế">
+            <img src="img/Anh/Trung/yenxao_khanhhoa.jpg" class="card-img" alt="Yến Xào Khánh Hòa">
             <div class="card-body text-center">
-              <h5 class="card-title fw-bold text-brown">Chả Quế Ước Lễ</h5>
-              <p class="card-text text-danger fw-bold">85.000đ</p>
+              <h5 class="card-title fw-bold text-brown">Yến Xào Khách Hòa</h5>
+              <p class="card-text text-danger fw-bold">500.000đ</p>
               <button class="btn btn-outline-brown w-100">Thêm vào giỏ</button>
             </div>
           </div>
