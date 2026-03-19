@@ -6,12 +6,12 @@ DSMN
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đặc Sản Miền Nam - Đặc Sản Ba Miền</title>
     
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/Trang-chu.css">
+    <link rel="stylesheet" href="app/views/client/css/bootstrap.css">
+    <link rel="stylesheet" href="app/views/client/css/Trang-chu.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-    <link rel="icon" href="img/icon.png" type="image/png">
+    <link rel="icon" href="app/views/client/img/icon.png" type="image/png">
     
-    <script src="js/bootstrap.bundle.js"></script>
+    <script src="app/views/client/js/bootstrap.bundle.js"></script>
     <style>
 		
         .text-brown { color: #8B4513; }
@@ -48,7 +48,7 @@ DSMN
     <nav id="nav" class="navbar navbar-expand-lg bg-white navbar-light sticky-top shadow-sm">
       <div class="container-fluid">
         <a class="navbar-brand d-flex align-items-center" href="index.php?controller=TrangChu&action=index">
-          <img src="img/Anh/Banner/logo.jpg" alt="Logo" class="nav-logo" style="height: 120px;">
+          <img src="app/views/client/img/Anh/Banner/logo.jpg" alt="Logo" class="nav-logo" style="height: 120px;">
           <span class="brand-text ms-2" style="color: #8B4513; font-weight: 800; font-size: 1.4rem; text-transform: uppercase;">ĐẶC SẢN BA MIỀN</span>
         </a>
 
@@ -123,7 +123,7 @@ DSMN
         <div class="row">
             <div class="col-md-3 col-sm-6 mb-4">
                 <div class="card h-100 shadow-sm product-card p-2">
-                    <img src="img/Anh/Nam/trasen_dongthap.jpg" class="card-img-top img-sp" alt="Trà sen Đồng Tháp">
+                    <img src="app/views/client/img/Anh/Nam/trasen_dongthap.jpg" class="card-img-top img-sp" alt="Trà sen Đồng Tháp">
                     <div class="card-body text-center d-flex flex-column">
                         <h5 class="card-title fw-bold text-brown">Trà sen Đồng Tháp</h5>
                         <p class="card-text text-danger fw-bold">150.000đ</p>
@@ -134,7 +134,7 @@ DSMN
 
             <div class="col-md-3 col-sm-6 mb-4">
                 <div class="card h-100 shadow-sm product-card p-2">
-                    <img src="img/Anh/Nam/tomkho_camau.jpg" class="card-img-top img-sp" alt="Tôm khô Cà Mau">
+                    <img src="app/views/client/img/Anh/Nam/tomkho_camau.jpg" class="card-img-top img-sp" alt="Tôm khô Cà Mau">
                     <div class="card-body text-center d-flex flex-column">
                         <h5 class="card-title fw-bold text-brown">Tôm khô Cà Mau</h5>
                         <p class="card-text text-danger fw-bold">400.000đ</p>
@@ -145,7 +145,7 @@ DSMN
 
             <div class="col-md-3 col-sm-6 mb-4">
                 <div class="card h-100 shadow-sm product-card p-2">
-                    <img src="img/Anh/Nam/nembuoi_tayninh.jpg" class="card-img-top img-sp" alt="Nem bưởi Tây Ninh">
+                    <img src="app/views/client/img/Anh/Nam/nembuoi_tayninh.jpg" class="card-img-top img-sp" alt="Nem bưởi Tây Ninh">
                     <div class="card-body text-center d-flex flex-column">
                         <h5 class="card-title fw-bold text-brown">Nem bưởi Tây Ninh</h5>
                         <p class="card-text text-danger fw-bold">70.000đ</p>
@@ -156,7 +156,7 @@ DSMN
 
             <div class="col-md-3 col-sm-6 mb-4">
                 <div class="card h-100 shadow-sm product-card p-2">
-                    <img src="img/Anh/Nam/matong_camau.jpg" class="card-img-top img-sp" alt="Mật ong Cà Mau">
+                    <img src="app/views/client/img/Anh/Nam/matong_camau.jpg" class="card-img-top img-sp" alt="Mật ong Cà Mau">
                     <div class="card-body text-center d-flex flex-column">
                         <h5 class="card-title fw-bold text-brown">Mật ong Cà Mau</h5>
                         <p class="card-text text-danger fw-bold">250.000đ</p>
@@ -167,7 +167,7 @@ DSMN
 
             <div class="col-md-3 col-sm-6 mb-4">
                 <div class="card h-100 shadow-sm product-card p-2">
-                    <img src="img/Anh/Nam/mamchua_baclieu.jpg" class="card-img-top img-sp" alt="Mắm chua Bạc Liêu">
+                    <img src="app/views/client/img/Anh/Nam/mamchua_baclieu.jpg" class="card-img-top img-sp" alt="Mắm chua Bạc Liêu">
                     <div class="card-body text-center d-flex flex-column">
                         <h5 class="card-title fw-bold text-brown">Mắm chua Bạc Liêu</h5>
                         <p class="card-text text-danger fw-bold">100.000đ</p>
@@ -178,7 +178,7 @@ DSMN
 
             <div class="col-md-3 col-sm-6 mb-4">
                 <div class="card h-100 shadow-sm product-card p-2">
-<img src="img/Anh/Nam/khomuc_kiengiang.jpg" class="card-img-top img-sp" alt="Khô mực Kiên Giang">
+<img src="app/views/client/img/Anh/Nam/khomuc_kiengiang.jpg" class="card-img-top img-sp" alt="Khô mực Kiên Giang">
 <div class="card-body text-center d-flex flex-column">
                         <h5 class="card-title fw-bold text-brown">Khô mực Kiên Giang</h5>
                         <p class="card-text text-danger fw-bold">350.000đ</p>
@@ -189,7 +189,7 @@ DSMN
 
             <div class="col-md-3 col-sm-6 mb-4">
                 <div class="card h-100 shadow-sm product-card p-2">
-                    <img src="img/Anh/Nam/keodua_bentre.jpg" class="card-img-top img-sp" alt="Kẹo dừa Bến Tre">
+                    <img src="app/views/client/img/Anh/Nam/keodua_bentre.jpg" class="card-img-top img-sp" alt="Kẹo dừa Bến Tre">
                     <div class="card-body text-center d-flex flex-column">
                         <h5 class="card-title fw-bold text-brown">Kẹo dừa Bến Tre</h5>
                         <p class="card-text text-danger fw-bold">80.000đ</p>
@@ -200,7 +200,7 @@ DSMN
 
             <div class="col-md-3 col-sm-6 mb-4">
                 <div class="card h-100 shadow-sm product-card p-2">
-                    <img src="img/Anh/Nam/hatdieu_binhphuoc.jpg" class="card-img-top img-sp" alt="Hạt điều Bình Phước">
+                    <img src="app/views/client/img/Anh/Nam/hatdieu_binhphuoc.jpg" class="card-img-top img-sp" alt="Hạt điều Bình Phước">
                     <div class="card-body text-center d-flex flex-column">
                         <h5 class="card-title fw-bold text-brown">Hạt điều Bình Phước</h5>
                         <p class="card-text text-danger fw-bold">200.000đ</p>
@@ -215,7 +215,7 @@ DSMN
       <div class="container">
         <div class="row">
           <div class="col-md-4 mb-3 text-brown">
-            <img src="img/Anh/Banner/logo.jpg" alt="Logo" class="nav-logo" style="height: 120px;">
+            <img src="app/views/client/img/Anh/Banner/logo.jpg" alt="Logo" class="nav-logo" style="height: 120px;">
             <p class="mt-3">
               Đặc sản ba miền – Tinh hoa ẩm thực Việt!<br>
               Mang đến hương vị truyền thống chuẩn vị Bắc – Trung – Nam.

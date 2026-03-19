@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Giỏ hàng - Đặc Sản Ba Miền</title>
 
-  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="app/views/client/css/bootstrap.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
   
-  <link rel="stylesheet" href="css/Trang-chu.css">
-  <link rel="stylesheet" href="css/Gio-hang.css"> <link rel="icon" href="img/icon.png" type="image/png">
+  <link rel="stylesheet" href="app/views/client/css/Trang-chu.css">
+  <link rel="stylesheet" href="app/views/client/css/Gio-hang.css"> <link rel="icon" href="app/views/client/img/icon.png" type="image/png">
   <style>
     body {
-      background: url("img/Anh/Banner/banner.jpg") no-repeat center center fixed;
+      background: url("app/views/client/img/Anh/Banner/banner.jpg") no-repeat center center fixed;
       background-size: cover;
       position: relative;
     }
@@ -28,7 +28,7 @@
       z-index: -1;
     }
   </style>
-  <script src="js/bootstrap.bundle.js"></script>
+  <script src="app/views/client/js/bootstrap.bundle.js"></script>
 </head>
 
 <body>
@@ -38,7 +38,7 @@
       <div class="container-fluid">
 
         <a class="navbar-brand d-flex align-items-center" href="index.php?controller=TrangChu&action=index">
-          <img src="img/Anh/Banner/logo.jpg" alt="Logo" class="nav-logo" style="height: 120px;">
+          <img src="app/views/client/img/Anh/Banner/logo.jpg" alt="Logo" class="nav-logo" style="height: 120px;">
           <span class="brand-text ms-2" style="color: #8B4513; font-weight: 800; font-size: 1.4rem; text-transform: uppercase;">ĐẶC SẢN BA MIỀN</span>
         </a>
 
@@ -129,7 +129,7 @@
             <tbody>
               <tr class="text-center">
                 <td class="d-flex align-items-center">
-                  <img src="img/Anh/Trung/banhcomsua_binhthuan.jpg" width="60" class="rounded">
+                  <img src="app/views/client/img/Anh/Trung/banhcomsua_binhthuan.jpg" width="60" class="rounded">
                   <span class="ms-2 fw-semibold">Bánh Cốm</span>
                 </td>
                 <td>50.000đ</td>
@@ -139,7 +139,7 @@
 
               <tr class="text-center">
                 <td class="d-flex align-items-center">
-                  <img src="img/Anh/Trung/nemchua_thanhhoa.jpg" width="60" class="rounded">
+                  <img src="app/views/client/img/Anh/Trung/nemchua_thanhhoa.jpg" width="60" class="rounded">
                   <span class="ms-2 fw-semibold">Nem Chua</span>
                 </td>
                 <td>45.000đ</td>
@@ -230,7 +230,7 @@ function showQR(value){
       <div class="container">
         <div class="row">
           <div class="col-md-4 mb-3 text-brown">
-<img src="img/Anh/Banner/logo.jpg" alt="Logo" class="nav-logo" style="height: 120px;">
+<img src="app/views/client/img/Anh/Banner/logo.jpg" alt="Logo" class="nav-logo" style="height: 120px;">
             <p class="mt-3">
               Đặc sản ba miền – Tinh hoa ẩm thực Việt!<br>
               Mang đến hương vị truyền thống chuẩn vị Bắc – Trung – Nam.

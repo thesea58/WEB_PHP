@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đặc Sản Miền Nam - Đặc Sản Ba Miền</title>
     
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/Trang-chu.css">
+    <link rel="stylesheet" href="app/views/client/css/bootstrap.css">
+    <link rel="stylesheet" href="app/views/client/css/Trang-chu.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-    <link rel="icon" href="img/icon.png" type="image/png">
+    <link rel="icon" href="app/views/client/img/icon.png" type="image/png">
     
-    <script src="js/bootstrap.bundle.js"></script>
+    <script src="app/views/client/js/bootstrap.bundle.js"></script>
     <style>
 		/* 1. Lớp bọc nội dung có ảnh nền */
     .banner-background-section {
-        background: url("img/Anh/Banner/banner.jpg") no-repeat center center fixed;
+        background: url("app/views/client/img/Anh/Banner/banner.jpg") no-repeat center center fixed;
         background-size: cover;
         position: relative; /* Quan trọng để lớp mờ bám theo div này */
         padding: 60px 0;    /* Tạo khoảng trống trên dưới cho đẹp */
@@ -74,7 +74,7 @@
     <nav id="nav" class="navbar navbar-expand-lg bg-white navbar-light sticky-top shadow-sm">
       <div class="container-fluid">
         <a class="navbar-brand d-flex align-items-center" href="index.php?controller=TrangChu&action=index">
-          <img src="img/Anh/Banner/logo.jpg" alt="Logo" class="nav-logo" style="height: 120px;">
+          <img src="app/views/client/img/Anh/Banner/logo.jpg" alt="Logo" class="nav-logo" style="height: 120px;">
 <span class="brand-text ms-2" style="color: #8B4513; font-weight: 800; font-size: 1.4rem; text-transform: uppercase;">ĐẶC SẢN BA MIỀN</span>
         </a>
 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -149,7 +149,7 @@
                 <p>Xóm có tên gọi Tân Long, (thôn Cù Lâm, xã Nhơn Lộc, huyện An Nhơn, tỉnh Bình Định), xưa nay chuyên nghề làm ruộng, tại xóm Tân Long có một cái bàu rộng khoảng 3 sào của ông xã Lựu, trong bàu có nhiều hòn đá to do thiên nhiên sinh ra. Từ khi xóm Bàu Đá nấu rượu và phát triển kinh doanh nghề rượu người ta lấy tên xóm Bàu Đá đặt cho tên rượu gọi là “rượu Bàu Đá”.</p>
 
                 <div class="my-4 text-center">
-                    <img src="img/Anh/Trung/cong.jpg" alt="Xóm Tân Long Bình Định" class="img-fluid rounded shadow-sm" style="max-height: 400px; background-color: #f0f0f0;">
+                    <img src="app/views/client/img/Anh/Trung/cong.jpg" alt="Xóm Tân Long Bình Định" class="img-fluid rounded shadow-sm" style="max-height: 400px; background-color: #f0f0f0;">
                     <p class="text-muted mt-2" style="font-size: 0.9rem;"><i>Hình 2: Nơi khởi nguồn của thương hiệu rượu danh tiếng</i></p>
                 </div>
 
@@ -184,7 +184,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-4 mb-3 text-brown">
-            <img src="img/Anh/Banner/logo.jpg" alt="Logo" class="nav-logo" style="height: 120px;">
+            <img src="app/views/client/img/Anh/Banner/logo.jpg" alt="Logo" class="nav-logo" style="height: 120px;">
             <p class="mt-3">
               Đặc sản ba miền – Tinh hoa ẩm thực Việt!<br>
               Mang đến hương vị truyền thống chuẩn vị Bắc – Trung – Nam.

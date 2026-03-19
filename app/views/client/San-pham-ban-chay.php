@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đặc Sản Miền Nam - Đặc Sản Ba Miền</title>
     
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/Trang-chu.css">
+    <link rel="stylesheet" href="app/views/client/css/bootstrap.css">
+    <link rel="stylesheet" href="app/views/client/css/Trang-chu.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-    <link rel="icon" href="img/icon.png" type="image/png">
+    <link rel="icon" href="app/views/client/img/icon.png" type="image/png">
     
-    <script src="js/bootstrap.bundle.js"></script>
+    <script src="app/views/client/js/bootstrap.bundle.js"></script>
     <style>
 		/* 1. Lớp bọc nội dung có ảnh nền */
     .banner-background-section {
-        background: url("img/Anh/Banner/banner.jpg") no-repeat center center fixed;
+        background: url("app/views/client/img/Anh/Banner/banner.jpg") no-repeat center center fixed;
         background-size: cover;
         position: relative; /* Quan trọng để lớp mờ bám theo div này */
         padding: 60px 0;    /* Tạo khoảng trống trên dưới cho đẹp */
@@ -74,7 +74,7 @@
     <nav id="nav" class="navbar navbar-expand-lg bg-white navbar-light sticky-top shadow-sm">
       <div class="container-fluid">
         <a class="navbar-brand d-flex align-items-center" href="index.php?controller=TrangChu&action=index">
-          <img src="img/Anh/Banner/logo.jpg" alt="Logo" class="nav-logo" style="height: 120px;">
+          <img src="app/views/client/img/Anh/Banner/logo.jpg" alt="Logo" class="nav-logo" style="height: 120px;">
           <span class="brand-text ms-2" style="color: #8B4513; font-weight: 800; font-size: 1.4rem; text-transform: uppercase;">ĐẶC SẢN BA MIỀN</span>
 </a>
 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -147,7 +147,7 @@
        <div class="row">
     <div class="col-md-3 col-sm-6 mb-4">
         <div class="card h-100 shadow-sm product-card p-2">
-            <img src="img/Anh/Bac/ruousanlung_laocai.jpg" class="card-img-top img-sp" style="cursor: pointer;"
+            <img src="app/views/client/img/Anh/Bac/ruousanlung_laocai.jpg" class="card-img-top img-sp" style="cursor: pointer;"
                  data-bs-toggle="modal" data-bs-target="#productModal"
                  data-name="Rượu San Lùng Lào Cai" data-price="300.000đ" data-img="img/Anh/Bac/ruousanlung_laocai.jpg"
                  data-packaging="Chai thủy tinh cao cấp 500ml" data-ingredients="Gạo nương địa phương, men lá thảo dược"
@@ -165,7 +165,7 @@
 
     <div class="col-md-3 col-sm-6 mb-4">
         <div class="card h-100 shadow-sm product-card p-2">
-            <img src="img/Anh/Bac/traugacbep_TayBac.png" class="card-img-top img-sp" style="cursor: pointer;"
+            <img src="app/views/client/img/Anh/Bac/traugacbep_TayBac.png" class="card-img-top img-sp" style="cursor: pointer;"
                  data-bs-toggle="modal" data-bs-target="#productModal"
                  data-name="Trâu gác bếp Tây Bắc" data-price="500.000đ" data-img="img/Anh/Bac/traugacbep_TayBac.png"
                  data-packaging="Túi hút chân không 500g" data-ingredients="Thịt bắp trâu tươi, mắc khén, hạt dổi, ớt"
@@ -183,7 +183,7 @@ data-usage="Hấp cách thủy hoặc quay lò vi sóng 2 phút, sau đó đập
 
     <div class="col-md-3 col-sm-6 mb-4">
         <div class="card h-100 shadow-sm product-card p-2">
-            <img src="img/Anh/Trung/tre_binhdinh.jpg" class="card-img-top img-sp" style="cursor: pointer;"
+            <img src="app/views/client/img/Anh/Trung/tre_binhdinh.jpg" class="card-img-top img-sp" style="cursor: pointer;"
                  data-bs-toggle="modal" data-bs-target="#productModal"
                  data-name="Tré Bình Định" data-price="130.000đ" data-img="img/Anh/Trung/tre_binhdinh.jpg"
                  data-packaging="Gói lá ổi tươi, bọc rơm khô truyền thống" data-ingredients="Tai heo, mũi heo, thính gạo, riềng, tỏi"
@@ -201,7 +201,7 @@ data-usage="Hấp cách thủy hoặc quay lò vi sóng 2 phút, sau đó đập
 
     <div class="col-md-3 col-sm-6 mb-4">
         <div class="card h-100 shadow-sm product-card p-2">
-            <img src="img/Anh/Trung/yenxao_khanhhoa.jpg" class="card-img-top img-sp" style="cursor: pointer;"
+            <img src="app/views/client/img/Anh/Trung/yenxao_khanhhoa.jpg" class="card-img-top img-sp" style="cursor: pointer;"
                  data-bs-toggle="modal" data-bs-target="#productModal"
                  data-name="Yến xào Khánh Hòa" data-price="500.000đ" data-img="img/Anh/Trung/yenxao_khanhhoa.jpg"
                  data-packaging="Hộp gỗ lót nhung sang trọng" data-ingredients="100% Tổ yến đảo thiên nhiên nguyên chất"
@@ -219,7 +219,7 @@ data-usage="Hấp cách thủy hoặc quay lò vi sóng 2 phút, sau đó đập
 
     <div class="col-md-3 col-sm-6 mb-4">
         <div class="card h-100 shadow-sm product-card p-2">
-            <img src="img/Anh/Nam/khomuc_kiengiang.jpg" class="card-img-top img-sp" style="cursor: pointer;"
+            <img src="app/views/client/img/Anh/Nam/khomuc_kiengiang.jpg" class="card-img-top img-sp" style="cursor: pointer;"
                  data-bs-toggle="modal" data-bs-target="#productModal"
                  data-name="Khô mực Kiên Giang" data-price="350.000đ" data-img="img/Anh/Nam/khomuc_kiengiang.jpg"
                  data-packaging="Túi hút chân không kín khí" data-ingredients="Mực ống câu tươi sấy khô tự nhiên"
@@ -237,7 +237,7 @@ data-usage="Hấp cách thủy hoặc quay lò vi sóng 2 phút, sau đó đập
 
     <div class="col-md-3 col-sm-6 mb-4">
         <div class="card h-100 shadow-sm product-card p-2">
-            <img src="img/Anh/Nam/keodua_BenTre.jpg" class="card-img-top img-sp" style="cursor: pointer;"
+            <img src="app/views/client/img/Anh/Nam/keodua_BenTre.jpg" class="card-img-top img-sp" style="cursor: pointer;"
                  data-bs-toggle="modal" data-bs-target="#productModal"
                  data-name="Kẹo dừa Bến Tre" data-price="80.000đ" data-img="img/Anh/Nam/keodua_BenTre.jpg"
                  data-packaging="Hộp giấy truyền thống mộc mạc" data-ingredients="Nước cốt dừa nguyên chất, mạch nha, đường"
@@ -255,7 +255,7 @@ data-usage="Hấp cách thủy hoặc quay lò vi sóng 2 phút, sau đó đập
 
     <div class="col-md-3 col-sm-6 mb-4">
         <div class="card h-100 shadow-sm product-card p-2">
-<img src="img/Anh/Nam/banhpia_soctrang.jpg" class="card-img-top img-sp" style="cursor: pointer;"
+<img src="app/views/client/img/Anh/Nam/banhpia_soctrang.jpg" class="card-img-top img-sp" style="cursor: pointer;"
                  data-bs-toggle="modal" data-bs-target="#productModal"
                  data-name="Bánh pía Sóc Trăng" data-price="90.000đ" data-img="img/Anh/Nam/banhpia_soctrang.jpg"
                  data-packaging="Gói 4 cái, có túi hút ẩm" data-ingredients="Đậu xanh, sầu riêng tươi, trứng muối, bột mì"
@@ -273,7 +273,7 @@ data-usage="Hấp cách thủy hoặc quay lò vi sóng 2 phút, sau đó đập
 
     <div class="col-md-3 col-sm-6 mb-4">
         <div class="card h-100 shadow-sm product-card p-2">
-            <img src="img/Anh/Trung/taoxanhsay_ninhthuan.png" class="card-img-top img-sp" style="cursor: pointer;"
+            <img src="app/views/client/img/Anh/Trung/taoxanhsay_ninhthuan.png" class="card-img-top img-sp" style="cursor: pointer;"
                  data-bs-toggle="modal" data-bs-target="#productModal"
                  data-name="Táo sấy Ninh Thuận" data-price="110.000đ" data-img="img/Anh/Trung/taoxanhsay_ninhthuan.png"
                  data-packaging="Túi zip 250g tiện lợi" data-ingredients="Táo xanh Phan Rang tươi sấy dẻo"
@@ -294,7 +294,7 @@ data-usage="Hấp cách thủy hoặc quay lò vi sóng 2 phút, sau đó đập
       <div class="container">
 <div class="row">
           <div class="col-md-4 mb-3 text-brown">
-            <img src="img/Anh/Banner/logo.jpg" alt="Logo" class="nav-logo" style="height: 120px;">
+            <img src="app/views/client/img/Anh/Banner/logo.jpg" alt="Logo" class="nav-logo" style="height: 120px;">
             <p class="mt-3">
               Đặc sản ba miền – Tinh hoa ẩm thực Việt!<br>
               Mang đến hương vị truyền thống chuẩn vị Bắc – Trung – Nam.

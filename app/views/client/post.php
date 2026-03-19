@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quản lý Bài Viết & Sản Phẩm - Đặc Sản Ba Miền</title>
 
-  <link rel="stylesheet" href="css/bootstrap.css">
-  <link rel="stylesheet" href="css/Trang-chu.css">
+  <link rel="stylesheet" href="app/views/client/css/bootstrap.css">
+  <link rel="stylesheet" href="app/views/client/css/Trang-chu.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-  <link rel="icon" href="img/icon.png" type="image/png">
+  <link rel="icon" href="app/views/client/img/icon.png" type="image/png">
 
-  <script src="js/bootstrap.bundle.js"></script>
+  <script src="app/views/client/js/bootstrap.bundle.js"></script>
   <style>
     /* Thêm một chút style cho form quản trị để đồng bộ với theme */
     .admin-container {
@@ -44,7 +44,7 @@
       <div class="container-fluid">
 
         <a class="navbar-brand d-flex align-items-center" href="index.php?controller=TrangChu&action=index">
-          <img src="img/Anh/Banner/logo.jpg" alt="Logo" class="nav-logo" style="height: 120px;">
+          <img src="app/views/client/img/Anh/Banner/logo.jpg" alt="Logo" class="nav-logo" style="height: 120px;">
           <span class="brand-text ms-2" style="color: #8B4513; font-weight: 800; font-size: 1.4rem; text-transform: uppercase;">ĐẶC SẢN BA MIỀN</span>
         </a>
 
@@ -183,7 +183,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-4 mb-3 text-brown">
-            <img src="img/Anh/Banner/logo.jpg" alt="Logo" class="nav-logo" style="height: 120px;">
+            <img src="app/views/client/img/Anh/Banner/logo.jpg" alt="Logo" class="nav-logo" style="height: 120px;">
             <p class="mt-3">
               Đặc sản ba miền – Tinh hoa ẩm thực Việt!<br>
               Mang đến hương vị truyền thống chuẩn vị Bắc – Trung – Nam.

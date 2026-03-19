@@ -13,12 +13,12 @@ if (!isset($_SESSION['user'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Trang chủ - Đặc Sản Ba Miền</title>
 
-  <link rel="stylesheet" href="css/bootstrap.css">
-  <link rel="stylesheet" href="css/Trang-chu.css">
+  <link rel="stylesheet" href="app/views/client/css/bootstrap.css">
+  <link rel="stylesheet" href="app/views/client/css/Trang-chu.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-  <link rel="icon" href="img/icon.png" type="image/png">
+  <link rel="icon" href="app/views/client/img/icon.png" type="image/png">
 
-  <script src="js/bootstrap.bundle.js"></script>
+  <script src="app/views/client/js/bootstrap.bundle.js"></script>
    <style>
     /* Đồng bộ các màu sắc chủ đạo */
     .text-brown { color: #8B4513 !important; }
@@ -45,7 +45,7 @@ if (!isset($_SESSION['user'])) {
     <nav id="nav" class="navbar navbar-expand-lg bg-white navbar-light sticky-top shadow-sm">
       <div class="container-fluid">
         <a class="navbar-brand d-flex align-items-center" href="trang-chu-2.php">
-          <img src="img/Anh/Banner/logo.jpg" alt="Logo" class="nav-logo" style="height: 120px;">
+          <img src="app/views/client/img/Anh/Banner/logo.jpg" alt="Logo" class="nav-logo" style="height: 120px;">
           <span class="brand-text ms-2" style="color: #8B4513; font-weight: 800; font-size: 1.4rem; text-transform: uppercase;">ĐẶC SẢN BA MIỀN</span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -116,16 +116,16 @@ if (!isset($_SESSION['user'])) {
             <div id="bannerSlider" class="carousel slide shadow rounded overflow-hidden my-5" data-bs-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img src="img/Anh/Banner/banner.jpg" class="d-block w-100 banner-img" alt="Banner 1">
+          <img src="app/views/client/img/Anh/Banner/banner.jpg" class="d-block w-100 banner-img" alt="Banner 1">
         </div>
         <div class="carousel-item">
-          <img src="img/Anh/Trung/nemchua_thanhhoa.jpg" class="d-block w-100 banner-img" alt="Banner 2">
+          <img src="app/views/client/img/Anh/Trung/nemchua_thanhhoa.jpg" class="d-block w-100 banner-img" alt="Banner 2">
         </div>
         <div class="carousel-item">
-          <img src="img/Anh/Nam/banhpia_soctrang.jpg" class="d-block w-100 banner-img" alt="Banner 3">
+          <img src="app/views/client/img/Anh/Nam/banhpia_soctrang.jpg" class="d-block w-100 banner-img" alt="Banner 3">
         </div>
         <div class="carousel-item">
-          <img src="img/Anh/Bac/banhdauxanh_haiduong.png" class="d-block w-100 banner-img" alt="Banner 4">
+          <img src="app/views/client/img/Anh/Bac/banhdauxanh_haiduong.png" class="d-block w-100 banner-img" alt="Banner 4">
         </div>
       </div>
   
@@ -145,7 +145,7 @@ if (!isset($_SESSION['user'])) {
         
         <div class="col-md-3 col-sm-6 mb-4">
           <div class="card h-100 border-0 shadow-sm product-card">
-            <img src="img/Anh/Trung/tre_binhdinh.jpg" class="card-img" alt="Tré Bình Định">
+            <img src="app/views/client/img/Anh/Trung/tre_binhdinh.jpg" class="card-img" alt="Tré Bình Định">
             <div class="card-body text-center">
               <h5 class="card-title fw-bold text-brown">Tré Bình Định</h5>
               <p class="card-text text-danger fw-bold">130.000đ</p>
@@ -156,7 +156,7 @@ if (!isset($_SESSION['user'])) {
 
         <div class="col-md-3 col-sm-6 mb-4">
           <div class="card h-100 border-0 shadow-sm product-card">
-            <img src="img/Anh/Nam/banhpia_soctrang.jpg" class="card-img" alt="Bánh Pía Sóc Trăng">
+            <img src="app/views/client/img/Anh/Nam/banhpia_soctrang.jpg" class="card-img" alt="Bánh Pía Sóc Trăng">
             <div class="card-body text-center">
               <h5 class="card-title fw-bold text-brown">Bánh Pía Sóc Trăng</h5>
               <p class="card-text text-danger fw-bold">90.000đ</p>
@@ -167,7 +167,7 @@ if (!isset($_SESSION['user'])) {
 
         <div class="col-md-3 col-sm-6 mb-4">
           <div class="card h-100 border-0 shadow-sm product-card">
-            <img src="img/Anh/Bac/traugacbep_TayBac.png" class="card-img" alt="Thịt Trâu Gác Bếp">
+            <img src="app/views/client/img/Anh/Bac/traugacbep_TayBac.png" class="card-img" alt="Thịt Trâu Gác Bếp">
             <div class="card-body text-center">
               <h5 class="card-title fw-bold text-brown">Thịt Trâu Gác Bếp</h5>
               <p class="card-text text-danger fw-bold">500.000đ</p>
@@ -178,7 +178,7 @@ if (!isset($_SESSION['user'])) {
 
         <div class="col-md-3 col-sm-6 mb-4">
           <div class="card h-100 border-0 shadow-sm product-card">
-            <img src="img/Anh/Trung/yenxao_khanhhoa.jpg" class="card-img" alt="Yến Xào Khánh Hòa">
+            <img src="app/views/client/img/Anh/Trung/yenxao_khanhhoa.jpg" class="card-img" alt="Yến Xào Khánh Hòa">
             <div class="card-body text-center">
               <h5 class="card-title fw-bold text-brown">Yến Xào Khách Hòa</h5>
               <p class="card-text text-danger fw-bold">500.000đ</p>
@@ -194,7 +194,7 @@ if (!isset($_SESSION['user'])) {
       <div class="container">
         <div class="row">
           <div class="col-md-4 mb-3 text-brown">
-            <img src="img/Anh/Banner/logo.jpg" alt="Logo" class="nav-logo" style="height: 120px;">
+            <img src="app/views/client/img/Anh/Banner/logo.jpg" alt="Logo" class="nav-logo" style="height: 120px;">
             <p class="mt-3">
               Đặc sản ba miền – Tinh hoa ẩm thực Việt!<br>
               Mang đến hương vị truyền thống chuẩn vị Bắc – Trung – Nam.

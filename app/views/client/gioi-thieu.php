@@ -5,16 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Giới thiệu - Đặc Sản Ba Miền</title>
 
-  <link rel="stylesheet" href="css/bootstrap.css">
-  <link rel="stylesheet" href="css/Trang-chu.css">
+  <link rel="stylesheet" href="app/views/client/css/bootstrap.css">
+  <link rel="stylesheet" href="app/views/client/css/Trang-chu.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-  <link rel="icon" href="img/icon.png" type="image/png">
+  <link rel="icon" href="app/views/client/img/icon.png" type="image/png">
 
-  <script src="js/bootstrap.bundle.js"></script>
+  <script src="app/views/client/js/bootstrap.bundle.js"></script>
   <style>
     /* 1. Tối ưu Banner: Căn giữa chữ tuyệt đối */
     .about-header {
-      background-image: url('img/Anh/Banner/banner.jpg');
+      background-image: url("app/views/client/img/Anh/Banner/banner.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -55,7 +55,7 @@
     <nav id="nav" class="navbar navbar-expand-lg bg-white navbar-light sticky-top shadow-sm">
       <div class="container-fluid">
         <a class="navbar-brand d-flex align-items-center" href="index.php?controller=TrangChu&action=index">
-          <img src="img/Anh/Banner/logo.jpg" alt="Logo" class="nav-logo" style="height: 120px;">
+          <img src="app/views/client/img/Anh/Banner/logo.jpg" alt="Logo" class="nav-logo" style="height: 120px;">
           <span class="brand-text ms-2" style="color: #8B4513; font-weight: 800; font-size: 1.4rem; text-transform: uppercase;">ĐẶC SẢN BA MIỀN</span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -129,7 +129,7 @@
           <p class="fs-5 text-justify">Chúng tôi tin rằng mỗi món đặc sản là một đại sứ văn hóa. Từ miếng <i>Thịt trâu gác bếp</i> đậm đà vùng Tây Bắc đến chiếc <i>Bánh pía</i> thơm nức Sóc Trăng, tất cả đều được chúng tôi tuyển chọn với tiêu chuẩn khắt khe nhất.</p>
         </div>
         <div class="col-md-6 text-center">
-            <img src="img/Anh/Banner/banner.jpg" class="img-fluid rounded-4 shadow-lg img-hover" alt="Về chúng tôi">
+            <img src="app/views/client/img/Anh/Banner/banner.jpg" class="img-fluid rounded-4 shadow-lg img-hover" alt="Về chúng tôi">
         </div>
       </div>
 
@@ -162,7 +162,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-4 mb-3 text-brown">
-            <img src="img/Anh/Banner/logo.jpg" alt="Logo" class="nav-logo" style="height: 120px;">
+            <img src="app/views/client/img/Anh/Banner/logo.jpg" alt="Logo" class="nav-logo" style="height: 120px;">
             <p class="mt-3">
               Đặc sản ba miền – Tinh hoa ẩm thực Việt!<br>
               Mang đến hương vị truyền thống chuẩn vị Bắc – Trung – Nam.
