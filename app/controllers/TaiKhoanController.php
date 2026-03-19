@@ -27,6 +27,14 @@ class TaiKhoanController extends BaseController {
 
             if ($user) {
                 $_SESSION['user'] = $user;
+                
+                // Nếu là admin -> redirect tới trang admin
+                if (isset($user['vai_tro']) && $user['vai_tro'] === 'admin') {
+                    header('Location: index.php?controller=Admin&action=index');
+                    exit();
+                }
+                
+                // Người dùng thường -> redirect tới trang chủ
                 header('Location: index.php?controller=TrangChu&action=index');
                 exit();
             } else {
