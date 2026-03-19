@@ -2,17 +2,19 @@ version: '3.8'
 
 services:
   db:
-    image: mariadb:10.6
+    image: mysql:8.0
     container_name: dacsanbamien_db_container
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root_password
-      MYSQL_DATABASE: dacsanbamien_db
-      MYSQL_USER: user_dacsanbamien
+      MYSQL_DATABASE: dacsan3mien
+      MYSQL_USER: user_dacsan
       MYSQL_PASSWORD: user_password
     volumes:
       - ./mysql_data:/var/lib/mysql
       - ./dacsan3mien.sql:/docker-entrypoint-initdb.d/dacsan3mien.sql
+    ports:
+      - "3306:3306"
     networks:
       - app-network
 
@@ -25,8 +27,8 @@ services:
     environment:
       PORT: 80
       DB_HOST: db
-      DB_NAME: dacsanbamien_db
-      DB_USER: user_dacsanbamien
+      DB_NAME: dacsan3mien
+      DB_USER: user_dacsan
       DB_PASS: user_password
     depends_on:
       - db
