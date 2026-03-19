@@ -29,4 +29,9 @@ class TaiKhoanController extends BaseController {
         header('Location: index.php');
         exit();
     }
+
+    public function index() {
+        // Logic to fetch user data if needed
+        $this->render('Tai-khoan');
+    }
 }
