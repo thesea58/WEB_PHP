@@ -62,7 +62,7 @@
     <nav id="nav" class="navbar navbar-expand-lg bg-white navbar-light sticky-top shadow-sm">
       <div class="container-fluid">
 
-        <a class="navbar-brand d-flex align-items-center" href="index.php?controller=TrangChu&action=index">
+        <a class="navbar-brand d-flex align-items-center" href="index.php?controller=Admin&action=index">
           <img src="app/views/client/img/Anh/Banner/logo.jpg" alt="Logo" class="nav-logo" style="height: 120px;">
           <span class="brand-text ms-2" style="color: #8B4513; font-weight: 800; font-size: 1.4rem; text-transform: uppercase;">ĐẶC SẢN BA MIỀN</span>
         </a>

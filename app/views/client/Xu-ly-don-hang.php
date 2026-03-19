@@ -71,7 +71,7 @@
     <nav id="nav" class="navbar navbar-expand-lg bg-white navbar-light sticky-top shadow-sm">
       <div class="container-fluid">
 
-        <a class="navbar-brand d-flex align-items-center" href="index.php?controller=TrangChu&action=index">
+        <a class="navbar-brand d-flex align-items-center" href="index.php?controller=Admin&action=index">
           <img src="app/views/client/img/Anh/Banner/logo.jpg" alt="Logo" class="nav-logo" style="height: 120px;">
           <span class="brand-text ms-2" style="color: #8B4513; font-weight: 800; font-size: 1.4rem; text-transform: uppercase;">ĐẶC SẢN BA MIỀN</span>
         </a>
@@ -104,13 +104,6 @@
             </li>
           </ul>
         </div>
-
-        <form class="d-flex ms-3" role="search">
-          <input class="form-control me-2 border-brown" type="search" placeholder="Tìm kiếm..." required>
-          <button class="btn btn-search-custom" type="submit" style="background-color: #8B4513; color: white; border: none;">
-            <i class="bi bi-search"></i>
-          </button>
-        </form>
 
       </div>
     </nav>
@@ -202,7 +195,7 @@
           <div class="col-md-4 mb-3">
             <h3 style="color: #8B4513;">Liên kết nhanh</h3>
             <ul class="list-unstyled">
-              <li><a href="index.php?controller=TrangChu&action=index" class="text-decoration-none text-brown">Trang chủ</a></li>
+              <li><a href="index.php?controller=Admin&action=index" class="text-decoration-none text-brown">Trang chủ</a></li>
               <li><a href="index.php?controller=GioHang&action=index" class="text-decoration-none text-brown">Giỏ hàng</a></li>
               <li><a href="index.php?controller=DangNhap&action=index" class="text-decoration-none text-brown">Đăng nhập</a></li>
             </ul>

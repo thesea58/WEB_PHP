@@ -118,7 +118,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['vai_tro'] !== 'admin') {
                 <i class="bi bi-person-circle me-2"></i><?php echo htmlspecialchars($adminUser['ten_dang_nhap'] ?? 'Admin'); ?>
               </a>
               <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="index.php?controller=TrangChu&action=index"><i class="bi bi-house me-2"></i>Về trang chủ</a></li>
+                <li><a class="dropdown-item" href="index.php?controller=Admin&action=index"><i class="bi bi-house me-2"></i>Về trang chủ</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item text-danger" href="index.php?controller=Admin&action=dangxuat"><i class="bi bi-box-arrow-right me-2"></i>Đăng xuất</a></li>
               </ul>
@@ -244,14 +244,6 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['vai_tro'] !== 'admin') {
 
 </body>
 </html>
-
-        <form class="d-flex ms-3" role="search">
-          <input class="form-control me-2 border-brown" type="search" placeholder="Tìm kiếm..." required>
-          <button class="btn btn-search-custom" type="submit" style="background-color: #8B4513; color: white; border: none;">
-            <i class="bi bi-search"></i>
-          </button>
-        </form>
-
       </div>
     </nav>
 

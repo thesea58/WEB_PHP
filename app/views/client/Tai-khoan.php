@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -129,7 +128,7 @@
                 </ul>
               </li>
             <?php else: ?>
-              <!-- Chưa đăng nhập -->
+               <!-- Chưa đăng nhập -->
               <li class="nav-item"><a class="nav-link" href="index.php?controller=DangKy&action=index">Đăng ký</a></li>
               <li class="nav-item"><a class="nav-link" href="index.php?controller=DangNhap&action=index">Đăng nhập</a></li>
             <?php endif; ?>

@@ -39,7 +39,7 @@ class AdminController extends BaseController {
      */
     public function dangxuat() {
         unset($_SESSION['user']);
-        header('Location: index.php?controller=TrangChu&action=index');
+        header('Location: index.php?controller=TaiKhoan&action=dangnhap');
         exit();
     }
 }
