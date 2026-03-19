@@ -92,26 +92,26 @@
               <a class="nav-link" href="index.php?controller=TrangChu&action=index">Trang chủ</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="gioi-thieu.php">Giới thiệu</a>
+                <a class="nav-link" href="index.php?controller=GioiThieu&action=index">Giới thiệu</a>
             </li>
 
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="san-pham.php" role="button" data-bs-toggle="dropdown">
+              <a class="nav-link dropdown-toggle" href="index.php?controller=SanPham&action=index" role="button" data-bs-toggle="dropdown">
                 Sản phẩm
               </a>
               <ul class="dropdown-menu border-brown">
-                <li><a class="dropdown-item" href="Dac-san-mien-bac.php">Đặc sản miền Bắc</a></li>
-                <li><a class="dropdown-item" href="Dac-san-mien-trung.php">Đặc sản miền Trung</a></li>
-                <li><a class="dropdown-item" href="Dac-san-mien-nam.php">Đặc sản miền Nam</a></li>
+                <li><a class="dropdown-item" href="index.php?controller=DacSanMienBac&action=index">Đặc sản miền Bắc</a></li>
+                <li><a class="dropdown-item" href="index.php?controller=DacSanMienTrung&action=index">Đặc sản miền Trung</a></li>
+                <li><a class="dropdown-item" href="index.php?controller=DacSanMienNam&action=index">Đặc sản miền Nam</a></li>
                 	<li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item fw-bold" href="San-pham-ban-chay.php">🔥Sản phẩm bán chạy</a></li>
+                <li><a class="dropdown-item fw-bold" href="index.php?controller=SanPhamBanChay&action=index">🔥Sản phẩm bán chạy</a></li>
              
               </ul>
             </li>
 
-            <li class="nav-item"><a class="nav-link" href="gio-hang.php">Giỏ hàng</a></li>
-            <li class="nav-item"><a class="nav-link" href="dang-ky.php">Đăng ký</a></li>
-            <li class="nav-item"><a class="nav-link" href="dang-nhap.php">Đăng nhập</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.php?controller=GioHang&action=index">Giỏ hàng</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.php?controller=DangKy&action=index">Đăng ký</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.php?controller=DangNhap&action=index">Đăng nhập</a></li>
           </ul>
         </div>
 
@@ -196,8 +196,8 @@
             <h3 style="color: #8B4513;">Liên kết nhanh</h3>
             <ul class="list-unstyled">
               <li><a href="index.php?controller=TrangChu&action=index" class="text-decoration-none text-brown">Trang chủ</a></li>
-              <li><a href="gio-hang.php" class="text-decoration-none text-brown">Giỏ hàng</a></li>
-              <li><a href="dang-nhap.php" class="text-decoration-none text-brown">Đăng nhập</a></li>
+              <li><a href="index.php?controller=GioHang&action=index" class="text-decoration-none text-brown">Giỏ hàng</a></li>
+              <li><a href="index.php?controller=DangNhap&action=index" class="text-decoration-none text-brown">Đăng nhập</a></li>
             </ul>
           </div>
 

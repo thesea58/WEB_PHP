@@ -73,7 +73,7 @@
 
     <nav id="nav" class="navbar navbar-expand-lg bg-white navbar-light sticky-top shadow-sm">
       <div class="container-fluid">
-        <a class="navbar-brand d-flex align-items-center" href="trang-chu.php">
+        <a class="navbar-brand d-flex align-items-center" href="index.php?controller=TrangChu&action=index">
           <img src="img/Anh/Banner/logo.jpg" alt="Logo" class="nav-logo" style="height: 120px;">
           <span class="brand-text ms-2" style="color: #8B4513; font-weight: 800; font-size: 1.4rem; text-transform: uppercase;">ĐẶC SẢN BA MIỀN</span>
         </a>
@@ -84,42 +84,42 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
               <ul class="navbar-nav fs-5">
             <li class="nav-item">
-                <a class="nav-link" href="trang-chu.php">Trang chủ</a>
+                <a class="nav-link" href="index.php?controller=TrangChu&action=index">Trang chủ</a>
             </li>
         <li class="nav-item">
-                <a class="nav-link" href="gioi-thieu.php">Giới thiệu</a>
+                <a class="nav-link" href="index.php?controller=GioiThieu&action=index">Giới thiệu</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="bai-viet.php">Bài viết</a>
+                <a class="nav-link" href="index.php?controller=BaiViet&action=index">Bài viết</a>
             </li>
         
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle active fw-bold" href="san-pham.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="nav-link dropdown-toggle active fw-bold" href="index.php?controller=SanPham&action=index" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Sản phẩm
                 </a>
                 <ul class="dropdown-menu border-brown">
-                    <li><a class="dropdown-item" href="Dac-san-mien-bac.php">Đặc sản miền Bắc</a></li>
-                    <li><a class="dropdown-item" href="Dac-san-mien-trung.php">Đặc sản miền Trung</a></li>
-                    <li><a class="dropdown-item" href="Dac-san-mien-nam.php">Đặc sản miền Nam</a></li>
+                    <li><a class="dropdown-item" href="index.php?controller=DacSanMienBac&action=index">Đặc sản miền Bắc</a></li>
+                    <li><a class="dropdown-item" href="index.php?controller=DacSanMienTrung&action=index">Đặc sản miền Trung</a></li>
+                    <li><a class="dropdown-item" href="index.php?controller=DacSanMienNam&action=index">Đặc sản miền Nam</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item fw-bold" href="San-pham-ban-chay.php">🔥Sản phẩm bán chạy</a></li>
+                    <li><a class="dropdown-item fw-bold" href="index.php?controller=SanPhamBanChay&action=index">🔥Sản phẩm bán chạy</a></li>
                 </ul>
             </li>
               <li class="nav-item">
-              <a class="nav-link position-relative" href="gio-hang.php">
+              <a class="nav-link position-relative" href="index.php?controller=GioHang&action=index">
                 Giỏ hàng
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.7rem;">3</span>
               </a>
             </li>
            <li class="nav-item dropdown ms-lg-3">
-              <a class="nav-link dropdown-toggle" href="san-pham.php" role="button" data-bs-toggle="dropdown">
+              <a class="nav-link dropdown-toggle" href="index.php?controller=SanPham&action=index" role="button" data-bs-toggle="dropdown">
                 Tài khoản
               </a>
               <ul class="dropdown-menu dropdown-menu-end border-brown shadow">
                 <li><a class="dropdown-item" href="thong-tin-ca-nhan.php"><i class="bi bi-person me-2"></i>Cá nhân</a></li>
                 <li><a class="dropdown-item" href="don-hang-cua-toi.php"><i class="bi bi-bag-check me-2"></i>Đơn hàng</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="trang-chu.php"><i class="bi bi-box-arrow-right me-2"></i>Đăng xuất</a></li>
+                <li><a class="dropdown-item text-danger" href="index.php?controller=TrangChu&action=index"><i class="bi bi-box-arrow-right me-2"></i>Đăng xuất</a></li>
               </ul>
             </li>
           </ul>
@@ -249,9 +249,9 @@
           <div class="col-md-4 mb-3">
             <h3 style="color: #8B4513;">Liên kết nhanh</h3>
             <ul class="list-unstyled">
-              <li><a href="trang-chu.php" class="text-decoration-none text-brown">Trang chủ</a></li>
-              <li><a href="gio-hang.php" class="text-decoration-none text-brown">Giỏ hàng</a></li>
-              <li><a href="dang-nhap.php" class="text-decoration-none text-brown">Đăng nhập</a></li>
+              <li><a href="index.php?controller=TrangChu&action=index" class="text-decoration-none text-brown">Trang chủ</a></li>
+              <li><a href="index.php?controller=GioHang&action=index" class="text-decoration-none text-brown">Giỏ hàng</a></li>
+              <li><a href="index.php?controller=DangNhap&action=index" class="text-decoration-none text-brown">Đăng nhập</a></li>
             </ul>
           </div>
 <div class="col-md-4 mb-2 text-brown">
