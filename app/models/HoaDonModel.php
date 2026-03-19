@@ -98,5 +98,116 @@ class HoaDonModel {
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+    
+    /**
+     * Lấy hóa đơn theo bộ lọc (trạng thái, tháng, quý, năm)
+     */
+    public function layHoaDonTheoFilter($trang_thai = '', $thang = '', $quy = '', $nam = '') {
+        $sql = "SELECT * FROM hoadon WHERE 1=1";
+        $params = [];
+        
+        // Filter by status
+        if (!empty($trang_thai)) {
+            $sql .= " AND trang_thai = :trang_thai";
+            $params[':trang_thai'] = $trang_thai;
+        }
+        
+        // Filter by year
+        if (!empty($nam)) {
+            $sql .= " AND YEAR(ngay_dat) = :nam";
+            $params[':nam'] = (int)$nam;
+        }
+        
+        // Filter by quarter
+        if (!empty($quy)) {
+            $quy = (int)$quy;
+            $month_start = ($quy - 1) * 3 + 1;
+            $month_end = $quy * 3;
+            
+            if (!empty($nam)) {
+                $sql .= " AND MONTH(ngay_dat) BETWEEN :month_start AND :month_end";
+            } else {
+                $sql .= " AND MONTH(ngay_dat) BETWEEN :month_start AND :month_end";
+            }
+            $params[':month_start'] = $month_start;
+            $params[':month_end'] = $month_end;
+        }
+        
+        // Filter by month
+        if (!empty($thang) && empty($quy)) {
+            $sql .= " AND MONTH(ngay_dat) = :thang";
+            $params[':thang'] = (int)$thang;
+            
+            if (!empty($nam)) {
+                // Already filtered by year above
+            }
+        }
+        
+        $sql .= " ORDER BY ngay_dat DESC";
+        
+        $stmt = $this->pdo->prepare($sql);
+        foreach ($params as $key => $value) {
+            $stmt->bindValue($key, $value);
+        }
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+    /**
+     * Lấy thống kê theo trạng thái
+     */
+    public function layThongKeTheoTrangThai() {
+        $sql = "SELECT trang_thai, COUNT(*) as so_luong 
+                FROM hoadon 
+                GROUP BY trang_thai 
+                ORDER BY trang_thai";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+    /**
+     * Tính tổng doanh thu theo bộ lọc
+     */
+    public function tinhTongDoanhThuTheoFilter($trang_thai = '', $thang = '', $quy = '', $nam = '') {
+        $sql = "SELECT SUM(tong_tien) as tong_doanh_thu, COUNT(*) as tong_don 
+                FROM hoadon WHERE 1=1";
+        $params = [];
+        
+        // Filter by status
+        if (!empty($trang_thai)) {
+            $sql .= " AND trang_thai = :trang_thai";
+            $params[':trang_thai'] = $trang_thai;
+        }
+        
+        // Filter by year
+        if (!empty($nam)) {
+            $sql .= " AND YEAR(ngay_dat) = :nam";
+            $params[':nam'] = (int)$nam;
+        }
+        
+        // Filter by quarter
+        if (!empty($quy)) {
+            $quy = (int)$quy;
+            $month_start = ($quy - 1) * 3 + 1;
+            $month_end = $quy * 3;
+            $sql .= " AND MONTH(ngay_dat) BETWEEN :month_start AND :month_end";
+            $params[':month_start'] = $month_start;
+            $params[':month_end'] = $month_end;
+        }
+        
+        // Filter by month
+        if (!empty($thang) && empty($quy)) {
+            $sql .= " AND MONTH(ngay_dat) = :thang";
+            $params[':thang'] = (int)$thang;
+        }
+        
+        $stmt = $this->pdo->prepare($sql);
+        foreach ($params as $key => $value) {
+            $stmt->bindValue($key, $value);
+        }
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }
 ?>

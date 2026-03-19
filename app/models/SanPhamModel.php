@@ -87,5 +87,60 @@ class SanPhamModel {
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    
+    /**
+     * Thêm sản phẩm mới
+     */
+    public function themSanPham($ten_sp, $gia, $mo_ta, $path_img, $id_danh_muc) {
+        $sql = "INSERT INTO sanpham (ten_sp, gia, mo_ta, path_img, id_danh_muc, ngay_tao) 
+                VALUES (:ten_sp, :gia, :mo_ta, :path_img, :id_danh_muc, NOW())";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(':ten_sp', $ten_sp);
+        $stmt->bindParam(':gia', $gia);
+        $stmt->bindParam(':mo_ta', $mo_ta);
+        $stmt->bindParam(':path_img', $path_img);
+        $stmt->bindParam(':id_danh_muc', $id_danh_muc, PDO::PARAM_INT);
+        
+        if ($stmt->execute()) {
+            return $this->pdo->lastInsertId();
+        }
+        return false;
+    }
+    
+    /**
+     * Lấy ID danh mục theo tên (miền)
+     */
+    public function layIDDanhMuc($ten_danh_muc) {
+        $sql = "SELECT id FROM danhmuc WHERE ten_danh_muc = :ten_danh_muc LIMIT 1";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(':ten_danh_muc', $ten_danh_muc);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result ? $result['id'] : null;
+    }
+    
+    /**
+     * Cập nhật sản phẩm
+     */
+    public function capNhatSanPham($ma_sp, $ten_sp, $gia, $mo_ta) {
+        $sql = "UPDATE sanpham SET ten_sp = :ten_sp, gia = :gia, mo_ta = :mo_ta WHERE ma_sp = :ma_sp";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(':ma_sp', $ma_sp, PDO::PARAM_INT);
+        $stmt->bindParam(':ten_sp', $ten_sp);
+        $stmt->bindParam(':gia', $gia);
+        $stmt->bindParam(':mo_ta', $mo_ta);
+        
+        return $stmt->execute();
+    }
+    
+    /**
+     * Xóa sản phẩm
+     */
+    public function xoaSanPham($ma_sp) {
+        $sql = "DELETE FROM sanpham WHERE ma_sp = :ma_sp";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(':ma_sp', $ma_sp, PDO::PARAM_INT);
+        
+        return $stmt->execute();
+    }
 }
-?>

@@ -10,21 +10,48 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
   <script src="app/views/client/js/bootstrap.bundle.js"></script>
   <style>
-    body {
-      background: url("app/views/client/img/Anh/Banner/banner.jpg") no-repeat center center fixed;
-      background-size: cover;
-      position: relative;
+    .stat-card {
+      background: white;
+      border-left: 4px solid #8B4513;
+      padding: 20px;
+      margin-bottom: 15px;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.3);
-      z-index: -1;
+    .stat-card h6 {
+      color: #8B4513;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .stat-value {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .stat-unit {
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    .text-brown {
+      color: #8B4513;
+    }
+
+    .filter-section {
+      background: white;
+      padding: 20px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .filter-section h5 {
+      color: #8B4513;
+      font-weight: bold;
+      margin-bottom: 15px;
     }
   </style>
 </head>
@@ -57,22 +84,17 @@
             </li>
           
             <li class="nav-item dropdown ms-lg-3">
-              <a class="nav-link dropdown-toggle" href="index.php?controller=SanPham&action=index" role="button" data-bs-toggle="dropdown">
-                Quản trị
+              <a class="nav-link dropdown-toggle fw-bold" href="#" role="button" data-bs-toggle="dropdown">
+                <i class="bi bi-person-circle me-2"></i><?php echo htmlspecialchars($_SESSION['user']['ten_dang_nhap'] ?? 'Admin'); ?>
               </a>
-              <ul class="dropdown-menu dropdown-menu-end border-brown shadow">
-                <li><a class="dropdown-item text-danger" href="index.php?controller=TrangChu&action=index"><i class="bi bi-box-arrow-right me-2"></i>Đăng xuất</a></li>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="index.php?controller=Admin&action=index"><i class="bi bi-house me-2"></i>Về Admin Panel</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item text-danger" href="index.php?controller=Admin&action=dangxuat"><i class="bi bi-box-arrow-right me-2"></i>Đăng xuất</a></li>
               </ul>
             </li>
           </ul>
         </div>
-<form class="d-flex ms-3" role="search">
-          <input class="form-control me-2 border-brown" type="search" placeholder="Tìm kiếm..." required>
-          <button class="btn btn-search-custom" type="submit" style="background-color: #8B4513; color: white; border: none;">
-            <i class="bi bi-search"></i>
-          </button>
-        </form>
-
       </div>
     </nav>
 
@@ -80,87 +102,166 @@
   <div class="content">
   <div class="container mt-4 mb-5">
 
-    <div class="row g-3 align-items-stretch">
-
-      <!-- BÊN TRÁI -->
-      <div class="col-md-4 d-flex">
-        <div class="bg-white p-3 border w-100 d-flex flex-column">
-          
-          <h5 class="fw-bold mb-3">Thống kê</h5>
-
-          <p><strong>Ngày:</strong> 18/03/2026</p>
-          <p><strong>Tổng đơn:</strong> 5</p>
-          <p><strong>Doanh thu:</strong> 520.000đ</p>
-          <p><strong>Chờ xử lý:</strong> 2</p>
-          <p><strong>Đang giao:</strong> 2</p>
-          <p><strong>Hoàn thành:</strong> 1</p>
-
+    <!-- FILTER SECTION -->
+    <div class="filter-section">
+      <h5><i class="bi bi-funnel me-2"></i>Bộ lọc dữ liệu</h5>
+      <form method="GET" class="row g-3">
+        <input type="hidden" name="controller" value="ThongKeDonHang">
+        <input type="hidden" name="action" value="index">
+        
+        <!-- Status Filter -->
+        <div class="col-md-3">
+          <label class="form-label">Trạng thái đơn:</label>
+          <select class="form-select" name="trang_thai">
+            <option value="">-- Tất cả --</option>
+            <option value="Chờ xử lý" <?php echo ($trang_thai === 'Chờ xử lý') ? 'selected' : ''; ?>>Chờ xử lý</option>
+            <option value="Đang giao" <?php echo ($trang_thai === 'Đang giao') ? 'selected' : ''; ?>>Đang giao</option>
+            <option value="Hoàn thành" <?php echo ($trang_thai === 'Hoàn thành') ? 'selected' : ''; ?>>Hoàn thành</option>
+            <option value="Hủy" <?php echo ($trang_thai === 'Hủy') ? 'selected' : ''; ?>>Hủy</option>
+          </select>
         </div>
+
+        <!-- Year Filter -->
+        <div class="col-md-3">
+          <label class="form-label">Năm:</label>
+          <select class="form-select" name="nam">
+            <option value="">-- Tất cả --</option>
+            <?php foreach ($namList as $n): ?>
+              <option value="<?php echo $n['nam']; ?>" <?php echo ($nam == $n['nam']) ? 'selected' : ''; ?>>
+                <?php echo $n['nam']; ?>
+              </option>
+            <?php endforeach; ?>
+          </select>
+        </div>
+
+        <!-- Quarter Filter -->
+        <div class="col-md-3">
+          <label class="form-label">Quý:</label>
+          <select class="form-select" name="quy">
+            <option value="">-- Tất cả --</option>
+            <option value="1" <?php echo ($quy === '1') ? 'selected' : ''; ?>>Quý I</option>
+            <option value="2" <?php echo ($quy === '2') ? 'selected' : ''; ?>>Quý II</option>
+            <option value="3" <?php echo ($quy === '3') ? 'selected' : ''; ?>>Quý III</option>
+            <option value="4" <?php echo ($quy === '4') ? 'selected' : ''; ?>>Quý IV</option>
+          </select>
+        </div>
+
+        <!-- Month Filter -->
+        <div class="col-md-3">
+          <label class="form-label">Tháng:</label>
+          <select class="form-select" name="thang">
+            <option value="">-- Tất cả --</option>
+            <?php for ($i = 1; $i <= 12; $i++): ?>
+              <option value="<?php echo $i; ?>" <?php echo ($thang == $i) ? 'selected' : ''; ?>>
+                Tháng <?php echo $i; ?>
+              </option>
+            <?php endfor; ?>
+          </select>
+        </div>
+
+        <div class="col-12">
+          <button type="submit" class="btn" style="background: #8B4513; color: white;">
+            <i class="bi bi-search me-2"></i>Lọc dữ liệu
+          </button>
+          <a href="index.php?controller=ThongKeDonHang&action=index" class="btn btn-secondary">
+            <i class="bi bi-arrow-clockwise me-2"></i>Đặt lại
+          </a>
+        </div>
+      </form>
+    </div>
+
+    <!-- STATISTICS SECTION -->
+    <div class="row g-3 align-items-stretch mb-4">
+
+      <!-- LEFT SIDE - Stats -->
+      <div class="col-md-4">
+        
+        <!-- Card 1: Total Orders -->
+        <div class="stat-card">
+          <h6><i class="bi bi-box-seam me-2"></i>Tổng đơn hàng</h6>
+          <div class="stat-value"><?php echo $thongKe['tong_don'] ?? 0; ?></div>
+          <div class="stat-unit">đơn</div>
+        </div>
+
+        <!-- Card 2: Total Revenue -->
+        <div class="stat-card">
+          <h6><i class="bi bi-cash-coin me-2"></i>Tổng doanh thu</h6>
+          <div class="stat-value"><?php echo number_format($thongKe['tong_doanh_thu'] ?? 0, 0, ',', '.'); ?></div>
+          <div class="stat-unit">₫</div>
+        </div>
+
+        <!-- Status breakdown (only if no status filter applied) -->
+        <?php if (empty($trang_thai)): ?>
+          <div style="border-top: 2px solid #8B4513; padding-top: 20px; margin-top: 20px;">
+            <h6 class="text-brown fw-bold mb-3">Theo trạng thái:</h6>
+            <?php foreach ($thongKeTheoTrangThai as $tk): ?>
+              <div class="d-flex justify-content-between mb-2">
+                <span><?php echo htmlspecialchars($tk['trang_thai']); ?></span>
+                <strong><?php echo $tk['so_luong']; ?></strong>
+              </div>
+            <?php endforeach; ?>
+          </div>
+        <?php endif; ?>
+
       </div>
 
-      <!-- BÊN PHẢI -->
-      <div class="col-md-8 d-flex">
-        <div class="bg-white border w-100 p-2">
+      <!-- RIGHT SIDE - Table -->
+      <div class="col-md-8">
+        <div class="bg-white border rounded p-2" style="box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
 
-          <table class="table table-bordered text-center mb-0">
-            <thead class="table-light">
-              <tr>
-                <th>Mã đơn</th>
-                <th>Khách hàng</th>
-                <th>Sản phẩm</th>
-                <th>Nơi giao</th>
-                <th>Trạng thái</th>
-                <th>Tổng tiền</th>
-              </tr>
-            </thead>
+          <?php if (empty($hoaDons)): ?>
+            <div class="alert alert-info m-3">
+              <i class="bi bi-info-circle me-2"></i>Không có dữ liệu đơn hàng với bộ lọc này
+            </div>
+          <?php else: ?>
 
-            <tbody>
-              <tr>
-                <td>#001</td>
-                <td><strong>Nguyễn Văn A</strong></td>
-                <td>Khô cá miền Tây</td>
-                <td>TP.HCM</td>
-                <td>Chờ xử lý</td>
-                <td class="text-danger">120.000đ</td>
-              </tr>
+          <div class="table-responsive">
+            <table class="table table-hover mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th width="80px">Mã đơn</th>
+                  <th>Khách hàng</th>
+                  <th>Sản phẩm</th>
+                  <th>Địa chỉ</th>
+                  <th>Trạng thái</th>
+                  <th width="120px">Tổng tiền</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php foreach ($hoaDons as $hd): ?>
+                  <tr>
+                    <td class="fw-bold text-brown">#<?php echo str_pad($hd['ma_hd'], 3, '0', STR_PAD_LEFT); ?></td>
+                    <td>
+                      <strong><?php echo htmlspecialchars($hd['ten_khach_hang']); ?></strong><br>
+                      <small class="text-muted"><?php echo htmlspecialchars($hd['dien_thoai']); ?></small>
+                    </td>
+                    <td>
+                      <?php 
+                      foreach ($hd['chiTiets'] as $ct) {
+                          echo htmlspecialchars($ct['ten_sp'] ?? 'Sản phẩm') . " (SL: " . $ct['so_luong'] . ")<br>";
+                      }
+                      ?>
+                    </td>
+                    <td><small><?php echo htmlspecialchars($hd['dia_chi']); ?></small></td>
+                    <td>
+                      <span class="badge bg-<?php 
+                        $status = $hd['trang_thai'];
+                        if ($status === 'Chờ xử lý') echo 'warning';
+                        elseif ($status === 'Đang giao') echo 'info';
+                        elseif ($status === 'Hoàn thành') echo 'success';
+                        else echo 'danger';
+                      ?>">
+                        <?php echo htmlspecialchars($status); ?>
+                      </span>
+                    </td>
+                    <td class="text-danger fw-bold"><?php echo number_format($hd['tong_tien'], 0, ',', '.'); ?>₫</td>
+                  </tr>
+                <?php endforeach; ?>
+              </tbody>
+            </table>
+          </div>
 
-              <tr>
-                <td>#002</td>
-                <td><strong>Trần Thị B</strong></td>
-                <td>Lạp xưởng</td>
-                <td>Điện Biên</td>
-                <td>Đang giao</td>
-                <td class="text-danger">85.000đ</td>
-              </tr>
-
-              <tr>
-                <td>#003</td>
-                <td><strong>Lê Văn C</strong></td>
-                <td>Bánh pía</td>
-                <td>Cần Thơ</td>
-                <td>Hoàn thành</td>
-                <td class="text-danger">95.000đ</td>
-              </tr>
-
-              <tr>
-                <td>#004</td>
-                <td><strong>Phạm Thị D</strong></td>
-                <td>Mực khô</td>
-                <td>Đà Nẵng</td>
-                <td>Chờ xử lý</td>
-                <td class="text-danger">150.000đ</td>
-              </tr>
-
-              <tr>
-                <td>#005</td>
-                <td><strong>Hoàng Văn E</strong></td>
-                <td>Bánh đậu xanh</td>
-                <td>Hải Phòng</td>
-                <td>Đang giao</td>
-<td class="text-danger">70.000đ</td>
-              </tr>
-            </tbody>
-          </table>
+          <?php endif; ?>
 
         </div>
       </div>
@@ -186,7 +287,7 @@
             <ul class="list-unstyled">
               <li><a href="index.php?controller=TrangChu&action=index" class="text-decoration-none text-brown">Trang chủ</a></li>
               <li><a href="index.php?controller=GioHang&action=index" class="text-decoration-none text-brown">Giỏ hàng</a></li>
-              <li><a href="index.php?controller=DangNhap&action=index" class="text-decoration-none text-brown">Đăng nhập</a></li>
+              <li><a href="index.php?controller=Admin&action=index" class="text-decoration-none text-brown">Admin Panel</a></li>
             </ul>
           </div>
 
