@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 18, 2026 lúc 04:30 PM
--- Phiên bản máy phục vụ: 10.4.32-MariaDB
--- Phiên bản PHP: 8.2.12
+-- Host: 127.0.0.1
+-- Generation Time: Mar 19, 2026 at 08:06 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,15 +18,14 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `dacsan3mien`
+-- Database: `dacsan3mien`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `chitiet_hoadon`
+-- Table structure for table `chitiet_hoadon`
 --
-USE dacsan3mien;
 
 CREATE TABLE `chitiet_hoadon` (
   `id` int(10) UNSIGNED NOT NULL,
@@ -37,7 +36,7 @@ CREATE TABLE `chitiet_hoadon` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `chitiet_hoadon`
+-- Dumping data for table `chitiet_hoadon`
 --
 
 INSERT INTO `chitiet_hoadon` (`id`, `ma_hd`, `ma_sp`, `so_luong`, `gia`) VALUES
@@ -50,7 +49,7 @@ INSERT INTO `chitiet_hoadon` (`id`, `ma_hd`, `ma_sp`, `so_luong`, `gia`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `danhmuc`
+-- Table structure for table `danhmuc`
 --
 
 CREATE TABLE `danhmuc` (
@@ -60,7 +59,7 @@ CREATE TABLE `danhmuc` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `danhmuc`
+-- Dumping data for table `danhmuc`
 --
 
 INSERT INTO `danhmuc` (`id`, `ten_danh_muc`, `mo_ta`) VALUES
@@ -71,7 +70,7 @@ INSERT INTO `danhmuc` (`id`, `ten_danh_muc`, `mo_ta`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `hoadon`
+-- Table structure for table `hoadon`
 --
 
 CREATE TABLE `hoadon` (
@@ -86,20 +85,20 @@ CREATE TABLE `hoadon` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `hoadon`
+-- Dumping data for table `hoadon`
 --
 
 INSERT INTO `hoadon` (`ma_hd`, `ma_nguoi_dung`, `ten_khach_hang`, `dien_thoai`, `dia_chi`, `tong_tien`, `trang_thai`, `ngay_dat`) VALUES
-(1, 2, 'Nguyễn Văn A', '0911111111', 'TP.HCM1', 120000.00, 'cho xu ly', '2026-03-18 20:00:15'),
-(2, 3, 'Trần Thị B', '0922222222', 'Điện Biên', 200000.00, 'Dang giao', '2026-03-18 20:11:02'),
-(3, 4, 'Lê Văn C', '0933333333', 'Cần Thơ', 95000.00, 'Hoan thanh', '2026-03-18 20:11:02'),
-(4, 5, 'Phạm Thị D', '0944444444', 'Đà Nẵng', 150000.00, 'cho xu ly', '2026-03-18 20:11:02'),
-(5, 6, 'Hoàng Văn E', '0955555555', 'Hải Phòng', 70000.00, 'Dang giao', '2026-03-18 20:11:02');
+(1, 2, 'Nguyễn Văn A', '0911111111', 'TP.HCM1', 120000.00, 'Chờ xử lý', '2026-03-18 20:00:15'),
+(2, 3, 'Trần Thị B', '0922222222', 'Điện Biên', 200000.00, 'Chờ xử lý', '2026-03-18 20:11:02'),
+(3, 4, 'Lê Văn C', '0933333333', 'Cần Thơ', 95000.00, 'Chờ xử lý', '2026-03-18 20:11:02'),
+(4, 5, 'Phạm Thị D', '0944444444', 'Đà Nẵng', 150000.00, 'Đang giao', '2026-03-18 20:11:02'),
+(5, 6, 'Hoàng Văn E', '0955555555', 'Hải Phòng', 70000.00, 'Hủy', '2026-03-18 20:11:02');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `nguoidung`
+-- Table structure for table `nguoidung`
 --
 
 CREATE TABLE `nguoidung` (
@@ -113,21 +112,22 @@ CREATE TABLE `nguoidung` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `nguoidung`
+-- Dumping data for table `nguoidung`
 --
 
 INSERT INTO `nguoidung` (`ma_nguoi_dung`, `ten_dang_nhap`, `mat_khau`, `email`, `dien_thoai`, `vai_tro`, `ngay_tao`) VALUES
-(1, 'admin', '123456', 'admin@gmail.com', '0900000000', 'admin', '2026-03-02 17:44:26'),
+(1, 'admin', '123456', 'admin@gmail.com', '0355377867', 'admin', '2026-03-02 17:44:26'),
 (2, 'nguyenvana', '123456', 'vana@gmail.com', '0911111111', 'khach', '2026-03-18 17:49:37'),
 (3, 'tranthib', '123456', 'chi@gmail.com', '0922222222', 'khach', '2026-03-18 17:49:37'),
 (4, 'levanc', '123456', 'vanc@gmail.com', '0933333333', 'khach', '2026-03-18 17:49:37'),
 (5, 'phamthid', '123456', 'thid@gmail.com', '0944444444', 'khach', '2026-03-18 17:49:37'),
-(6, 'hoangvane', '123456', 'vane@gmail.com', '0955555555', 'khach', '2026-03-18 20:06:32');
+(6, 'hoangvane', '123456', 'vane@gmail.com', '0955555555', 'khach', '2026-03-18 20:06:32'),
+(7, 'hai', '123456', '19501521.hai@gmail.com', '0355372409', 'khach', '2026-03-19 23:19:54');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `nhacungcap`
+-- Table structure for table `nhacungcap`
 --
 
 CREATE TABLE `nhacungcap` (
@@ -139,7 +139,7 @@ CREATE TABLE `nhacungcap` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `nhacungcap`
+-- Dumping data for table `nhacungcap`
 --
 
 INSERT INTO `nhacungcap` (`ma_ncc`, `ten_ncc`, `so_dien_thoai`, `dia_chi`, `email`) VALUES
@@ -174,7 +174,7 @@ INSERT INTO `nhacungcap` (`ma_ncc`, `ten_ncc`, `so_dien_thoai`, `dia_chi`, `emai
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `sanpham`
+-- Table structure for table `sanpham`
 --
 
 CREATE TABLE `sanpham` (
@@ -185,124 +185,125 @@ CREATE TABLE `sanpham` (
   `id_danh_muc` int(10) UNSIGNED NOT NULL,
   `ma_ncc` int(10) UNSIGNED NOT NULL,
   `so_luong` int(10) UNSIGNED NOT NULL,
-  `ngay_tao` datetime NOT NULL DEFAULT current_timestamp()
+  `ngay_tao` datetime NOT NULL DEFAULT current_timestamp(),
+  `path_img` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `sanpham`
+-- Dumping data for table `sanpham`
 --
 
-INSERT INTO `sanpham` (`ma_sp`, `ten_sp`, `gia`, `mo_ta`, `id_danh_muc`, `ma_ncc`, `so_luong`, `ngay_tao`) VALUES
-(1, 'Bánh Chưng làng Đầm Hà Nam', 120000.00, 'Bánh chưng truyền thống Hà Nam, gạo nếp cái hoa vàng, nhân thịt đậu xanh.', 1, 1, 50, '2026-03-18 17:42:07'),
-(2, 'Cơm lam Bắc Kạn', 60000.00, 'Cơm lam nướng ống tre, hương vị núi rừng.', 1, 3, 40, '2026-03-18 17:42:07'),
-(3, 'Bánh đậu xanh Hải Dương', 80000.00, 'Đặc sản nổi tiếng Hải Dương, mềm mịn, thơm ngọt.', 1, 2, 50, '2026-03-18 19:13:54'),
-(4, 'Chả mực Hạ Long', 350000.00, 'Chả mực giã tay nổi tiếng Quảng Ninh.', 1, 4, 60, '2026-03-18 19:13:54'),
-(5, 'Lạp xưởng Điện Biên', 200000.00, 'Lạp xưởng hun khói, đậm vị Tây Bắc.', 1, 5, 25, '2026-03-18 19:13:54'),
-(6, 'Long nhãn Hưng Yên', 150000.00, 'Nhãn sấy khô, ngọt tự nhiên.', 1, 6, 100, '2026-03-18 19:13:54'),
-(7, 'Ô mai Hà Nội', 90000.00, 'Ô mai chua ngọt đặc trưng Hà Nội.', 1, 7, 80, '2026-03-18 19:13:54'),
-(8, 'Rượu mơ Yên Tử', 250000.00, 'Rượu mơ thơm dịu, dễ uống.', 1, 8, 20, '2026-03-18 19:13:54'),
-(9, 'Rượu San Lùng Lào Cai', 300000.00, 'Rượu truyền thống vùng cao.', 1, 9, 15, '2026-03-18 19:13:54'),
-(10, 'Trâu gác bếp Tây Bắc', 500000.00, 'Thịt trâu hun khói, đặc sản Tây Bắc.', 1, 10, 10, '2026-03-18 19:13:54'),
-(11, 'Bánh cốm sữa Bình Thuận', 70000.00, 'Bánh cốm dẻo thơm, vị sữa đặc trưng.', 2, 11, 50, '2026-03-18 19:26:19'),
-(12, 'Bánh tráng nước dừa Bình Định', 60000.00, 'Bánh tráng giòn, thơm nước dừa.', 2, 12, 60, '2026-03-18 19:26:19'),
-(13, 'Cá mai tẩm mè Phú Yên', 120000.00, 'Cá mai khô tẩm mè, đậm vị biển.', 2, 13, 40, '2026-03-18 19:26:19'),
-(14, 'Chả giò Đà Nẵng', 90000.00, 'Chả giò thơm ngon, tiện lợi.', 2, 14, 70, '2026-03-18 19:26:19'),
-(15, 'Mè xửng Huế', 80000.00, 'Kẹo mè truyền thống Huế.', 2, 15, 80, '2026-03-18 19:26:19'),
-(16, 'Nem chua Thanh Hóa', 100000.00, 'Nem chua chua cay hấp dẫn.', 2, 16, 55, '2026-03-18 19:26:19'),
-(17, 'Rượu Bầu Đá Bình Định', 300000.00, 'Rượu mạnh nổi tiếng Bình Định.', 2, 12, 20, '2026-03-18 19:26:19'),
-(18, 'Táo xanh sấy Ninh Thuận', 110000.00, 'Táo sấy dẻo, vị chua ngọt.', 2, 17, 65, '2026-03-18 19:26:19'),
-(19, 'Tré Bình Định', 130000.00, 'Món tré chua cay độc đáo.', 2, 12, 45, '2026-03-18 19:26:19'),
-(20, 'Yến sào Khánh Hòa', 500000.00, 'Yến sào bổ dưỡng cao cấp.', 2, 18, 15, '2026-03-18 19:26:19'),
-(21, 'Bánh pía Sóc Trăng', 90000.00, 'Bánh pía nhân đậu xanh, sầu riêng.', 3, 19, 60, '2026-03-18 19:38:44'),
-(22, 'Bánh tét Trà Vinh', 120000.00, 'Bánh tét truyền thống miền Tây.', 3, 20, 40, '2026-03-18 19:38:44'),
-(23, 'Hạt điều Bình Phước', 200000.00, 'Hạt điều rang muối thơm ngon.', 3, 21, 70, '2026-03-18 19:38:44'),
-(24, 'Kẹo dừa Bến Tre', 80000.00, 'Kẹo dừa mềm ngọt đặc trưng.', 3, 22, 80, '2026-03-18 19:38:44'),
-(25, 'Khô mực Kiên Giang', 350000.00, 'Mực khô chất lượng cao.', 3, 23, 30, '2026-03-18 19:38:44'),
-(26, 'Mắm chua Bạc Liêu', 100000.00, 'Mắm chua đậm đà miền Tây.', 3, 24, 50, '2026-03-18 19:38:44'),
-(27, 'Mật ong Cà Mau', 250000.00, 'Mật ong rừng nguyên chất.', 3, 25, 35, '2026-03-18 19:38:44'),
-(28, 'Nem bưởi Tây Ninh', 70000.00, 'Nem chay từ bưởi độc đáo.', 3, 26, 65, '2026-03-18 19:38:44'),
-(29, 'Tôm khô Cà Mau', 400000.00, 'Tôm khô loại 1, thịt ngọt.', 3, 25, 25, '2026-03-18 19:38:44'),
-(30, 'Trà sen Đồng Tháp', 150000.00, 'Trà sen thơm dịu, thanh mát.', 3, 27, 45, '2026-03-18 19:38:44');
+INSERT INTO `sanpham` (`ma_sp`, `ten_sp`, `gia`, `mo_ta`, `id_danh_muc`, `ma_ncc`, `so_luong`, `ngay_tao`, `path_img`) VALUES
+(1, 'Bánh Chưng làng Đầm Hà Nam', 120000.00, 'Bánh chưng truyền thống Hà Nam, gạo nếp cái hoa vàng, nhân thịt đậu xanh.', 1, 1, 50, '2026-03-18 17:42:07', 'img/Anh/Bac/banhchung_langdam_HaNam.png'),
+(2, 'Cơm lam Bắc Kạn', 60000.00, 'Cơm lam nướng ống tre, hương vị núi rừng.', 1, 3, 40, '2026-03-18 17:42:07', 'img/Anh/Bac/comlam_backan.jpg'),
+(3, 'Bánh đậu xanh Hải Dương', 80000.00, 'Đặc sản nổi tiếng Hải Dương, mềm mịn, thơm ngọt.', 1, 2, 50, '2026-03-18 19:13:54', 'img/Anh/Bac/banhdauxanh_haiduong.png'),
+(4, 'Chả mực Hạ Long', 350000.00, 'Chả mực giã tay nổi tiếng Quảng Ninh.', 1, 4, 60, '2026-03-18 19:13:54', 'img/Anh/Bac/chamuc_halong.jpg'),
+(5, 'Lạp xưởng Điện Biên', 200000.00, 'Lạp xưởng hun khói, đậm vị Tây Bắc.', 1, 5, 25, '2026-03-18 19:13:54', 'img/Anh/Bac/lapxuong_dienbien.jpg'),
+(6, 'Long nhãn Hưng Yên', 150000.00, 'Nhãn sấy khô, ngọt tự nhiên.', 1, 6, 100, '2026-03-18 19:13:54', 'img/Anh/Bac/longnhan_hungyen.jpg'),
+(7, 'Ô mai Hà Nội', 90000.00, 'Ô mai chua ngọt đặc trưng Hà Nội.', 1, 7, 80, '2026-03-18 19:13:54', 'img/Anh/Bac/omai_hanoi.jpg'),
+(8, 'Rượu mơ Yên Tử', 250000.00, 'Rượu mơ thơm dịu, dễ uống.', 1, 8, 20, '2026-03-18 19:13:54', 'img/Anh/Bac/ruoumo_YenTu_QuangNinh.png'),
+(9, 'Rượu San Lùng Lào Cai', 300000.00, 'Rượu truyền thống vùng cao.', 1, 9, 15, '2026-03-18 19:13:54', 'img/Anh/Bac/ruousanlung_laocai.jpg'),
+(10, 'Trâu gác bếp Tây Bắc', 500000.00, 'Thịt trâu hun khói, đặc sản Tây Bắc.', 1, 10, 10, '2026-03-18 19:13:54', 'img/Anh/Bac/traugacbep_TayBac.png'),
+(11, 'Bánh cốm sữa Bình Thuận', 70000.00, 'Bánh cốm dẻo thơm, vị sữa đặc trưng.', 2, 11, 50, '2026-03-18 19:26:19', 'img/Anh/Trung/banhcomsua_binhthuan.jpg'),
+(12, 'Bánh tráng nước dừa Bình Định', 60000.00, 'Bánh tráng giòn, thơm nước dừa.', 2, 12, 60, '2026-03-18 19:26:19', 'img/Anh/Trung/banhtrangnuocdua_binhdinh.jpg'),
+(13, 'Cá mai tẩm mè Phú Yên', 120000.00, 'Cá mai khô tẩm mè, đậm vị biển.', 2, 13, 40, '2026-03-18 19:26:19', 'img/Anh/Trung/camaitamme_phuyen.png'),
+(14, 'Chả giò Đà Nẵng', 90000.00, 'Chả giò thơm ngon, tiện lợi.', 2, 14, 70, '2026-03-18 19:26:19', 'img/Anh/Trung/chagio_danang.png'),
+(15, 'Mè xửng Huế', 80000.00, 'Kẹo mè truyền thống Huế.', 2, 15, 80, '2026-03-18 19:26:19', 'img/Anh/Trung/mexung_hue.png'),
+(16, 'Nem chua Thanh Hóa', 100000.00, 'Nem chua chua cay hấp dẫn.', 2, 16, 55, '2026-03-18 19:26:19', 'img/Anh/Trung/nemchua_thanhhoa.jpg'),
+(17, 'Rượu Bầu Đá Bình Định', 300000.00, 'Rượu mạnh nổi tiếng Bình Định.', 2, 12, 20, '2026-03-18 19:26:19', 'img/Anh/Trung/ruoubauda_binhdinh.jpg'),
+(18, 'Táo xanh sấy Ninh Thuận', 110000.00, 'Táo sấy dẻo, vị chua ngọt.', 2, 17, 65, '2026-03-18 19:26:19', 'img/Anh/Trung/taoxanhsay_ninhthuan.png'),
+(19, 'Tré Bình Định', 130000.00, 'Món tré chua cay độc đáo.', 2, 12, 45, '2026-03-18 19:26:19', 'img/Anh/Trung/tre_binhdinh.jpg'),
+(20, 'Yến sào Khánh Hòa', 500000.00, 'Yến sào bổ dưỡng cao cấp.', 2, 18, 15, '2026-03-18 19:26:19', 'img/Anh/Trung/yenxao_khanhhoa.jpg'),
+(21, 'Bánh pía Sóc Trăng', 90000.00, 'Bánh pía nhân đậu xanh, sầu riêng.', 3, 19, 60, '2026-03-18 19:38:44', 'img/Anh/Nam/banhpia_soctrang.jpg'),
+(22, 'Bánh tét Trà Vinh', 120000.00, 'Bánh tét truyền thống miền Tây.', 3, 20, 40, '2026-03-18 19:38:44', 'img/Anh/Nam/banhtet_travinh.jpg'),
+(23, 'Hạt điều Bình Phước', 200000.00, 'Hạt điều giòn rụm, thơm ngon', 3, 21, 70, '2026-03-18 19:38:44', 'img/Anh/Nam/hatdieu_binhphuoc.jpg'),
+(24, 'Kẹo dừa Bến Tre', 80000.00, 'Kẹo dừa mềm ngọt đặc trưng.', 3, 22, 80, '2026-03-18 19:38:44', 'img/Anh/Nam/keodua_BenTre.jpg'),
+(25, 'Khô mực Kiên Giang', 350000.00, 'Mực khô chất lượng cao.', 3, 23, 30, '2026-03-18 19:38:44', 'img/Anh/Nam/khomuc_kiengiang.jpg'),
+(26, 'Mắm chua Bạc Liêu', 100000.00, 'Mắm chua đậm đà miền Tây.', 3, 24, 50, '2026-03-18 19:38:44', 'img/Anh/Nam/mamchua_baclieu.jpg'),
+(27, 'Mật ong Cà Mau', 250000.00, 'Mật ong rừng nguyên chất.', 3, 25, 35, '2026-03-18 19:38:44', 'img/Anh/Nam/matong_camau.jpg'),
+(28, 'Nem bưởi Tây Ninh', 70000.00, 'Nem chay từ bưởi độc đáo.', 3, 26, 65, '2026-03-18 19:38:44', 'img/Anh/Nam/nembuoi_tayninh.jpg'),
+(29, 'Tôm khô Cà Mau', 400000.00, 'Tôm khô loại 1, thịt ngọt.', 3, 25, 25, '2026-03-18 19:38:44', 'img/Anh/Nam/tomkho_camau.jpg'),
+(30, 'Trà sen Đồng Tháp', 150000.00, 'Trà sen thơm dịu, thanh mát.AA', 3, 27, 45, '2026-03-18 19:38:44', 'img/Anh/Nam/trasen_dongthap.jpg');
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `chitiet_hoadon`
+-- Indexes for table `chitiet_hoadon`
 --
 ALTER TABLE `chitiet_hoadon`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `danhmuc`
+-- Indexes for table `danhmuc`
 --
 ALTER TABLE `danhmuc`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `hoadon`
+-- Indexes for table `hoadon`
 --
 ALTER TABLE `hoadon`
   ADD PRIMARY KEY (`ma_hd`);
 
 --
--- Chỉ mục cho bảng `nguoidung`
+-- Indexes for table `nguoidung`
 --
 ALTER TABLE `nguoidung`
   ADD PRIMARY KEY (`ma_nguoi_dung`);
 
 --
--- Chỉ mục cho bảng `nhacungcap`
+-- Indexes for table `nhacungcap`
 --
 ALTER TABLE `nhacungcap`
   ADD PRIMARY KEY (`ma_ncc`);
 
 --
--- Chỉ mục cho bảng `sanpham`
+-- Indexes for table `sanpham`
 --
 ALTER TABLE `sanpham`
   ADD PRIMARY KEY (`ma_sp`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `chitiet_hoadon`
+-- AUTO_INCREMENT for table `chitiet_hoadon`
 --
 ALTER TABLE `chitiet_hoadon`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT cho bảng `danhmuc`
+-- AUTO_INCREMENT for table `danhmuc`
 --
 ALTER TABLE `danhmuc`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT cho bảng `hoadon`
+-- AUTO_INCREMENT for table `hoadon`
 --
 ALTER TABLE `hoadon`
   MODIFY `ma_hd` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT cho bảng `nguoidung`
+-- AUTO_INCREMENT for table `nguoidung`
 --
 ALTER TABLE `nguoidung`
-  MODIFY `ma_nguoi_dung` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ma_nguoi_dung` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT cho bảng `nhacungcap`
+-- AUTO_INCREMENT for table `nhacungcap`
 --
 ALTER TABLE `nhacungcap`
   MODIFY `ma_ncc` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
--- AUTO_INCREMENT cho bảng `sanpham`
+-- AUTO_INCREMENT for table `sanpham`
 --
 ALTER TABLE `sanpham`
-  MODIFY `ma_sp` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `ma_sp` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
