@@ -144,151 +144,36 @@
             </div>
         </div>
 
-       <div class="row">
-    <div class="col-md-3 col-sm-6 mb-4">
-        <div class="card h-100 shadow-sm product-card p-2">
-            <img src="app/views/client/img/Anh/Bac/ruousanlung_laocai.jpg" class="card-img-top img-sp" style="cursor: pointer;"
-                 data-bs-toggle="modal" data-bs-target="#productModal"
-                 data-name="Rượu San Lùng Lào Cai" data-price="300.000đ" data-img="img/Anh/Bac/ruousanlung_laocai.jpg"
-                 data-packaging="Chai thủy tinh cao cấp 500ml" data-ingredients="Gạo nương địa phương, men lá thảo dược"
-                 data-nutrition="Nồng độ cồn 35-40%" data-flavor="Thơm nồng nàn, êm dịu, không gây đau đầu" 
-                 data-storage="Nơi khô ráo, tránh ánh nắng trực tiếp" data-origin="Bản San Lùng, Lào Cai"
-                 data-expiry="Hạn sử dụng: 36 tháng kể từ NXS" data-mfg="NXS: In trên bao bì"
-                 data-usage="Dùng trực tiếp trong các bữa tiệc hoặc ngâm thảo dược quý.">
-            <div class="card-body text-center d-flex flex-column">
-                <h5 class="card-title fw-bold text-brown">Rượu San Lùng Lào Cai</h5>
-                <p class="card-text text-danger fw-bold">300.000đ</p>
-                <button class="btn btn-outline-brown mt-auto w-100">Thêm vào giỏ</button>
-            </div>
+        <?php $products = isset($products) ? $products : []; ?>
+        <div class="row">
+            <?php if(!empty($products)): foreach($products as $p): ?>
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="card h-100 shadow-sm product-card p-2">
+                        <img src="<?php echo 'app/views/client/' . htmlspecialchars($p['path_img']); ?>" class="card-img-top img-sp" style="cursor: pointer;"
+                             data-bs-toggle="modal" data-bs-target="#productModal"
+                             data-name="<?php echo htmlspecialchars($p['ten_sp']); ?>"
+                             data-price="<?php echo number_format($p['gia'],0,',','.'); ?>đ"
+                             data-img="<?php echo 'app/views/client/' . htmlspecialchars($p['path_img']); ?>"
+                             data-packaging=""
+                             data-ingredients=""
+                             data-nutrition=""
+                             data-flavor=""
+                             data-storage=""
+                             data-origin=""
+                             data-expiry=""
+                             data-mfg=""
+                             data-usage="">
+                        <div class="card-body text-center d-flex flex-column">
+                            <h5 class="card-title fw-bold text-brown"><?php echo htmlspecialchars($p['ten_sp']); ?></h5>
+                            <p class="card-text text-danger fw-bold"><?php echo number_format($p['gia'],0,',','.'); ?>đ</p>
+                            <button class="btn btn-outline-brown mt-auto w-100">Thêm vào giỏ</button>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; else: ?>
+                <div class="col-12"><p class="text-muted">Không có sản phẩm bán chạy.</p></div>
+            <?php endif; ?>
         </div>
-    </div>
-
-    <div class="col-md-3 col-sm-6 mb-4">
-        <div class="card h-100 shadow-sm product-card p-2">
-            <img src="app/views/client/img/Anh/Bac/traugacbep_TayBac.png" class="card-img-top img-sp" style="cursor: pointer;"
-                 data-bs-toggle="modal" data-bs-target="#productModal"
-                 data-name="Trâu gác bếp Tây Bắc" data-price="500.000đ" data-img="img/Anh/Bac/traugacbep_TayBac.png"
-                 data-packaging="Túi hút chân không 500g" data-ingredients="Thịt bắp trâu tươi, mắc khén, hạt dổi, ớt"
-                 data-nutrition="Giàu Protein, ít chất béo" data-flavor="Vị ngọt thịt, cay nồng mắc khén, mùi khói đặc trưng" 
-                 data-storage="Ngăn đá tủ lạnh (để bảo quản tốt nhất)" data-origin="Vùng núi cao Tây Bắc"
-                 data-expiry="HSD: 6 tháng (cấp đông) - 1 tháng (ngăn mát)" data-mfg="NXS: Ghi trên tem nhãn"
-data-usage="Hấp cách thủy hoặc quay lò vi sóng 2 phút, sau đó đập dập xé nhỏ.">
-            <div class="card-body text-center d-flex flex-column">
-                <h5 class="card-title fw-bold text-brown">Trâu gác bếp Tây Bắc</h5>
-                <p class="card-text text-danger fw-bold">500.000đ</p>
-                <button class="btn btn-outline-brown mt-auto w-100">Thêm vào giỏ</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-3 col-sm-6 mb-4">
-        <div class="card h-100 shadow-sm product-card p-2">
-            <img src="app/views/client/img/Anh/Trung/tre_binhdinh.jpg" class="card-img-top img-sp" style="cursor: pointer;"
-                 data-bs-toggle="modal" data-bs-target="#productModal"
-                 data-name="Tré Bình Định" data-price="130.000đ" data-img="img/Anh/Trung/tre_binhdinh.jpg"
-                 data-packaging="Gói lá ổi tươi, bọc rơm khô truyền thống" data-ingredients="Tai heo, mũi heo, thính gạo, riềng, tỏi"
-                 data-nutrition="Nhiều Collagen tự nhiên từ bì heo" data-flavor="Chua thanh, giòn sần sật, cay nồng vị riềng" 
-                 data-storage="Ngăn mát tủ lạnh từ 0-5 độ C" data-origin="Huyện Hoài Nhơn, Bình Định"
-                 data-expiry="HSD: 15 ngày kể từ ngày sản xuất" data-mfg="NXS: Sản xuất mới mỗi ngày"
-                 data-usage="Lột bỏ lớp rơm, đánh tơi thịt, trộn kèm rau thơm, dưa leo.">
-            <div class="card-body text-center d-flex flex-column">
-                <h5 class="card-title fw-bold text-brown">Tré Bình Định</h5>
-                <p class="card-text text-danger fw-bold">130.000đ</p>
-                <button class="btn btn-outline-brown mt-auto w-100">Thêm vào giỏ</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-3 col-sm-6 mb-4">
-        <div class="card h-100 shadow-sm product-card p-2">
-            <img src="app/views/client/img/Anh/Trung/yenxao_khanhhoa.jpg" class="card-img-top img-sp" style="cursor: pointer;"
-                 data-bs-toggle="modal" data-bs-target="#productModal"
-                 data-name="Yến xào Khánh Hòa" data-price="500.000đ" data-img="img/Anh/Trung/yenxao_khanhhoa.jpg"
-                 data-packaging="Hộp gỗ lót nhung sang trọng" data-ingredients="100% Tổ yến đảo thiên nhiên nguyên chất"
-                 data-nutrition="Chứa 18 loại Axit Amin và khoáng chất quý" data-flavor="Mùi tanh nhẹ tự nhiên, vị thanh khiết" 
-                 data-storage="Nơi khô ráo, tránh ẩm ướt" data-origin="Đảo yến Nha Trang, Khánh Hòa"
-                 data-expiry="HSD: 24 tháng kể từ ngày đóng gói" data-mfg="NXS: Ghi trên tem kiểm định"
-                 data-usage="Chưng với đường phèn, táo đỏ hoặc hạt sen để bồi bổ sức khỏe.">
-            <div class="card-body text-center d-flex flex-column">
-                <h5 class="card-title fw-bold text-brown">Yến xào Khánh Hòa</h5>
-<p class="card-text text-danger fw-bold">500.000đ</p>
-                <button class="btn btn-outline-brown mt-auto w-100">Thêm vào giỏ</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-3 col-sm-6 mb-4">
-        <div class="card h-100 shadow-sm product-card p-2">
-            <img src="app/views/client/img/Anh/Nam/khomuc_kiengiang.jpg" class="card-img-top img-sp" style="cursor: pointer;"
-                 data-bs-toggle="modal" data-bs-target="#productModal"
-                 data-name="Khô mực Kiên Giang" data-price="350.000đ" data-img="img/Anh/Nam/khomuc_kiengiang.jpg"
-                 data-packaging="Túi hút chân không kín khí" data-ingredients="Mực ống câu tươi sấy khô tự nhiên"
-                 data-nutrition="Hàm lượng đạm và canxi cực cao" data-flavor="Vị ngọt đậm đà, thịt mực dai và thơm" 
-                 data-storage="Ngăn đông tủ lạnh để giữ độ ngọt" data-origin="Vùng biển đảo Kiên Giang"
-                 data-expiry="HSD: 12 tháng (cấp đông)" data-mfg="NXS: Xem trên nhãn sản phẩm"
-                 data-usage="Nướng trên lửa than hoặc cồn, xé nhỏ chấm cùng tương ớt.">
-            <div class="card-body text-center d-flex flex-column">
-                <h5 class="card-title fw-bold text-brown">Khô mực Kiên Giang</h5>
-                <p class="card-text text-danger fw-bold">350.000đ</p>
-                <button class="btn btn-outline-brown mt-auto w-100">Thêm vào giỏ</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-3 col-sm-6 mb-4">
-        <div class="card h-100 shadow-sm product-card p-2">
-            <img src="app/views/client/img/Anh/Nam/keodua_BenTre.jpg" class="card-img-top img-sp" style="cursor: pointer;"
-                 data-bs-toggle="modal" data-bs-target="#productModal"
-                 data-name="Kẹo dừa Bến Tre" data-price="80.000đ" data-img="img/Anh/Nam/keodua_BenTre.jpg"
-                 data-packaging="Hộp giấy truyền thống mộc mạc" data-ingredients="Nước cốt dừa nguyên chất, mạch nha, đường"
-                 data-nutrition="Cung cấp năng lượng tức thì" data-flavor="Béo ngậy vị cốt dừa, ngọt thanh mạch nha" 
-                 data-storage="Nhiệt độ phòng, nơi thoáng mát" data-origin="Xứ Dừa Bến Tre"
-                 data-expiry="HSD: 6 tháng kể từ NXS" data-mfg="NXS: In trực tiếp trên hộp"
-                 data-usage="Dùng trực tiếp, ngon nhất khi nhâm nhi cùng trà nóng.">
-            <div class="card-body text-center d-flex flex-column">
-                <h5 class="card-title fw-bold text-brown">Kẹo dừa bến tre</h5>
-                <p class="card-text text-danger fw-bold">80.000đ</p>
-                <button class="btn btn-outline-brown mt-auto w-100">Thêm vào giỏ</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-3 col-sm-6 mb-4">
-        <div class="card h-100 shadow-sm product-card p-2">
-<img src="app/views/client/img/Anh/Nam/banhpia_soctrang.jpg" class="card-img-top img-sp" style="cursor: pointer;"
-                 data-bs-toggle="modal" data-bs-target="#productModal"
-                 data-name="Bánh pía Sóc Trăng" data-price="90.000đ" data-img="img/Anh/Nam/banhpia_soctrang.jpg"
-                 data-packaging="Gói 4 cái, có túi hút ẩm" data-ingredients="Đậu xanh, sầu riêng tươi, trứng muối, bột mì"
-                 data-nutrition="Năng lượng cao, giàu dinh dưỡng" data-flavor="Vỏ bánh mềm, nhân sầu riêng thơm nồng" 
-                 data-storage="Nơi khô ráo hoặc ngăn mát nếu muốn để lâu" data-origin="Vũng Thơm, Sóc Trăng"
-                 data-expiry="HSD: 45 ngày (nhiệt độ thường)" data-mfg="NXS: Xem trên bao bì"
-                 data-usage="Ăn trực tiếp, lột bỏ lớp giấy lót mỏng dưới đáy bánh.">
-            <div class="card-body text-center d-flex flex-column">
-                <h5 class="card-title fw-bold text-brown">Bánh pía Sóc Trăng</h5>
-                <p class="card-text text-danger fw-bold">90.000đ</p>
-                <button class="btn btn-outline-brown mt-auto w-100">Thêm vào giỏ</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-3 col-sm-6 mb-4">
-        <div class="card h-100 shadow-sm product-card p-2">
-            <img src="app/views/client/img/Anh/Trung/taoxanhsay_ninhthuan.png" class="card-img-top img-sp" style="cursor: pointer;"
-                 data-bs-toggle="modal" data-bs-target="#productModal"
-                 data-name="Táo sấy Ninh Thuận" data-price="110.000đ" data-img="img/Anh/Trung/taoxanhsay_ninhthuan.png"
-                 data-packaging="Túi zip 250g tiện lợi" data-ingredients="Táo xanh Phan Rang tươi sấy dẻo"
-                 data-nutrition="Giàu Vitamin C, chất xơ và khoáng chất" data-flavor="Chua chua ngọt ngọt, vị dẻo dai tự nhiên" 
-                 data-storage="Đóng kín miệng túi sau khi mở" data-origin="Vùng nắng Ninh Thuận"
-                 data-expiry="HSD: 9 tháng kể từ ngày sản xuất" data-mfg="NXS: In trên mép túi"
-                 data-usage="Dùng như món ăn vặt hàng ngày hoặc đãi khách.">
-            <div class="card-body text-center d-flex flex-column">
-                <h5 class="card-title fw-bold text-brown">Táo xấy Ninh Thuận</h5>
-                <p class="card-text text-danger fw-bold">110.000đ</p>
-                <button class="btn btn-outline-brown mt-auto w-100">Thêm vào giỏ</button>
-            </div>
-        </div>
-    </div>
-</div>
 
     <footer id="footer" class="pt-5 pb-2 border-top bg-white">
       <div class="container">

@@ -15,13 +15,13 @@ class TrangChuController extends BaseController {
         // $mienTrung = $sanPhamModel->laySanPhamTheoMien(2);
         // $mienNam = $sanPhamModel->laySanPhamTheoMien(3);
 
+        // Lấy sản phẩm bán chạy để hiển thị tại trang chủ
+        $bestSellers = $sanPhamModel->laySanPhamBanChay(4);
+
         // Truyền dữ liệu sang view Trang-chu.php
-        // $this->render('Trang-chu', [
-        //     'tatCaSanPham' => $tatCaSanPham,
-        //     'mienBac' => $mienBac,
-        //     'mienTrung' => $mienTrung,
-        //     'mienNam' => $mienNam
-        // ]);
-        $this->render('Trang-chu');
+        $this->render('Trang-chu', [
+            'tatCaSanPham' => $tatCaSanPham,
+            'bestSellers' => $bestSellers
+        ]);
     }
 }

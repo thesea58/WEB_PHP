@@ -39,4 +39,12 @@ class SanPhamModel {
         $stmt->execute(["%$tu_khoa%"]);
         return $stmt->fetchAll();
     }
+
+    // Lấy sản phẩm bán chạy: sắp xếp theo số lượng tồn kho tăng dần (ít nhất = bán chạy nhất)
+    public function laySanPhamBanChay($limit = 8) {
+        $stmt = $this->db->prepare("SELECT * FROM sanpham ORDER BY so_luong ASC LIMIT ?");
+        $stmt->bindValue(1, (int)$limit, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 }

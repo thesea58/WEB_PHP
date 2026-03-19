@@ -2,6 +2,8 @@
 
 class DacSanMienNamController extends BaseController {
     public function index() {
-        $this->render('Dac-san-mien-nam');
+        $sanPhamModel = new SanPhamModel($this->pdo);
+        $mienNam = $sanPhamModel->laySanPhamTheoDanhMuc(3);
+        $this->render('Dac-san-mien-nam', ['products' => $mienNam]);
     }
 }

@@ -141,52 +141,22 @@ if (!isset($_SESSION['user'])) {
 
     <div class="container my-5" id="san-pham-ban-chay">
       <h2 class="text-center fw-bold mb-5" style="color: #8B4513;">SẢN PHẨM BÁN CHẠY</h2>
+      <?php $bestSellers = isset($bestSellers) ? $bestSellers : []; ?>
       <div class="row">
-        
-        <div class="col-md-3 col-sm-6 mb-4">
-          <div class="card h-100 border-0 shadow-sm product-card">
-            <img src="app/views/client/img/Anh/Trung/tre_binhdinh.jpg" class="card-img" alt="Tré Bình Định">
-            <div class="card-body text-center">
-              <h5 class="card-title fw-bold text-brown">Tré Bình Định</h5>
-              <p class="card-text text-danger fw-bold">130.000đ</p>
-              <button class="btn btn-outline-brown w-100">Thêm vào giỏ</button>
+        <?php if(!empty($bestSellers)): foreach($bestSellers as $p): ?>
+          <div class="col-md-3 col-sm-6 mb-4">
+            <div class="card h-100 border-0 shadow-sm product-card">
+              <img src="<?php echo 'app/views/client/' . htmlspecialchars($p['path_img']); ?>" class="card-img" alt="<?php echo htmlspecialchars($p['ten_sp']); ?>">
+              <div class="card-body text-center">
+                <h5 class="card-title fw-bold text-brown"><?php echo htmlspecialchars($p['ten_sp']); ?></h5>
+                <p class="card-text text-danger fw-bold"><?php echo number_format($p['gia'],0,',','.'); ?>đ</p>
+                <button class="btn btn-outline-brown w-100">Thêm vào giỏ</button>
+              </div>
             </div>
           </div>
-        </div>
-
-        <div class="col-md-3 col-sm-6 mb-4">
-          <div class="card h-100 border-0 shadow-sm product-card">
-            <img src="app/views/client/img/Anh/Nam/banhpia_soctrang.jpg" class="card-img" alt="Bánh Pía Sóc Trăng">
-            <div class="card-body text-center">
-              <h5 class="card-title fw-bold text-brown">Bánh Pía Sóc Trăng</h5>
-              <p class="card-text text-danger fw-bold">90.000đ</p>
-              <button class="btn btn-outline-brown w-100">Thêm vào giỏ</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-3 col-sm-6 mb-4">
-          <div class="card h-100 border-0 shadow-sm product-card">
-            <img src="app/views/client/img/Anh/Bac/traugacbep_TayBac.png" class="card-img" alt="Thịt Trâu Gác Bếp">
-            <div class="card-body text-center">
-              <h5 class="card-title fw-bold text-brown">Thịt Trâu Gác Bếp</h5>
-              <p class="card-text text-danger fw-bold">500.000đ</p>
-              <button class="btn btn-outline-brown w-100">Thêm vào giỏ</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-3 col-sm-6 mb-4">
-          <div class="card h-100 border-0 shadow-sm product-card">
-            <img src="app/views/client/img/Anh/Trung/yenxao_khanhhoa.jpg" class="card-img" alt="Yến Xào Khánh Hòa">
-            <div class="card-body text-center">
-              <h5 class="card-title fw-bold text-brown">Yến Xào Khách Hòa</h5>
-              <p class="card-text text-danger fw-bold">500.000đ</p>
-              <button class="btn btn-outline-brown w-100">Thêm vào giỏ</button>
-            </div>
-          </div>
-        </div>
-
+        <?php endforeach; else: ?>
+          <div class="col-12"><p class="text-muted text-center">Không có sản phẩm bán chạy.</p></div>
+        <?php endif; ?>
       </div>
     </div>
 
