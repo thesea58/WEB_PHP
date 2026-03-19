@@ -99,50 +99,43 @@
     <div class="container my-5" id="san-pham-ban-chay">
       <h2 class="text-center fw-bold mb-5" style="color: #8B4513;">SẢN PHẨM BÁN CHẠY</h2>
       <div class="row">
-        
+        <?php
+        require_once __DIR__ . '/../../../config/dbConect.php';
+        require_once __DIR__ . '/../../../models/SanPhamModel.php';
+
+        $pdo = connectDB();
+        $productModel = new ProductModel($pdo);
+        $products = $productModel->getAllProducts();
+
+        // Nếu muốn những sản phẩm bán chạy, có thể sắp xếp theo `so_luong` giảm dần.
+        usort($products, function($a, $b){
+            return $b['so_luong'] <=> $a['so_luong'];
+        });
+
+        $show = array_slice($products, 0, 4);
+        foreach ($show as $p) :
+            $name = htmlspecialchars($p['ten_sp']);
+            $price = number_format($p['gia'], 0, ',', '.') . 'đ';
+            // Nếu có trường ảnh trong DB, thay $img bằng đường dẫn tương ứng.
+            if (isset($p['path_img'])) {
+                $img = htmlspecialchars($p['path_img']);
+            } else {
+                $img = 'img/Anh/Banner/banner.jpg';
+            }
+        ?>
+
         <div class="col-md-3 col-sm-6 mb-4">
           <div class="card h-100 border-0 shadow-sm product-card">
-            <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=400" class="card-img" alt="Bánh Cốm">
+            <img src="<?= $img ?>" class="card-img" alt="<?= $name ?>">
             <div class="card-body text-center">
-              <h5 class="card-title fw-bold text-brown">Bánh Cốm Hà Nội</h5>
-              <p class="card-text text-danger fw-bold">50.000đ</p>
+              <h5 class="card-title fw-bold text-brown"><?= $name ?></h5>
+              <p class="card-text text-danger fw-bold"><?= $price ?></p>
               <button class="btn btn-outline-brown w-100">Thêm vào giỏ</button>
             </div>
           </div>
         </div>
 
-        <div class="col-md-3 col-sm-6 mb-4">
-          <div class="card h-100 border-0 shadow-sm product-card">
-            <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=400" class="card-img" alt="Nem Chua">
-            <div class="card-body text-center">
-              <h5 class="card-title fw-bold text-brown">Nem Chua Thanh Hóa</h5>
-              <p class="card-text text-danger fw-bold">45.000đ</p>
-              <button class="btn btn-outline-brown w-100">Thêm vào giỏ</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-3 col-sm-6 mb-4">
-          <div class="card h-100 border-0 shadow-sm product-card">
-            <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=400" class="card-img" alt="Khô Cá">
-            <div class="card-body text-center">
-              <h5 class="card-title fw-bold text-brown">Khô Cá Miền Tây</h5>
-              <p class="card-text text-danger fw-bold">120.000đ</p>
-              <button class="btn btn-outline-brown w-100">Thêm vào giỏ</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-3 col-sm-6 mb-4">
-          <div class="card h-100 border-0 shadow-sm product-card">
-            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400" class="card-img" alt="Chả Quế">
-            <div class="card-body text-center">
-              <h5 class="card-title fw-bold text-brown">Chả Quế Ước Lễ</h5>
-              <p class="card-text text-danger fw-bold">85.000đ</p>
-              <button class="btn btn-outline-brown w-100">Thêm vào giỏ</button>
-            </div>
-          </div>
-        </div>
+        <?php endforeach; ?>
 
       </div>
     </div>
