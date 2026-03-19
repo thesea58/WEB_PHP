@@ -131,8 +131,24 @@
               </ul>
             </li>
             <li class="nav-item"><a class="nav-link" href="index.php?controller=GioHang&action=index">Giỏ hàng</a></li>
-            <li class="nav-item"><a class="nav-link" href="index.php?controller=DangKy&action=index">Đăng ký</a></li>
-            <li class="nav-item"><a class="nav-link active fw-bold" href="index.php?controller=DangNhap&action=index">Đăng nhập</a></li>
+            
+            <?php if (isset($_SESSION['user'])): ?>
+              <!-- Đã đăng nhập -->
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                  <i class="bi bi-person-circle"></i> <?php echo htmlspecialchars($_SESSION['user']['ten_dang_nhap']); ?>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li><a class="dropdown-item" href="index.php?controller=TaiKhoan&action=index"><i class="bi bi-person me-2"></i>Tài khoản của tôi</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item text-danger" href="index.php?controller=TaiKhoan&action=dangxuat"><i class="bi bi-box-arrow-right me-2"></i>Đăng xuất</a></li>
+                </ul>
+              </li>
+            <?php else: ?>
+              <!-- Chưa đăng nhập -->
+              <li class="nav-item"><a class="nav-link" href="index.php?controller=DangKy&action=index">Đăng ký</a></li>
+              <li class="nav-item"><a class="nav-link active fw-bold" href="index.php?controller=DangNhap&action=index">Đăng nhập</a></li>
+            <?php endif; ?>
           </ul>
         </div>
 
