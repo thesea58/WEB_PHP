@@ -108,7 +108,7 @@
               <li class="nav-item">
               <a class="nav-link position-relative" href="index.php?controller=GioHang&action=index">
                 Giỏ hàng
-                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.7rem;">3</span>
+                <span id="cartCountBadge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.7rem;"><?php echo isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0; ?></span>
               </a>
             </li>
            <?php if (isset($_SESSION['user'])): ?>
@@ -172,7 +172,7 @@
                         <div class="card-body text-center d-flex flex-column">
                             <h5 class="card-title fw-bold text-brown"><?php echo htmlspecialchars($p['ten_sp']); ?></h5>
                             <p class="card-text text-danger fw-bold"><?php echo number_format($p['gia'],0,',','.'); ?>đ</p>
-                            <button class="btn btn-outline-brown mt-auto w-100">Thêm vào giỏ</button>
+                            <button class="btn btn-outline-brown mt-auto w-100 add-to-cart-btn" data-ma-sp="<?php echo htmlspecialchars($p['ma_sp']); ?>" data-qty="1">Thêm vào giỏ</button>
                         </div>
                     </div>
                 </div>
