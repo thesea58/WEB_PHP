@@ -14,7 +14,7 @@
   <style>
     /* 1. Tối ưu Banner: Căn giữa chữ tuyệt đối */
     .about-header {
-      background-image: url("app/views/client/img/Anh/Banner/banner.jpg');
+      background-image: url('app/views/client/img/Anh/Banner/banner.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
