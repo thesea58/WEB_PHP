@@ -77,7 +77,7 @@
     <nav id="nav" class="navbar navbar-expand-lg bg-white navbar-light sticky-top shadow-sm">
       <div class="container-fluid">
 
-        <a class="navbar-brand d-flex align-items-center" href="trang-chu.php">
+        <a class="navbar-brand d-flex align-items-center" href="index.php?controller=TrangChu&action=index">
           <img src="img/Anh/Banner/logo.jpg" alt="Logo" class="nav-logo" style="height: 120px;">
           <span class="brand-text ms-2" style="color: #8B4513; font-weight: 800; font-size: 1.4rem; text-transform: uppercase;">ĐẶC SẢN BA MIỀN</span>
         </a>
@@ -89,7 +89,7 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
           <ul class="navbar-nav fs-5">
             <li class="nav-item">
-              <a class="nav-link" href="trang-chu.php">Trang chủ</a>
+              <a class="nav-link" href="index.php?controller=TrangChu&action=index">Trang chủ</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="gioi-thieu.php">Giới thiệu</a>
@@ -195,7 +195,7 @@
           <div class="col-md-4 mb-3">
             <h3 style="color: #8B4513;">Liên kết nhanh</h3>
             <ul class="list-unstyled">
-              <li><a href="trang-chu.php" class="text-decoration-none text-brown">Trang chủ</a></li>
+              <li><a href="index.php?controller=TrangChu&action=index" class="text-decoration-none text-brown">Trang chủ</a></li>
               <li><a href="gio-hang.php" class="text-decoration-none text-brown">Giỏ hàng</a></li>
               <li><a href="dang-nhap.php" class="text-decoration-none text-brown">Đăng nhập</a></li>
             </ul>

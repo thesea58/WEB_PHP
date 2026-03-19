@@ -102,7 +102,7 @@
 
     <nav id="nav" class="navbar navbar-expand-lg bg-white navbar-light sticky-top shadow-sm">
       <div class="container-fluid">
-        <a class="navbar-brand d-flex align-items-center" href="trang-chu.php">
+        <a class="navbar-brand d-flex align-items-center" href="index.php?controller=TrangChu&action=index">
           <img src="img/Anh/Banner/logo.jpg" alt="Logo" class="nav-logo" style="height: 120px;">
           <span class="brand-text ms-2" style="color: #8B4513; font-weight: 800; font-size: 1.4rem; text-transform: uppercase;">ĐẶC SẢN BA MIỀN</span>
         </a>
@@ -113,7 +113,7 @@
 
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
           <ul class="navbar-nav fs-5">
-            <li class="nav-item"><a class="nav-link" href="trang-chu.php">Trang chủ</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.php?controller=TrangChu&action=index">Trang chủ</a></li>
             <li class="nav-item dropdown">
             <li class="nav-item">
             <li class="nav-item">
@@ -152,7 +152,7 @@
         </div>
 
         <div class="card-body p-4">
-  		  <form action="xulylogin.php" method="post">
+  		  <form action="index.php?controller=TaiKhoan&action=dangnhap" method="post">
             <div class="mb-3">
               <label class="form-label fw-bold text-brown">Tên đăng nhập</label>
               <input type="text" name="username" class="form-control border-brown" placeholder="Nhập username">
@@ -197,7 +197,7 @@
           <div class="col-md-4 mb-3">
             <h3 style="color: #8B4513;">Liên kết nhanh</h3>
             <ul class="list-unstyled">
-              <li><a href="trang-chu.php" class="text-brown">Trang chủ</a></li>
+              <li><a href="index.php?controller=TrangChu&action=index" class="text-brown">Trang chủ</a></li>
               <li><a href="gio-hang.php" class="text-brown">Giỏ hàng</a></li>
               <li><a href="dang-nhap.php" class="text-brown">Đăng nhập</a></li>
             </ul>
