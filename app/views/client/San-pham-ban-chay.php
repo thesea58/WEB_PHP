@@ -11,6 +11,7 @@
     <link rel="icon" href="app/views/client/img/icon.png" type="image/png">
     
     <script src="app/views/client/js/bootstrap.bundle.js"></script>
+    <script src="app/views/client/js/add-to-cart.js"></script>
     <style>
 		/* 1. Lớp bọc nội dung có ảnh nền */
     .banner-background-section {

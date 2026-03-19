@@ -55,7 +55,7 @@
             <li class="nav-item">
               <a class="nav-link position-relative" href="index.php?controller=GioHang&action=index">
                 Giỏ hàng
-                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.7rem;">3</span>
+                <span id="cartCountBadge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.7rem;"><?php echo isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0; ?></span>
               </a>
             </li>
 
