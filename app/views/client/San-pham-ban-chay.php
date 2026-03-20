@@ -156,20 +156,19 @@
             <?php if(!empty($products)): foreach($products as $p): ?>
                 <div class="col-md-3 col-sm-6 mb-4">
                     <div class="card h-100 shadow-sm product-card p-2">
-                        <img src="<?php echo 'app/views/client/' . htmlspecialchars($p['path_img']); ?>" class="card-img-top img-sp" style="cursor: pointer;"
-                             data-bs-toggle="modal" data-bs-target="#productModal"
-                             data-name="<?php echo htmlspecialchars($p['ten_sp']); ?>"
-                             data-price="<?php echo number_format($p['gia'],0,',','.'); ?>đ"
-                             data-img="<?php echo 'app/views/client/' . htmlspecialchars($p['path_img']); ?>"
-                             data-packaging=""
-                             data-ingredients=""
-                             data-nutrition=""
-                             data-flavor=""
-                             data-storage=""
-                             data-origin=""
-                             data-expiry=""
-                             data-mfg=""
-                             data-usage="">
+                            <img src="<?php echo 'app/views/client/' . htmlspecialchars($p['path_img']); ?>" class="card-img-top img-sp" style="cursor: pointer;"
+                              data-bs-toggle="modal" data-bs-target="#productModal"
+                              data-name="<?php echo htmlspecialchars($p['ten_sp']); ?>"
+                              data-price="<?php echo number_format($p['gia'],0,',','.'); ?>đ"
+                              data-img="<?php echo 'app/views/client/' . htmlspecialchars($p['path_img']); ?>"
+                              data-packaging="<?php echo htmlspecialchars($p['ten_danh_muc'] ?? ''); ?>"
+                              data-ingredients="<?php echo htmlspecialchars($p['mo_ta'] ?? ''); ?>"
+                               data-nutrition=""
+                               data-storage=""
+                              data-origin="<?php echo htmlspecialchars($p['ten_ncc'] ?? ''); ?>"
+                              data-expiry=""
+                              data-mfg="<?php echo htmlspecialchars($p['ngay_tao'] ?? ''); ?>"
+                              data-usage="">
                         <div class="card-body text-center d-flex flex-column">
                             <h5 class="card-title fw-bold text-brown"><?php echo htmlspecialchars($p['ten_sp']); ?></h5>
                             <p class="card-text text-danger fw-bold"><?php echo number_format($p['gia'],0,',','.'); ?>đ</p>
@@ -234,14 +233,12 @@
                         <p class="text-muted mb-1"><i class="bi bi-geo-alt"></i> <span id="modalOrigin"></span></p>
                         <hr>
                         <ul class="list-unstyled">
-                            <li class="mb-2"><strong>Nguyên liệu:</strong> <span id="modalIngredients"></span></li>
-                            <li class="mb-2"><strong>Bao bì:</strong> <span id="modalPackaging"></span></li>
-                            <li class="mb-2"><strong>Hương vị:</strong> <span id="modalFlavor"></span></li>
-                            <li class="mb-2"><strong>Cách dùng:</strong> <span id="modalUsage"></span></li>
-                            <li class="mb-2"><strong>Bảo quản:</strong> <span id="modalStorage"></span></li>
-                            <li class="mb-2 text-primary"><strong><span id="modalMfg"></span></strong></li>
-                            <li class="mb-2 text-primary"><strong><span id="modalExpiry"></span></strong></li>
-</ul>
+                          <li class="mb-2"><strong>Giá cả:</strong> <span id="modalPriceText"></span></li>
+                          <li class="mb-2"><strong>Mô tả:</strong> <span id="modalIngredients"></span></li>
+                          <li class="mb-2"><strong>Vùng miền:</strong> <span id="modalPackaging"></span></li>
+                          <li class="mb-2 text-primary"><strong><span id="modalMfg"></span></strong></li>
+                          <li class="mb-2 text-primary"><strong><span id="modalExpiry"></span></strong></li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -261,15 +258,16 @@ document.addEventListener('DOMContentLoaded', function () {
             // Cập nhật các thông tin cơ bản
             pModal.querySelector('#modalName').textContent = btn.getAttribute('data-name');
             pModal.querySelector('#modalPrice').textContent = btn.getAttribute('data-price');
+            // also fill textual price in details list
+            var priceTextEl = pModal.querySelector('#modalPriceText');
+            if (priceTextEl) priceTextEl.textContent = btn.getAttribute('data-price');
             pModal.querySelector('#modalImg').src = btn.getAttribute('data-img');
             pModal.querySelector('#modalPackaging').textContent = btn.getAttribute('data-packaging');
             pModal.querySelector('#modalIngredients').textContent = btn.getAttribute('data-ingredients');
-            pModal.querySelector('#modalFlavor').textContent = btn.getAttribute('data-flavor');
             pModal.querySelector('#modalStorage').textContent = btn.getAttribute('data-storage');
-            
+
             // Cập nhật các thông tin mới thêm
             pModal.querySelector('#modalOrigin').textContent = btn.getAttribute('data-origin');
-            pModal.querySelector('#modalUsage').textContent = btn.getAttribute('data-usage');
             pModal.querySelector('#modalMfg').textContent = btn.getAttribute('data-mfg');
             pModal.querySelector('#modalExpiry').textContent = btn.getAttribute('data-expiry');
         });
