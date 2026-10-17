@@ -1,4 +1,4 @@
-﻿<?php 
+<?php 
 // Admin.php - Trang admin được render từ AdminController
 // Kiểm tra xem user có phải admin không (an toàn hơn vì được handle ở controller)
 if (!isset($_SESSION['user']) || $_SESSION['user']['vai_tro'] !== 'admin') {

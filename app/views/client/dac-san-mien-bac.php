@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 // Dữ liệu `products` được truyền từ controller
 $products = isset($products) ? $products : [];
 ?>
