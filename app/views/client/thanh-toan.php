@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+﻿<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -7,7 +7,7 @@
   <title>Thanh Toán - Đặc Sản Ba Miền</title>
   
   <link rel="stylesheet" href="css/bootstrap.css">
-  <link rel="stylesheet" href="css/Trang-chu.css">
+  <link rel="stylesheet" href="css/trang-chu.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
   <link rel="icon" href="img/icon.png" type="image/png">
   

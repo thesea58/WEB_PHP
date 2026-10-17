@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
@@ -6,7 +6,7 @@
   <title>Trang chủ - Đặc Sản Ba Miền</title>
 
   <link rel="stylesheet" href="css/bootstrap.css">
-  <link rel="stylesheet" href="css/Trang-chu.css">
+  <link rel="stylesheet" href="css/trang-chu.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
   <link rel="icon" href="img/icon.png" type="image/png">
 
@@ -59,9 +59,9 @@
                     Sản phẩm
                 </a>
                 <ul class="dropdown-menu border-brown">
-                    <li><a class="dropdown-item" href="Dac-san-mien-bac.php">Đặc sản miền Bắc</a></li>
-                    <li><a class="dropdown-item" href="Dac-san-mien-trung.php">Đặc sản miền Trung</a></li>
-                    <li><a class="dropdown-item" href="Dac-san-mien-nam.php">Đặc sản miền Nam</a></li>
+                    <li><a class="dropdown-item" href="dac-san-mien-bac.php">Đặc sản miền Bắc</a></li>
+                    <li><a class="dropdown-item" href="dac-san-mien-trung.php">Đặc sản miền Trung</a></li>
+                    <li><a class="dropdown-item" href="dac-san-mien-nam.php">Đặc sản miền Nam</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item fw-bold" href="san-pham-ban-chay.php">Sản phẩm bán chạy</a></li>
                 </ul>

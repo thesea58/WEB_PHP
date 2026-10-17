@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
@@ -6,7 +6,7 @@
     <title>Đặc Sản Miền Nam - Đặc Sản Ba Miền</title>
     
     <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/Trang-chu.css">
+    <link rel="stylesheet" href="css/trang-chu.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <link rel="icon" href="img/icon.png" type="image/png">
     
@@ -82,7 +82,7 @@
         </button>
 
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-              <ul class="navbar-nav fs-5">
+          <ul class="navbar-nav fs-5">
             <li class="nav-item">
                 <a class="nav-link" href="trang-chu.php">Trang chủ</a>
             </li>
@@ -96,9 +96,9 @@
                     Sản phẩm
                 </a>
                 <ul class="dropdown-menu border-brown">
-                    <li><a class="dropdown-item" href="Dac-san-mien-bac.php">Đặc sản miền Bắc</a></li>
-                    <li><a class="dropdown-item" href="Dac-san-mien-trung.php">Đặc sản miền Trung</a></li>
-                    <li><a class="dropdown-item" href="Dac-san-mien-nam.php">Đặc sản miền Nam</a></li>
+                    <li><a class="dropdown-item" href="dac-san-mien-bac.php">Đặc sản miền Bắc</a></li>
+                    <li><a class="dropdown-item" href="dac-san-mien-trung.php">Đặc sản miền Trung</a></li>
+                    <li><a class="dropdown-item" href="dac-san-mien-nam.php">Đặc sản miền Nam</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item fw-bold" href="san-pham-ban-chay.php">Sản phẩm bán chạy</a></li>
                 </ul>
@@ -134,10 +134,10 @@
 
     <div class="container my-5">
         <div class="text-center mb-5">
-            <h1 class="fw-bold text-brown uppercase">Đặc Sản Miền Trung</h1>
+            <h1 class="fw-bold text-brown uppercase">Sản Phẩm Bán Chạy</h1>
             <div class="row justify-content-center">
                 <div class="col-md-8">
-                    <p class="text-muted">Ẩm thực miền Trung mang nét đặc trưng của vùng đất đầy nắng và gió, nổi bật với hương vị đậm đà, cay nồng và cách chế biến vô cùng tinh tế.</p>
+                    <p class="text-muted">Sản phẩm bán chạy tại cửa hàng là những tinh hoa được tuyển chọn dựa trên sự yêu thích và đánh giá cao từ đông đảo khách hàng. Đây không chỉ là những món ăn ngon, mà còn là những cái tên đại diện cho chất lượng và hương vị chuẩn mực nhất của cả ba miền Bắc – Trung – Nam.</p>
                 </div>
             </div>
         </div>
@@ -145,21 +145,21 @@
         <div class="row">
             <div class="col-md-3 col-sm-6 mb-4">
                 <div class="card h-100 shadow-sm product-card p-2">
-                    <img src="img/Anh/Trung/banhcomsua_binhthuan.jpg" class="card-img-top img-sp" alt="Trà sen Đồng Tháp">
+                    <img src="img/Anh/Bac/ruousanlung_laocai.jpg" class="card-img-top img-sp" alt="Trà sen Đồng Tháp">
                     <div class="card-body text-center d-flex flex-column">
-                        <h5 class="card-title fw-bold text-brown">Bánh cốm sữa Bình Thuận</h5>
-                        <p class="card-text text-danger fw-bold">70.000đ</p>
+                        <h5 class="card-title fw-bold text-brown">Rượu San Lùng Lào Cai</h5>
+<p class="card-text text-danger fw-bold">300.000đ</p>
 <button class="btn btn-outline-brown mt-auto w-100">Thêm vào giỏ</button>
                     </div>
-</div>
+                </div>
             </div>
 
             <div class="col-md-3 col-sm-6 mb-4">
                 <div class="card h-100 shadow-sm product-card p-2">
-                    <img src="img/Anh/Trung/banhtrangnuocdua_binhdinh.jpg" class="card-img-top img-sp" alt="Tôm khô Cà Mau">
+                    <img src="img/Anh/Bac/traugacbep_TayBac.png" class="card-img-top img-sp" alt="Tôm khô Cà Mau">
                     <div class="card-body text-center d-flex flex-column">
-                        <h5 class="card-title fw-bold text-brown">Bánh tráng nước dừa Bình Định</h5>
-                        <p class="card-text text-danger fw-bold">60.000đ</p>
+                        <h5 class="card-title fw-bold text-brown">Trâu gác bếp Tây Bắc</h5>
+                        <p class="card-text text-danger fw-bold">500.000đ</p>
                         <button class="btn btn-outline-brown mt-auto w-100">Thêm vào giỏ</button>
                     </div>
                 </div>
@@ -167,10 +167,10 @@
 
             <div class="col-md-3 col-sm-6 mb-4">
                 <div class="card h-100 shadow-sm product-card p-2">
-                    <img src="img/Anh/Trung/camaitamme_phuyen.png" class="card-img-top img-sp" alt="Nem bưởi Tây Ninh">
+                    <img src="img/Anh/Trung/tre_binhdinh.jpg" class="card-img-top img-sp" alt="Nem bưởi Tây Ninh">
                     <div class="card-body text-center d-flex flex-column">
-                        <h5 class="card-title fw-bold text-brown">Cá mai tẩm mè Phú Yên</h5>
-                        <p class="card-text text-danger fw-bold">120.000đ</p>
+                        <h5 class="card-title fw-bold text-brown">Tré Bình Định</h5>
+                        <p class="card-text text-danger fw-bold">130.000đ</p>
                         <button class="btn btn-outline-brown mt-auto w-100">Thêm vào giỏ</button>
                     </div>
                 </div>
@@ -178,10 +178,10 @@
 
             <div class="col-md-3 col-sm-6 mb-4">
                 <div class="card h-100 shadow-sm product-card p-2">
-                    <img src="img/Anh/Trung/chagio_danang.png" class="card-img-top img-sp" alt="Mật ong Cà Mau">
+                    <img src="img/Anh/Trung/yenxao_khanhhoa.jpg" class="card-img-top img-sp" alt="Mật ong Cà Mau">
                     <div class="card-body text-center d-flex flex-column">
-                        <h5 class="card-title fw-bold text-brown">Chả giò Đà Nẵng</h5>
-                        <p class="card-text text-danger fw-bold">90.000đ</p>
+                        <h5 class="card-title fw-bold text-brown">Yến xào Khánh Hòa</h5>
+                        <p class="card-text text-danger fw-bold">500.000đ</p>
                         <button class="btn btn-outline-brown mt-auto w-100">Thêm vào giỏ</button>
                     </div>
                 </div>
@@ -189,9 +189,20 @@
 
             <div class="col-md-3 col-sm-6 mb-4">
                 <div class="card h-100 shadow-sm product-card p-2">
-                    <img src="img/Anh/Trung/mexung_hue.png" class="card-img-top img-sp" alt="Mắm chua Bạc Liêu">
+                    <img src="img/Anh/Nam/khomuc_kiengiang.jpg" class="card-img-top img-sp" alt="Mắm chua Bạc Liêu">
                     <div class="card-body text-center d-flex flex-column">
-                        <h5 class="card-title fw-bold text-brown">Mè xửng Huế</h5>
+                        <h5 class="card-title fw-bold text-brown">Khô mực Kiên Giang</h5>
+                        <p class="card-text text-danger fw-bold">350.000đ</p>
+                        <button class="btn btn-outline-brown mt-auto w-100">Thêm vào giỏ</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="card h-100 shadow-sm product-card p-2">
+<img src="img/Anh/Nam/keodua_BenTre.jpg" class="card-img-top img-sp" alt="Khô mực Kiên Giang">
+                    <div class="card-body text-center d-flex flex-column">
+                        <h5 class="card-title fw-bold text-brown">Kẹo dừa bến tre</h5>
                         <p class="card-text text-danger fw-bold">80.000đ</p>
                         <button class="btn btn-outline-brown mt-auto w-100">Thêm vào giỏ</button>
                     </div>
@@ -200,21 +211,10 @@
 
             <div class="col-md-3 col-sm-6 mb-4">
                 <div class="card h-100 shadow-sm product-card p-2">
-<img src="img/Anh/Trung/nemchua_thanhhoa.jpg" class="card-img-top img-sp" alt="Khô mực Kiên Giang">
+                    <img src="img/Anh/Nam/banhpia_soctrang.jpg" class="card-img-top img-sp" alt="Kẹo dừa Bến Tre">
                     <div class="card-body text-center d-flex flex-column">
-<h5 class="card-title fw-bold text-brown">Nem chua Thanh Hóa</h5>
-                        <p class="card-text text-danger fw-bold">100.000đ</p>
-                        <button class="btn btn-outline-brown mt-auto w-100">Thêm vào giỏ</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6 mb-4">
-                <div class="card h-100 shadow-sm product-card p-2">
-                    <img src="img/Anh/Trung/ruoubauda_binhdinh.jpg" class="card-img-top img-sp" alt="Kẹo dừa Bến Tre">
-                    <div class="card-body text-center d-flex flex-column">
-                        <h5 class="card-title fw-bold text-brown">Rượu bầu đá Bình Định</h5>
-                        <p class="card-text text-danger fw-bold">300.000đ</p>
+                        <h5 class="card-title fw-bold text-brown">Bánh pía Sóc Trăng</h5>
+                        <p class="card-text text-danger fw-bold">90.000đ</p>
                         <button class="btn btn-outline-brown mt-auto w-100">Thêm vào giỏ</button>
                     </div>
                 </div>
@@ -254,9 +254,9 @@
             </ul>
           </div>
 <div class="col-md-4 mb-2 text-brown">
-            <h3 style="color: #8B4513;">Liên hệ</h3>
+<h3 style="color: #8B4513;">Liên hệ</h3>
             <p><i class="bi bi-geo-alt"></i> TP.Hồ Chí Minh, Việt Nam</p>
-<p><i class="bi bi-telephone"></i> 0274 3743 118</p>
+            <p><i class="bi bi-telephone"></i> 0274 3743 118</p>
             <p><i class="bi bi-envelope"></i> contact@dacsan3mien.vn</p>
           </div>
         </div>

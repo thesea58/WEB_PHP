@@ -7,7 +7,7 @@
   <title>Tài khoản - Đặc Sản Ba Miền</title>
 
   <link rel="stylesheet" href="css/bootstrap.css">
-  <link rel="stylesheet" type="text/css" href="css/Trang-chu.css">
+  <link rel="stylesheet" type="text/css" href="css/trang-chu.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
   <script src="js/bootstrap.bundle.js"></script>
@@ -97,9 +97,9 @@
                 Sản phẩm
               </a>
               <ul class="dropdown-menu border-brown">
-                <li><a class="dropdown-item" href="Dac-san-mien-bac.php">Đặc sản miền Bắc</a></li>
-                <li><a class="dropdown-item" href="Dac-san-mien-trung.php">Đặc sản miền Trung</a></li>
-                <li><a class="dropdown-item" href="Dac-san-mien-nam.php">Đặc sản miền Nam</a></li>
+                <li><a class="dropdown-item" href="dac-san-mien-bac.php">Đặc sản miền Bắc</a></li>
+                <li><a class="dropdown-item" href="dac-san-mien-trung.php">Đặc sản miền Trung</a></li>
+                <li><a class="dropdown-item" href="dac-san-mien-nam.php">Đặc sản miền Nam</a></li>
                 	<li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item fw-bold" href="San-pham-ban-chay">Sản phẩm bán chạy</a></li>
              
@@ -128,7 +128,7 @@
     <!-- SIDEBAR -->
     <div class="account-sidebar text-center">
       <div class="user-avatar">
-        <img src="img/avt.jpg">
+        <img src="https://ui-avatars.com/api/?name=Nguyen+Van+A&background=8B4513&color=fff" alt="Avatar">
       </div>
       <div class="fw-bold mt-2">Nguyễn Văn A</div>
       <a href="#" class="text-brown"><i class="bi bi-pencil-square"></i> Sửa hồ sơ</a>

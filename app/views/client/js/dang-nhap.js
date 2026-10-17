@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!ok) return;
 
             alert('Đăng nhập thành công!');
-            window.location.href = './home2.html';
+            window.location.href = 'trang-chu-2.php';
         });
     }
 });

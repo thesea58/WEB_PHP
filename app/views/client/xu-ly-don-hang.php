@@ -1,14 +1,16 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thống kê đơn hàng - Đặc Sản Ba Miền</title>
+  <title>Xử lý đơn hàng - Đặc Sản Ba Miền</title>
 
   <link rel="stylesheet" href="css/bootstrap.css">
-  <link rel="stylesheet" href="css/Trang-chu.css">
+  <link rel="stylesheet" href="css/trang-chu.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
   <script src="js/bootstrap.bundle.js"></script>
+
   <style>
     body {
       background: url("img/Anh/Banner/banner.jpg") no-repeat center center fixed;
@@ -26,11 +28,34 @@
       background: rgba(0,0,0,0.3);
       z-index: -1;
     }
+
+    .text-brown {
+      color: #8B4513;
+    }
+
+    .btn-brown {
+      background: #8B4513;
+      color: white;
+      border: none;
+    }
+
+    .btn-brown:hover {
+      background: #6b3210;
+    }
+
+    .order-container {
+      padding: 30px;
+    }
   </style>
 </head>
 
 <body>
+
 <div class="container-fluid p-0">
+
+  <!-- NAVBAR -->
+  <body>
+  <div class="container-fluid p-0">
 
     <nav id="nav" class="navbar navbar-expand-lg bg-white navbar-light sticky-top shadow-sm">
       <div class="container-fluid">
@@ -59,19 +84,21 @@
                     Sản phẩm
                 </a>
                 <ul class="dropdown-menu border-brown">
-                    <li><a class="dropdown-item" href="Dac-san-mien-bac.php">Đặc sản miền Bắc</a></li>
-                    <li><a class="dropdown-item" href="Dac-san-mien-trung.php">Đặc sản miền Trung</a></li>
-                    <li><a class="dropdown-item" href="Dac-san-mien-nam.php">Đặc sản miền Nam</a></li>
+                    <li><a class="dropdown-item" href="dac-san-mien-bac.php">Đặc sản miền Bắc</a></li>
+                    <li><a class="dropdown-item" href="dac-san-mien-trung.php">Đặc sản miền Trung</a></li>
+                    <li><a class="dropdown-item" href="dac-san-mien-nam.php">Đặc sản miền Nam</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item fw-bold" href="san-pham-ban-chay.php">Sản phẩm bán chạy</a></li>
                 </ul>
             </li>
-            <li class="nav-item"><a class="nav-link" href="gio-hang.php">Giỏ hàng</a></li>
-            <li class="nav-item"><a class="nav-link" href="dang-ky.php">Đăng ký</a></li>
-            <li class="nav-item"><a class="nav-link" href="dang-nhap.php">Đăng nhập</a></li>
-          </ul>
+
+    <li class="nav-item"><a class="nav-link" href="gio-hang.php">Giỏ hàng</a></li>
+    <li class="nav-item"><a class="nav-link" href="dang-ky.php">Đăng ký</a></li>
+    <li class="nav-item"><a class="nav-link" href="dang-nhap.php">Đăng nhập</a></li>
+</ul>
         </div>
-<form class="d-flex ms-3" role="search">
+
+        <form class="d-flex ms-3" role="search">
           <input class="form-control me-2 border-brown" type="search" placeholder="Tìm kiếm..." required>
           <button class="btn btn-search-custom" type="submit" style="background-color: #8B4513; color: white; border: none;">
             <i class="bi bi-search"></i>
@@ -82,96 +109,75 @@
     </nav>
 
   <!-- CONTENT -->
-  <div class="content">
-  <div class="container mt-4 mb-5">
+  <div class="order-container container">
 
-    <div class="row g-3 align-items-stretch">
+  <h3 class="text-white text-center mb-4"><b>Xử lý đơn hàng</b></h3>
 
-      <!-- BÊN TRÁI -->
-      <div class="col-md-4 d-flex">
-        <div class="bg-white p-3 border w-100 d-flex flex-column">
-          
-          <h5 class="fw-bold mb-3">Thống kê</h5>
+  <table class="table table-bordered text-center bg-white">
+    <thead class="table-light">
+      <tr>
+        <th>Mã đơn</th>
+        <th>Khách hàng</th>
+        <th>Sản phẩm</th>
+        <th>Nơi giao</th>
+        <th>Tổng tiền</th>
+        <th>Trạng thái</th>
+        <th>Hành động</th>
+      </tr>
+    </thead>
+<tbody>
+  <tr>
+    <td>#001</td>
+    <td>Nguyễn Văn A</td>
+    <td>Khô cá miền Tây</td>
+    <td>TP.HCM</td>
+    <td class="text-danger">120.000đ</td>
+    <td>Chờ xử lý</td>
+    <td>Duyệt</td>
+  </tr>
 
-          <p><strong>Ngày:</strong> 18/03/2026</p>
-          <p><strong>Tổng đơn:</strong> 5</p>
-          <p><strong>Doanh thu:</strong> 520.000đ</p>
-          <p><strong>Chờ xử lý:</strong> 2</p>
-          <p><strong>Đang giao:</strong> 2</p>
-          <p><strong>Hoàn thành:</strong> 1</p>
+  <tr>
+    <td>#002</td>
+    <td>Trần Thị B</td>
+    <td>Lạp xưởng</td>
+    <td>Điện Biên</td>
+    <td class="text-danger">200.000đ</td>
+    <td>Đang giao</td>
+    <td>Đang giao</td>
+  </tr>
 
-        </div>
-      </div>
+  <tr>
+    <td>#003</td>
+    <td>Lê Văn C</td>
+    <td>Bánh pía</td>
+    <td>Cần Thơ</td>
+    <td class="text-danger">95.000đ</td>
+    <td>Hoàn thành</td>
+    <td>Xong</td>
+  </tr>
 
-      <!-- BÊN PHẢI -->
-      <div class="col-md-8 d-flex">
-        <div class="bg-white border w-100 p-2">
+  <tr>
+    <td>#004</td>
+    <td>Phạm Thị D</td>
+    <td>Mực khô Phan Thiết</td>
+    <td>Đà Nẵng</td>
+    <td class="text-danger">150.000đ</td>
+    <td>Chờ xử lý</td>
+    <td>Duyệt</td>
+  </tr>
 
-          <table class="table table-bordered text-center mb-0">
-            <thead class="table-light">
-              <tr>
-                <th>Mã đơn</th>
-                <th>Khách hàng</th>
-                <th>Sản phẩm</th>
-                <th>Nơi giao</th>
-                <th>Trạng thái</th>
-                <th>Tổng tiền</th>
-              </tr>
-            </thead>
+  <tr>
+    <td>#005</td>
+    <td>Hoàng Văn E</td>
+    <td>Bánh đậu xanh Hải Dương</td>
+    <td>Hải Phòng</td>
+    <td class="text-danger">70.000đ</td>
+    <td>Đang giao</td>
+    <td>Đang giao</td>
+  </tr>
+</tbody>
+  </table>
 
-            <tbody>
-              <tr>
-                <td>#001</td>
-                <td><strong>Nguyễn Văn A</strong></td>
-                <td>Khô cá miền Tây</td>
-                <td>TP.HCM</td>
-                <td>Chờ xử lý</td>
-                <td class="text-danger">120.000đ</td>
-              </tr>
-
-              <tr>
-                <td>#002</td>
-                <td><strong>Trần Thị B</strong></td>
-                <td>Lạp xưởng</td>
-                <td>Điện Biên</td>
-                <td>Đang giao</td>
-                <td class="text-danger">85.000đ</td>
-              </tr>
-
-              <tr>
-                <td>#003</td>
-                <td><strong>Lê Văn C</strong></td>
-                <td>Bánh pía</td>
-                <td>Cần Thơ</td>
-                <td>Hoàn thành</td>
-                <td class="text-danger">95.000đ</td>
-              </tr>
-
-              <tr>
-                <td>#004</td>
-                <td><strong>Phạm Thị D</strong></td>
-                <td>Mực khô</td>
-                <td>Đà Nẵng</td>
-                <td>Chờ xử lý</td>
-                <td class="text-danger">150.000đ</td>
-              </tr>
-
-              <tr>
-                <td>#005</td>
-                <td><strong>Hoàng Văn E</strong></td>
-                <td>Bánh đậu xanh</td>
-                <td>Hải Phòng</td>
-                <td>Đang giao</td>
-<td class="text-danger">70.000đ</td>
-              </tr>
-            </tbody>
-          </table>
-
-        </div>
-      </div>
-
-    </div>
-  </div>
 </div>
 
   <!-- FOOTER -->
@@ -208,5 +214,6 @@
     </footer>
 
 </div>
+
 </body>
 </html>

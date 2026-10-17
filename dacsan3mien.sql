@@ -26,7 +26,7 @@ SET time_zone = "+00:00";
 --
 -- Cấu trúc bảng cho bảng `chitiet_hoadon`
 --
-USE dacsan3mien;
+-- USE dacsan3mien;
 
 CREATE TABLE `chitiet_hoadon` (
   `id` int(10) UNSIGNED NOT NULL,
