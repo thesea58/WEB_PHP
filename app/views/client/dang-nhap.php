@@ -1,18 +1,19 @@
-﻿<!DOCTYPE html>
+
+<!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Đăng nhập - Đặc Sản Ba Miền</title>
 
-  <link rel="stylesheet" href="css/bootstrap.css">
-  <link rel="stylesheet" href="css/trang-chu.css">
+  <link rel="stylesheet" href="app/views/client/css/bootstrap.css">
+  <link rel="stylesheet" href="app/views/client/css/Trang-chu.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-  <link rel="icon" href="img/icon.png" type="image/png">
+  <link rel="icon" href="app/views/client/img/icon.png" type="image/png">
 
   <style>
     body {
-      background: url("img/Anh/Banner/banner.jpg") no-repeat center center fixed;
+      background: url("app/views/client/img/Anh/Banner/banner.jpg") no-repeat center center fixed;
       background-size: cover;
       position: relative;
     }
@@ -93,7 +94,7 @@
     }
   </style>
 
-  <script src="js/bootstrap.bundle.js"></script>
+  <script src="app/views/client/js/bootstrap.bundle.js"></script>
 </head>
 
 <body>
@@ -101,8 +102,8 @@
 
     <nav id="nav" class="navbar navbar-expand-lg bg-white navbar-light sticky-top shadow-sm">
       <div class="container-fluid">
-        <a class="navbar-brand d-flex align-items-center" href="trang-chu.php">
-          <img src="img/Anh/Banner/logo.jpg" alt="Logo" class="nav-logo" style="height: 120px;">
+        <a class="navbar-brand d-flex align-items-center" href="index.php?controller=TrangChu&action=index">
+          <img src="app/views/client/img/Anh/Banner/logo.jpg" alt="Logo" class="nav-logo" style="height: 120px;">
           <span class="brand-text ms-2" style="color: #8B4513; font-weight: 800; font-size: 1.4rem; text-transform: uppercase;">ĐẶC SẢN BA MIỀN</span>
         </a>
 
@@ -112,24 +113,42 @@
 
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
           <ul class="navbar-nav fs-5">
-            <li class="nav-item"><a class="nav-link" href="trang-chu.php">Trang chủ</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.php?controller=TrangChu&action=index">Trang chủ</a></li>
             <li class="nav-item dropdown">
             <li class="nav-item">
-              <a class="nav-link" href="bai-viet.php">Bài viết</a>
+            <li class="nav-item">
+                <a class="nav-link" href="index.php?controller=GioiThieu&action=index">Giới thiệu</a>
             </li>
-              <a class="nav-link dropdown-toggle" href="san-pham.php" role="button" data-bs-toggle="dropdown">Sản phẩm</a>
+              <a class="nav-link" href="index.php?controller=BaiViet&action=index">Bài viết</a>
+            </li>
+              <a class="nav-link dropdown-toggle" href="index.php?controller=SanPham&action=index" role="button" data-bs-toggle="dropdown">Sản phẩm</a>
              <ul class="dropdown-menu border-brown">
-                <li><a class="dropdown-item" href="dac-san-mien-bac.php">Đặc sản miền Bắc</a></li>
-                <li><a class="dropdown-item" href="dac-san-mien-trung.php">Đặc sản miền Trung</a></li>
-                <li><a class="dropdown-item" href="dac-san-mien-nam.php">Đặc sản miền Nam</a></li>
+                <li><a class="dropdown-item" href="index.php?controller=DacSanMienBac&action=index">Đặc sản miền Bắc</a></li>
+                <li><a class="dropdown-item" href="index.php?controller=DacSanMienTrung&action=index">Đặc sản miền Trung</a></li>
+                <li><a class="dropdown-item" href="index.php?controller=DacSanMienNam&action=index">Đặc sản miền Nam</a></li>
                 	<li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item fw-bold" href="san-pham-ban-chay.php">Sản phẩm bán chạy</a></li>
-             
+<li><a class="dropdown-item fw-bold" href="index.php?controller=SanPhamBanChay&action=index">🔥Sản phẩm bán chạy</a></li>             
               </ul>
             </li>
-            <li class="nav-item"><a class="nav-link" href="gio-hang.php">Giỏ hàng</a></li>
-            <li class="nav-item"><a class="nav-link" href="dang-ky.php">Đăng ký</a></li>
-            <li class="nav-item"><a class="nav-link active fw-bold" href="dang-nhap.php">Đăng nhập</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.php?controller=GioHang&action=index">Giỏ hàng</a></li>
+            
+            <?php if (isset($_SESSION['user'])): ?>
+              <!-- Đã đăng nhập -->
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                  <i class="bi bi-person-circle"></i> <?php echo htmlspecialchars($_SESSION['user']['ten_dang_nhap']); ?>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li><a class="dropdown-item" href="index.php?controller=TaiKhoan&action=index"><i class="bi bi-person me-2"></i>Tài khoản của tôi</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item text-danger" href="index.php?controller=TaiKhoan&action=dangxuat"><i class="bi bi-box-arrow-right me-2"></i>Đăng xuất</a></li>
+                </ul>
+              </li>
+            <?php else: ?>
+              <!-- Chưa đăng nhập -->
+              <li class="nav-item"><a class="nav-link" href="index.php?controller=DangKy&action=index">Đăng ký</a></li>
+              <li class="nav-item"><a class="nav-link active fw-bold" href="index.php?controller=DangNhap&action=index">Đăng nhập</a></li>
+            <?php endif; ?>
           </ul>
         </div>
 
@@ -149,15 +168,36 @@
         </div>
 
         <div class="card-body p-4">
-  		  <form action="trang-chu-2.php">
+          
+          <?php if (isset($success) || isset($_SESSION['success'])): ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+              <i class="bi bi-check-circle-fill me-2"></i>
+              <strong>Thành công!</strong> 
+              <?php echo htmlspecialchars($success ?? $_SESSION['success']); ?>
+              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            <?php unset($_SESSION['success']); // Clear message after display ?>
+          <?php endif; ?>
+
+          <?php if (isset($error)): ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <i class="bi bi-exclamation-circle-fill me-2"></i>
+              <strong>Lỗi!</strong> 
+              <?php echo htmlspecialchars($error); ?>
+              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+          <?php endif; ?>
+
+  		  <form action="index.php?controller=TaiKhoan&action=dangnhap" method="post">
             <div class="mb-3">
               <label class="form-label fw-bold text-brown">Tên đăng nhập</label>
-              <input type="text" class="form-control border-brown" placeholder="Nhập username">
+              <input type="text" name="username" class="form-control border-brown" placeholder="Nhập username">
+
             </div>
 
             <div class="mb-3">
               <label class="form-label fw-bold text-brown">Mật khẩu</label>
-              <input type="password" class="form-control border-brown" placeholder="Nhập mật khẩu">
+              <input type="password" name="password" class="form-control border-brown" placeholder="Nhập mật khẩu">
             </div>
 
             <div class="d-flex justify-content-between mb-4">
@@ -172,7 +212,7 @@
 
             <p class="text-center mt-4 mb-0">
               Chưa có tài khoản?
-              <a href="dang-ky.php" class="fw-bold">Đăng ký ngay</a>
+              <a href="index.php?controller=DangKy&action=index" class="fw-bold">Đăng ký ngay</a>
             </p>
           </form>
         </div>
@@ -183,7 +223,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-4 mb-3 text-brown">
-            <img src="img/Anh/Banner/logo.jpg" alt="Logo" class="nav-logo" style="height: 120px;">
+            <img src="app/views/client/img/Anh/Banner/logo.jpg" alt="Logo" class="nav-logo" style="height: 120px;">
             <p class="mt-3">
               Đặc sản ba miền – Tinh hoa ẩm thực Việt!<br>
               Mang đến hương vị truyền thống chuẩn vị Bắc – Trung – Nam.
@@ -193,9 +233,9 @@
           <div class="col-md-4 mb-3">
             <h3 style="color: #8B4513;">Liên kết nhanh</h3>
             <ul class="list-unstyled">
-              <li><a href="trang-chu.php" class="text-brown">Trang chủ</a></li>
-              <li><a href="gio-hang.php" class="text-brown">Giỏ hàng</a></li>
-              <li><a href="dang-nhap.php" class="text-brown">Đăng nhập</a></li>
+              <li><a href="index.php?controller=TrangChu&action=index" class="text-brown">Trang chủ</a></li>
+              <li><a href="index.php?controller=GioHang&action=index" class="text-brown">Giỏ hàng</a></li>
+              <li><a href="index.php?controller=DangNhap&action=index" class="text-brown">Đăng nhập</a></li>
             </ul>
           </div>
 

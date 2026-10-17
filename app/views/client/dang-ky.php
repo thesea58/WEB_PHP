@@ -1,19 +1,20 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Đăng ký - Đặc Sản Ba Miền</title>
 
-  <link rel="stylesheet" href="css/bootstrap.css">
-  <link rel="stylesheet" href="css/trang-chu.css">
+  <link rel="stylesheet" href="app/views/client/css/bootstrap.css">
+  <link rel="stylesheet" href="app/views/client/css/Trang-chu.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-  <link rel="icon" href="img/icon.png" type="image/png">
+  <link rel="icon" href="app/views/client/img/icon.png" type="image/png">
 
-  <script src="js/bootstrap.bundle.js"></script>
+  <script src="app/views/client/js/bootstrap.bundle.js"></script>
+  
   <style>
     body {
-      background: url("img/Anh/Banner/banner.jpg") no-repeat center center fixed;
+      background: url("app/views/client/img/Anh/Banner/banner.jpg") no-repeat center center fixed;
       background-size: cover;
       position: relative;
     }
@@ -25,7 +26,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.4); /* Làm tối nền một chút để form nổi bật hơn */
+      background: rgba(0,0,0,0.4);
       z-index: -1;
     }
 
@@ -63,6 +64,7 @@
       border-radius: 10px;
       font-weight: bold;
       transition: 0.3s;
+      border: none;
     }
 
     .btn-register:hover {
@@ -80,6 +82,9 @@
         border-color: #8B4513;
         box-shadow: 0 0 0 0.25rem rgba(139, 69, 19, 0.25);
     }
+	a {
+  text-decoration: none !important;
+}
   </style>
 </head>
 
@@ -88,8 +93,8 @@
 
     <nav id="nav" class="navbar navbar-expand-lg bg-white navbar-light sticky-top shadow-sm">
       <div class="container-fluid">
-        <a class="navbar-brand d-flex align-items-center" href="trang-chu.php">
-          <img src="img/Anh/Banner/logo.jpg" alt="Logo" class="nav-logo" style="height: 120px;">
+        <a class="navbar-brand d-flex align-items-center" href="index.php?controller=TrangChu&action=index">
+          <img src="app/views/client/img/Anh/Banner/logo.jpg" alt="Logo" class="nav-logo" style="height: 120px;">
           <span class="brand-text ms-2" style="color: #8B4513; font-weight: 800; font-size: 1.4rem; text-transform: uppercase;">ĐẶC SẢN BA MIỀN</span>
         </a>
 
@@ -99,24 +104,42 @@
 
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
           <ul class="navbar-nav fs-5">
-            <li class="nav-item"><a class="nav-link" href="trang-chu.php">Trang chủ</a></li>
-            <li class="nav-item dropdown">
+            <li class="nav-item"><a class="nav-link" href="index.php?controller=TrangChu&action=index">Trang chủ</a></li>
             <li class="nav-item">
-              <a class="nav-link" href="bai-viet.php">Bài viết</a>
+                <a class="nav-link" href="index.php?controller=GioiThieu&action=index">Giới thiệu</a>
             </li>
-              <a class="nav-link dropdown-toggle" href="san-pham.php" role="button" data-bs-toggle="dropdown">Sản phẩm</a>
+            <li class="nav-item">
+              <a class="nav-link" href="index.php?controller=BaiViet&action=index">Bài viết</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="index.php?controller=SanPham&action=index" role="button" data-bs-toggle="dropdown">Sản phẩm</a>
               <ul class="dropdown-menu border-brown">
-                <li><a class="dropdown-item" href="dac-san-mien-bac.php">Đặc sản miền Bắc</a></li>
-                <li><a class="dropdown-item" href="dac-san-mien-trung.php">Đặc sản miền Trung</a></li>
-                <li><a class="dropdown-item" href="dac-san-mien-nam.php">Đặc sản miền Nam</a></li>
-                	<li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item fw-bold" href="san-pham-ban-chay.php">Sản phẩm bán chạy</a></li>
-             
+                <li><a class="dropdown-item" href="index.php?controller=DacSanMienBac&action=index">Đặc sản miền Bắc</a></li>
+                <li><a class="dropdown-item" href="index.php?controller=DacSanMienTrung&action=index">Đặc sản miền Trung</a></li>
+                <li><a class="dropdown-item" href="index.php?controller=DacSanMienNam&action=index">Đặc sản miền Nam</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item fw-bold" href="index.php?controller=SanPhamBanChay&action=index">🔥Sản phẩm bán chạy</a></li>              
               </ul>
             </li>
-            <li class="nav-item"><a class="nav-link" href="gio-hang.php">Giỏ hàng</a></li>
-            <li class="nav-item"><a class="nav-link active fw-bold" href="dang-ky.php">Đăng ký</a></li>
-            <li class="nav-item"><a class="nav-link" href="dang-nhap.php">Đăng nhập</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.php?controller=GioHang&action=index">Giỏ hàng</a></li>
+            
+            <?php if (isset($_SESSION['user'])): ?>
+              <!-- Đã đăng nhập -->
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                  <i class="bi bi-person-circle"></i> <?php echo htmlspecialchars($_SESSION['user']['ten_dang_nhap']); ?>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li><a class="dropdown-item" href="index.php?controller=TaiKhoan&action=index"><i class="bi bi-person me-2"></i>Tài khoản của tôi</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item text-danger" href="index.php?controller=TaiKhoan&action=dangxuat"><i class="bi bi-box-arrow-right me-2"></i>Đăng xuất</a></li>
+                </ul>
+              </li>
+            <?php else: ?>
+              <!-- Chưa đăng nhập -->
+              <li class="nav-item"><a class="nav-link active fw-bold" href="index.php?controller=DangKy&action=index">Đăng ký</a></li>
+              <li class="nav-item"><a class="nav-link" href="index.php?controller=DangNhap&action=index">Đăng nhập</a></li>
+            <?php endif; ?>
           </ul>
         </div>
 
@@ -135,9 +158,9 @@
           <h2><i class="bi bi-person-plus-fill"></i> ĐĂNG KÝ</h2>
           <p class="text-muted">Tham gia cùng chúng tôi để nhận ưu đãi hấp dẫn</p>
         </div>
-
         <div class="card-body p-4">
-          <form method="POST">
+          
+          <form id="registerForm" method="POST" action="index.php?controller=TaiKhoan&action=dangky">
             <div class="row g-3">
               <div class="col-md-6">
                 <label>Tên đăng nhập</label>
@@ -185,26 +208,56 @@
 
               <div class="col-md-6">
                 <label>Nhập lại mật khẩu</label>
-                <input type="password" name="confirmPassword" class="form-control border-brown" required>
+                <input type="password" name="password_confirm" class="form-control border-brown" required>
               </div>
             </div>
+            
+            <?php if (isset($errors) && is_array($errors)): ?>
+              <div class="alert alert-danger mt-3" role="alert">
+                <strong>Lỗi đăng ký:</strong>
+                <ul class="mb-0 mt-2">
+                  <?php foreach ($errors as $error): ?>
+                    <li><?php echo htmlspecialchars($error); ?></li>
+                  <?php endforeach; ?>
+                </ul>
+              </div>
+            <?php endif; ?>
 
             <button type="submit" class="btn btn-register w-100 mt-4 py-2 fs-5 shadow-sm">TẠO TÀI KHOẢN</button>
 
             <p class="text-center mt-3 mb-0">
               Đã có tài khoản? 
-              <a href="dang-nhap.php" class="text-brown fw-bold text-decoration-none">Đăng nhập ngay</a>
+              <a href="index.php?controller=DangNhap&action=index" class="text-brown fw-bold text-decoration-none">Đăng nhập ngay</a>
             </p>
           </form>
         </div>
       </div>
     </div>
 
-    <footer id="footer" class="pt-5 pb-2 border-top bg-white mt-5">
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="border-radius: 15px; border: none; overflow: hidden;">
+          <div class="modal-header" style="background-color: #8B4513; color: white; border: none;">
+            <h5 class="modal-title" id="successModalLabel"><i class="bi bi-check-circle-fill me-2"></i>Thông báo</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body text-center py-4">
+            <div class="mb-3">
+                <i class="bi bi-bag-check-fill" style="font-size: 3rem; color: #8B4513;"></i>
+            </div>
+            <h4 style="color: #8B4513; font-weight: bold;">ĐĂNG KÝ THÀNH CÔNG!</h4>
+            <p class="text-muted px-3">Chào mừng bạn đến với <b>Đặc Sản Ba Miền</b>. Tài khoản của bạn đã được khởi tạo thành công.</p>
+            <button type="button" class="btn btn-register px-5 py-2 mt-2" data-bs-dismiss="modal">TUYỆT VỜI</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer id="footer" class="pt-5 pb-2 border-top bg-white">
       <div class="container">
         <div class="row">
           <div class="col-md-4 mb-3 text-brown">
-            <img src="img/Anh/Banner/logo.jpg" alt="Logo" class="nav-logo" style="height: 120px;">
+            <img src="app/views/client/img/Anh/Banner/logo.jpg" alt="Logo" class="nav-logo" style="height: 120px;">
             <p class="mt-3">
               Đặc sản ba miền – Tinh hoa ẩm thực Việt!<br>
               Mang đến hương vị truyền thống chuẩn vị Bắc – Trung – Nam.
@@ -214,9 +267,9 @@
           <div class="col-md-4 mb-3">
             <h3 style="color: #8B4513;">Liên kết nhanh</h3>
             <ul class="list-unstyled">
-              <li><a href="trang-chu.php" class="text-decoration-none text-brown">Trang chủ</a></li>
-              <li><a href="gio-hang.php" class="text-decoration-none text-brown">Giỏ hàng</a></li>
-              <li><a href="dang-nhap.php" class="text-decoration-none text-brown">Đăng nhập</a></li>
+              <li><a href="index.php?controller=TrangChu&action=index" class="text-brown">Trang chủ</a></li>
+              <li><a href="index.php?controller=GioHang&action=index" class="text-brown">Giỏ hàng</a></li>
+              <li><a href="index.php?controller=DangNhap&action=index" class="text-brown">Đăng nhập</a></li>
             </ul>
           </div>
 
@@ -233,5 +286,29 @@
     </footer>
 
   </div>
+
+  <div class="modal fade" id="forgotModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header border-0">
+          <h5 class="modal-title fw-bold text-brown">Khôi phục mật khẩu</h5>
+          <button class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <p>Vui lòng nhập email để nhận mã khôi phục:</p>
+          <input type="email" class="form-control border-brown" placeholder="email@example.com">
+        </div>
+        <div class="modal-footer border-0">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+          <button class="btn btn-login px-4">Gửi</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
+
+
 </body>
 </html>
