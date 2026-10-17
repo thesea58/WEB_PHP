@@ -17,13 +17,22 @@ class BaseController {
         // Giải nén mảng data thành các biến riêng lẻ để dùng trong view
         extract($data);
         
-        $view_path = "app/views/client/{$view}.php";
+        $dir = __DIR__ . '/../views/client/';
+        $view_path = $dir . "{$view}.php";
         
-        // Hỗ trợ cả tên file chữ thường trên máy chủ Linux
+        // Hỗ trợ cả tên file chữ thường hoặc khác chữ hoa/thường trên máy chủ Linux
         if (!file_exists($view_path)) {
             $view_lower = strtolower($view);
-            if (file_exists("app/views/client/{$view_lower}.php")) {
-                $view_path = "app/views/client/{$view_lower}.php";
+            if (file_exists($dir . "{$view_lower}.php")) {
+                $view_path = $dir . "{$view_lower}.php";
+            } elseif (is_dir($dir)) {
+                $files = scandir($dir);
+                foreach ($files as $f) {
+                    if (strcasecmp($f, $view . '.php') === 0 || strcasecmp($f, $view_lower . '.php') === 0) {
+                        $view_path = $dir . $f;
+                        break;
+                    }
+                }
             }
         }
         

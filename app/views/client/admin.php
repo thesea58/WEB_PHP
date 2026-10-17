@@ -1,4 +1,4 @@
-<?php 
+﻿<?php 
 // Admin.php - Trang admin được render từ AdminController
 // Kiểm tra xem user có phải admin không (an toàn hơn vì được handle ở controller)
 if (!isset($_SESSION['user']) || $_SESSION['user']['vai_tro'] !== 'admin') {
@@ -14,7 +14,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['vai_tro'] !== 'admin') {
   <title>Trang Admin - Đặc Sản Ba Miền</title>
 
   <link rel="stylesheet" href="app/views/client/css/bootstrap.css">
-  <link rel="stylesheet" href="app/views/client/css/Trang-chu.css">
+  <link rel="stylesheet" href="app/views/client/css/trang-chu.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
   <link rel="icon" href="app/views/client/img/icon.png" type="image/png">
 

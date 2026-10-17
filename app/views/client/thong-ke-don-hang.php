@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
@@ -6,7 +6,7 @@
   <title>Thống kê đơn hàng - Đặc Sản Ba Miền</title>
 
   <link rel="stylesheet" href="app/views/client/css/bootstrap.css">
-  <link rel="stylesheet" href="app/views/client/css/Trang-chu.css">
+  <link rel="stylesheet" href="app/views/client/css/trang-chu.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
   <script src="app/views/client/js/bootstrap.bundle.js"></script>
   <style>

@@ -1,4 +1,4 @@
-DSMN
+﻿DSMN
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -7,7 +7,7 @@ DSMN
     <title>Đặc Sản Miền Nam - Đặc Sản Ba Miền</title>
     
     <link rel="stylesheet" href="app/views/client/css/bootstrap.css">
-    <link rel="stylesheet" href="app/views/client/css/Trang-chu.css">
+    <link rel="stylesheet" href="app/views/client/css/trang-chu.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <link rel="icon" href="app/views/client/img/icon.png" type="image/png">
     
