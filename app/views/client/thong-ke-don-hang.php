@@ -1,3 +1,47 @@
+<?php
+if (!function_exists('formatTrangThaiDonHang')) {
+    function formatTrangThaiDonHang($rawStatus) {
+        $raw = trim((string)$rawStatus);
+        $normalized = mb_strtolower($raw, 'UTF-8');
+        
+        switch ($normalized) {
+            case 'dang_xu_ly':
+            case 'dang-xu-ly':
+            case 'dang xu ly':
+            case 'đang xử lý':
+            case 'cho_xu_ly':
+            case 'cho-xu-ly':
+            case 'cho xu ly':
+            case 'chờ xử lý':
+                return ['label' => 'Đang xử lý', 'badge' => 'warning text-dark'];
+
+            case 'dang_giao':
+            case 'dang-giao':
+            case 'dang giao':
+            case 'đang giao':
+                return ['label' => 'Đang giao', 'badge' => 'info text-dark'];
+
+            case 'hoan_thanh':
+            case 'hoan-thanh':
+            case 'hoan thanh':
+            case 'hoàn thành':
+                return ['label' => 'Hoàn thành', 'badge' => 'success'];
+
+            case 'huy':
+            case 'da_huy':
+            case 'hủy':
+            case 'đã hủy':
+                return ['label' => 'Hủy', 'badge' => 'danger'];
+
+            default:
+                if (strpos($normalized, 'xu_ly') !== false || strpos($normalized, 'xử lý') !== false) {
+                    return ['label' => 'Đang xử lý', 'badge' => 'warning text-dark'];
+                }
+                return ['label' => $raw, 'badge' => 'secondary'];
+        }
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -114,7 +158,7 @@
           <label class="form-label">Trạng thái đơn:</label>
           <select class="form-select" name="trang_thai">
             <option value="">-- Tất cả --</option>
-            <option value="Chờ xử lý" <?php echo ($trang_thai === 'Chờ xử lý') ? 'selected' : ''; ?>>Chờ xử lý</option>
+            <option value="Đang xử lý" <?php echo ($trang_thai === 'Đang xử lý' || $trang_thai === 'dang_xu_ly' || $trang_thai === 'Chờ xử lý' || $trang_thai === 'cho_xu_ly') ? 'selected' : ''; ?>>Đang xử lý</option>
             <option value="Đang giao" <?php echo ($trang_thai === 'Đang giao') ? 'selected' : ''; ?>>Đang giao</option>
             <option value="Hoàn thành" <?php echo ($trang_thai === 'Hoàn thành') ? 'selected' : ''; ?>>Hoàn thành</option>
             <option value="Hủy" <?php echo ($trang_thai === 'Hủy') ? 'selected' : ''; ?>>Hủy</option>
@@ -194,10 +238,21 @@
         <?php if (empty($trang_thai)): ?>
           <div style="border-top: 2px solid #8B4513; padding-top: 20px; margin-top: 20px;">
             <h6 class="text-brown fw-bold mb-3">Theo trạng thái:</h6>
-            <?php foreach ($thongKeTheoTrangThai as $tk): ?>
+            <?php 
+              $thongKeGrouped = [];
+              foreach ($thongKeTheoTrangThai as $tk) {
+                  $info = formatTrangThaiDonHang($tk['trang_thai']);
+                  $label = $info['label'];
+                  if (!isset($thongKeGrouped[$label])) {
+                      $thongKeGrouped[$label] = 0;
+                  }
+                  $thongKeGrouped[$label] += (int)$tk['so_luong'];
+              }
+              foreach ($thongKeGrouped as $lbl => $qty): 
+            ?>
               <div class="d-flex justify-content-between mb-2">
-                <span><?php echo htmlspecialchars($tk['trang_thai']); ?></span>
-                <strong><?php echo $tk['so_luong']; ?></strong>
+                <span><?php echo htmlspecialchars($lbl); ?></span>
+                <strong><?php echo $qty; ?></strong>
               </div>
             <?php endforeach; ?>
           </div>
@@ -246,14 +301,9 @@
                     <td><small><?php echo htmlspecialchars($hd['dia_chi']); ?></small></td>
                     <td><small><?php echo !empty($hd['ngay_dat']) ? date('d/m/Y', strtotime($hd['ngay_dat'])) : ''; ?></small></td>
                     <td>
-                      <span class="badge bg-<?php 
-                        $status = $hd['trang_thai'];
-                        if ($status === 'Chờ xử lý') echo 'warning';
-                        elseif ($status === 'Đang giao') echo 'info';
-                        elseif ($status === 'Hoàn thành') echo 'success';
-                        else echo 'danger';
-                      ?>">
-                        <?php echo htmlspecialchars($status); ?>
+                      <?php $statusInfo = formatTrangThaiDonHang($hd['trang_thai']); ?>
+                      <span class="badge bg-<?php echo $statusInfo['badge']; ?>">
+                        <?php echo htmlspecialchars($statusInfo['label']); ?>
                       </span>
                     </td>
                     <td class="text-danger fw-bold"><?php echo number_format($hd['tong_tien'], 0, ',', '.'); ?>₫</td>

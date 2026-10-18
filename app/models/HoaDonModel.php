@@ -109,8 +109,19 @@ class HoaDonModel {
         
         // Filter by status
         if (!empty($trang_thai)) {
-            $sql .= " AND trang_thai = :trang_thai";
-            $params[':trang_thai'] = $trang_thai;
+            $norm = mb_strtolower(trim($trang_thai), 'UTF-8');
+            if (in_array($norm, ['dang_xu_ly', 'dang-xu-ly', 'dang xu ly', 'đang xử lý', 'cho_xu_ly', 'cho-xu-ly', 'cho xu ly', 'chờ xử lý'])) {
+                $sql .= " AND (trang_thai IN ('Đang xử lý', 'dang_xu_ly', 'dang-xu-ly', 'dang xu ly', 'Chờ xử lý', 'cho_xu_ly', 'cho-xu-ly', 'cho xu ly'))";
+            } elseif (in_array($norm, ['dang_giao', 'dang-giao', 'dang giao', 'đang giao'])) {
+                $sql .= " AND (trang_thai IN ('Đang giao', 'dang_giao', 'dang-giao', 'dang giao'))";
+            } elseif (in_array($norm, ['hoan_thanh', 'hoan-thanh', 'hoan thanh', 'hoàn thành'])) {
+                $sql .= " AND (trang_thai IN ('Hoàn thành', 'hoan_thanh', 'hoan-thanh', 'hoan thanh'))";
+            } elseif (in_array($norm, ['huy', 'da_huy', 'hủy', 'đã hủy'])) {
+                $sql .= " AND (trang_thai IN ('Hủy', 'huy', 'da_huy', 'đã hủy'))";
+            } else {
+                $sql .= " AND trang_thai = :trang_thai";
+                $params[':trang_thai'] = $trang_thai;
+            }
         }
         
         // Filter by year
@@ -177,8 +188,19 @@ class HoaDonModel {
         
         // Filter by status
         if (!empty($trang_thai)) {
-            $sql .= " AND trang_thai = :trang_thai";
-            $params[':trang_thai'] = $trang_thai;
+            $norm = mb_strtolower(trim($trang_thai), 'UTF-8');
+            if (in_array($norm, ['dang_xu_ly', 'dang-xu-ly', 'dang xu ly', 'đang xử lý', 'cho_xu_ly', 'cho-xu-ly', 'cho xu ly', 'chờ xử lý'])) {
+                $sql .= " AND (trang_thai IN ('Đang xử lý', 'dang_xu_ly', 'dang-xu-ly', 'dang xu ly', 'Chờ xử lý', 'cho_xu_ly', 'cho-xu-ly', 'cho xu ly'))";
+            } elseif (in_array($norm, ['dang_giao', 'dang-giao', 'dang giao', 'đang giao'])) {
+                $sql .= " AND (trang_thai IN ('Đang giao', 'dang_giao', 'dang-giao', 'dang giao'))";
+            } elseif (in_array($norm, ['hoan_thanh', 'hoan-thanh', 'hoan thanh', 'hoàn thành'])) {
+                $sql .= " AND (trang_thai IN ('Hoàn thành', 'hoan_thanh', 'hoan-thanh', 'hoan thanh'))";
+            } elseif (in_array($norm, ['huy', 'da_huy', 'hủy', 'đã hủy'])) {
+                $sql .= " AND (trang_thai IN ('Hủy', 'huy', 'da_huy', 'đã hủy'))";
+            } else {
+                $sql .= " AND trang_thai = :trang_thai";
+                $params[':trang_thai'] = $trang_thai;
+            }
         }
         
         // Filter by year

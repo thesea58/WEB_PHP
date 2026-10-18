@@ -94,7 +94,7 @@ class ThanhToanController extends BaseController {
             $ma_hd = $hoaDonModel->taoHoaDon(
                 $ma_nguoi_dung,
                 $tong_tien,
-                'dang_xu_ly',
+                'Đang xử lý',
                 $ten_ng,
                 $sdt,
                 $dia_chi,

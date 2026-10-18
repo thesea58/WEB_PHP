@@ -159,10 +159,10 @@
             <td class="text-danger fw-bold"><?php echo number_format($hd['tong_tien'] ?? 0, 0, ',', '.'); ?>đ</td>
             <td>
               <select class="form-select form-select-sm status-dropdown" data-ma-hd="<?php echo $hd['ma_hd']; ?>">
-                <option value="Chờ xử lý" <?php echo ($hd['trang_thai'] === 'Chờ xử lý') ? 'selected' : ''; ?>>Chờ xử lý</option>
-                <option value="Đang giao" <?php echo ($hd['trang_thai'] === 'Đang giao') ? 'selected' : ''; ?>>Đang giao</option>
-                <option value="Hoàn thành" <?php echo ($hd['trang_thai'] === 'Hoàn thành') ? 'selected' : ''; ?>>Hoàn thành</option>
-                <option value="Hủy" <?php echo ($hd['trang_thai'] === 'Hủy') ? 'selected' : ''; ?>>Hủy</option>
+                <option value="Đang xử lý" <?php echo in_array($hd['trang_thai'], ['Đang xử lý', 'dang_xu_ly', 'Chờ xử lý', 'cho_xu_ly', 'cho xu ly']) ? 'selected' : ''; ?>>Đang xử lý</option>
+                <option value="Đang giao" <?php echo in_array($hd['trang_thai'], ['Đang giao', 'dang_giao']) ? 'selected' : ''; ?>>Đang giao</option>
+                <option value="Hoàn thành" <?php echo in_array($hd['trang_thai'], ['Hoàn thành', 'hoan_thanh']) ? 'selected' : ''; ?>>Hoàn thành</option>
+                <option value="Hủy" <?php echo in_array($hd['trang_thai'], ['Hủy', 'huy']) ? 'selected' : ''; ?>>Hủy</option>
               </select>
             </td>
             <td>
