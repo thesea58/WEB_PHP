@@ -2,10 +2,10 @@
 /**
  * Cấu hình kết nối cơ sở dữ liệu trên InfinityFree
  */
-define('DB_HOST', 'sql207.infinityfree.com');      // Thay bằng Hostname của bạn
-define('DB_USER', 'if0_43201279');                 // Thay bằng Username của bạn
-define('DB_PASS', 'tbt110305');             // Thay bằng Password của bạn
-define('DB_NAME', 'if0_43201279_dacsan3mien');     // Thay bằng Tên database đầy đủ
+define('DB_HOST', getenv('DB_HOST') ?: 'localhost');
+define('DB_USER', getenv('DB_USER') ?: 'root');
+define('DB_PASS', getenv('DB_PASS') !== false ? getenv('DB_PASS') : ''); 
+define('DB_NAME', getenv('DB_NAME') ?: 'dacsan3mien');    // Thay bằng Tên database đầy đủ
 
 function connectDB() {
     try {

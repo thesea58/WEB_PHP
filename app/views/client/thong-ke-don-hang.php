@@ -223,6 +223,7 @@
                   <th>Khách hàng</th>
                   <th>Sản phẩm</th>
                   <th>Địa chỉ</th>
+                  <th>Ngày đặt hàng</th>
                   <th>Trạng thái</th>
                   <th width="120px">Tổng tiền</th>
                 </tr>
@@ -243,6 +244,7 @@
                       ?>
                     </td>
                     <td><small><?php echo htmlspecialchars($hd['dia_chi']); ?></small></td>
+                    <td><small><?php echo !empty($hd['ngay_dat']) ? date('d/m/Y', strtotime($hd['ngay_dat'])) : ''; ?></small></td>
                     <td>
                       <span class="badge bg-<?php 
                         $status = $hd['trang_thai'];
