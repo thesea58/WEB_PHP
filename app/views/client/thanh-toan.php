@@ -391,56 +391,67 @@ function closeQrModal() {
   }
 }
 
+let autoConfirmAfterCreate = false;
+
 // Xử lý khi khách bấm nút "Tôi đã chuyển khoản"
 function confirmTransferDone() {
-  if (!orderCreatedSuccess || !currentOrderId || String(currentOrderId).startsWith('DH')) {
-    // Nếu khách mở xem trước mã QR khi chưa bấm Xác nhận đặt hàng
-    // Kích hoạt submit form đặt hàng trước
-    const form = document.getElementById('checkoutForm');
-    if (form.reportValidity && !form.reportValidity()) {
-      return;
-    }
-    const modalEl = document.getElementById('vietQrModal');
-    const modalInstance = bootstrap.Modal.getInstance(modalEl);
-    if (modalInstance) modalInstance.hide();
-    document.getElementById('submitBtn').click();
-    return;
-  }
-
   const btn = document.getElementById('btnConfirmPaid');
   const originalHtml = btn.innerHTML;
   btn.disabled = true;
   btn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span>Đang xử lý...';
 
-  const formData = new FormData();
-  formData.append('ma_hd', currentOrderId);
+  // Trường hợp 1: Đơn hàng đã được tạo chính thức (sau khi bấm Xác nhận thanh toán)
+  if (orderCreatedSuccess && currentOrderId && !String(currentOrderId).startsWith('DH')) {
+    const formData = new FormData();
+    formData.append('ma_hd', currentOrderId);
 
-  fetch('index.php?controller=ThanhToan&action=xacNhanChuyenKhoan', {
-    method: 'POST',
-    body: formData
-  })
-  .then(res => res.json())
-  .then(data => {
-    if (data.success) {
-      showAlert('success', 'Xác nhận thành công! Đơn hàng đã chuyển sang trạng thái "Chờ đối soát".');
+    fetch('index.php?controller=ThanhToan&action=xacNhanChuyenKhoan', {
+      method: 'POST',
+      body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+      // Đóng modal ngay lập tức và dừng timer
       const modalEl = document.getElementById('vietQrModal');
       const modalInstance = bootstrap.Modal.getInstance(modalEl);
-      if (modalInstance) modalInstance.hide();
+      if (modalInstance) {
+        modalInstance.hide();
+      }
+      if (qrCountdownInterval) {
+        clearInterval(qrCountdownInterval);
+      }
+      showAlert('success', 'Xác nhận thành công! Đơn hàng đã chuyển sang trạng thái "Chờ đối soát".');
       setTimeout(() => {
         window.location.href = 'index.php?controller=TaiKhoan&action=index';
-      }, 1500);
-    } else {
-      alert(data.message || 'Có lỗi xảy ra, vui lòng thử lại');
+      }, 1000);
+    })
+    .catch(err => {
+      console.error(err);
+      alert('Không thể kết nối đến máy chủ: ' + err.message);
       btn.disabled = false;
       btn.innerHTML = originalHtml;
-    }
-  })
-  .catch(err => {
-    console.error(err);
-    alert('Không thể kết nối đến máy chủ: ' + err.message);
+    });
+    return;
+  }
+
+  // Trường hợp 2: Khách đang mở xem trước mã QR và bấm "Tôi đã chuyển khoản" khi chưa submit đặt hàng
+  autoConfirmAfterCreate = true;
+  const form = document.getElementById('checkoutForm');
+  if (form.reportValidity && !form.reportValidity()) {
     btn.disabled = false;
     btn.innerHTML = originalHtml;
-  });
+    return;
+  }
+
+  // Đóng modal xem trước lại
+  const modalEl = document.getElementById('vietQrModal');
+  const modalInstance = bootstrap.Modal.getInstance(modalEl);
+  if (modalInstance) {
+    modalInstance.hide();
+  }
+
+  // Kích hoạt submit form đặt hàng
+  document.getElementById('submitBtn').click();
 }
 
 // Khi chọn phương thức thanh toán
@@ -448,7 +459,7 @@ function showQR(value) {
   const qr = document.getElementById("qr-box");
   if (value === "bank") {
     qr.style.display = "block";
-    openQrModal();
+    // Không tự động bật popup chèn ngang màn hình khi khách chỉ mới chọn dropdown
   } else {
     qr.style.display = "none";
   }
@@ -502,13 +513,33 @@ document.getElementById('checkoutForm').addEventListener('submit', function(e) {
     try {
       const data = JSON.parse(text);
       if (data.success) {
-        showAlert('success', data.message || 'Đặt hàng thành công!');
         if (thanhtoan === 'bank') {
           orderCreatedSuccess = true;
           const officialOrderId = data.ma_hd;
           currentOrderId = officialOrderId;
+
+          // Nếu khách đã bấm "Tôi đã chuyển khoản" từ trước đó: KHÔNG mở popup mới
+          if (autoConfirmAfterCreate) {
+            autoConfirmAfterCreate = false;
+            const confirmData = new FormData();
+            confirmData.append('ma_hd', officialOrderId);
+            fetch('index.php?controller=ThanhToan&action=xacNhanChuyenKhoan', {
+              method: 'POST',
+              body: confirmData
+            }).finally(() => {
+              showAlert('success', 'Đặt hàng và xác nhận chuyển khoản thành công! Đơn hàng đang chờ đối soát.');
+              setTimeout(() => {
+                window.location.href = 'index.php?controller=TaiKhoan&action=index';
+              }, 1200);
+            });
+            return;
+          }
+
+          // Trường hợp bình thường: Bật Popup QR để khách quét mã
+          showAlert('success', data.message || 'Đặt hàng thành công!');
           openQrModal(officialOrderId, data.tong_tien || CART_TOTAL_AMOUNT);
         } else {
+          showAlert('success', data.message || 'Đặt hàng thành công!');
           // Thanh toán COD: chuyển về trang chủ sau 2 giây
           setTimeout(() => {
             window.location.href = 'index.php?controller=TrangChu&action=index';
