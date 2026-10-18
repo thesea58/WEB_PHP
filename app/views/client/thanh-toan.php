@@ -280,27 +280,28 @@
 <script>
 // Cấu hình tài khoản ngân hàng nhận tiền VietQR
 const VIETQR_CONFIG = {
-  bankId: 'VCB', // Ngân hàng Vietcombank
-  accountNo: '9355372409', // Số tài khoản nhận
-  accountName: 'PHAM THANH HAI', // Tên người nhận hiển thị trên QR
+  bankId: 'ICB', // Ngân hàng VietinBank (Mã Napas VietQR: ICB)
+  accountNo: '0364925852', // Số tài khoản nhận
+  accountName: 'TRAN BICH THUAN', // Tên người nhận hiển thị trên QR
   template: 'compact2' // Template có khung màu VietQR + Napas247 + Chi tiết bên dưới
 };
 
 const CART_TOTAL_AMOUNT = <?php echo (int)$tongTien; ?>;
+const CURRENT_USER_ID = <?php echo (int)($user['ma_nguoi_dung'] ?? 1); ?>;
 let qrCountdownInterval = null;
 let orderCreatedSuccess = false;
-let currentOrderCode = '04420100' + String(Math.floor(1000 + Math.random() * 9000));
+let currentOrderId = 'DH' + Math.floor(1000 + Math.random() * 9000);
 
 // Chuyển chuỗi tiếng Việt có dấu thành IN HOA KHÔNG DẤU, viết liền (VD: "Phạm Thanh Hải" -> "PHAMTHANHHAI")
 function toUpperNoAccentCompact(str) {
-  if (!str) return 'KHACHHANG';
+  if (!str) return 'KHACH';
   return str
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
     .replace(/đ/g, 'd')
     .replace(/Đ/g, 'D')
     .replace(/[^a-zA-Z0-9]/g, '')
-    .toUpperCase() || 'KHACHHANG';
+    .toUpperCase() || 'KHACH';
 }
 
 // Định dạng số tiền kiểu "1,630,000 VND" giống ảnh mẫu
@@ -308,10 +309,10 @@ function formatCurrencyVND(amount) {
   return Number(amount).toLocaleString('en-US') + ' VND';
 }
 
-// Tạo nội dung chuyển khoản theo mã đơn và tên khách hàng
-function buildTransferContent(orderCode, customerName) {
+// Tạo nội dung chuyển khoản theo cú pháp: DacSan3Mien_ID_Name_madonhang
+function buildTransferContent(userId, customerName, orderId) {
   const cleanName = toUpperNoAccentCompact(customerName);
-  return `${orderCode} ${cleanName}`;
+  return `DacSan3Mien_${userId}_${cleanName}_${orderId}`;
 }
 
 // Bắt đầu bộ đếm ngược 60 phút (59:59 -> 00:00)
@@ -342,11 +343,11 @@ function startQrCountdown(durationSeconds = 3594) {
 }
 
 // Hiển thị Modal QR với số tiền & nội dung chuyển tiền
-function openQrModal(customOrderCode = null, customAmount = null) {
-  const tenInput = document.getElementById('ten').value.trim() || '<?php echo addslashes($user['ten_dang_nhap'] ?? 'KHACHHANG'); ?>';
-  const codeToUse = customOrderCode || currentOrderCode;
+function openQrModal(customOrderId = null, customAmount = null) {
+  const tenInput = document.getElementById('ten').value.trim() || '<?php echo addslashes($user['ten_dang_nhap'] ?? 'KHACH'); ?>';
+  const orderIdToUse = customOrderId !== null ? customOrderId : currentOrderId;
   const amountToUse = customAmount !== null ? customAmount : CART_TOTAL_AMOUNT;
-  const transferContent = buildTransferContent(codeToUse, tenInput);
+  const transferContent = buildTransferContent(CURRENT_USER_ID, tenInput, orderIdToUse);
 
   // Tạo URL VietQR chứa sẵn số tiền & nội dung chuyển khoản
   const qrUrl = `https://img.vietqr.io/image/${VIETQR_CONFIG.bankId}-${VIETQR_CONFIG.accountNo}-${VIETQR_CONFIG.template}.png`
@@ -448,11 +449,10 @@ document.getElementById('checkoutForm').addEventListener('submit', function(e) {
       if (data.success) {
         showAlert('success', data.message || 'Đặt hàng thành công!');
         if (thanhtoan === 'bank') {
-          // Tạo mã code 12 chữ số dựa trên mã hóa đơn (VD: 044201000015) và mở Popup QR
           orderCreatedSuccess = true;
-          const officialCode = '04420100' + String(data.ma_hd).padStart(4, '0');
-          currentOrderCode = officialCode;
-          openQrModal(officialCode, data.tong_tien || CART_TOTAL_AMOUNT);
+          const officialOrderId = data.ma_hd;
+          currentOrderId = officialOrderId;
+          openQrModal(officialOrderId, data.tong_tien || CART_TOTAL_AMOUNT);
         } else {
           // Thanh toán COD: chuyển về trang chủ sau 2 giây
           setTimeout(() => {
