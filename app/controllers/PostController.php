@@ -44,32 +44,58 @@ class PostController extends BaseController {
         }
         
         // Xử lý upload file
-        $path_img = 'app/views/client/img/Anh/SPBC/default.jpg'; // Default image
-        if (isset($_FILES['hinh_anh']) && $_FILES['hinh_anh']['error'] == 0) {
-            $upload_dir = 'app/views/client/img/Anh/SPBC/';
-            if (!is_dir($upload_dir)) {
-                mkdir($upload_dir, 0777, true);
-            }
+        $path_img = 'img/Anh/Banner/logo.jpg'; // Ảnh mặc định nếu không upload
+        
+        if (isset($_FILES['hinh_anh']) && $_FILES['hinh_anh']['error'] !== UPLOAD_ERR_NO_FILE) {
+            $fileError = $_FILES['hinh_anh']['error'];
             
-            // Rename file to avoid conflicts
-            $file_ext = pathinfo($_FILES['hinh_anh']['name'], PATHINFO_EXTENSION);
-            $file_name = 'product_' . time() . '_' . rand(1000, 9999) . '.' . $file_ext;
-            $target_file = $upload_dir . $file_name;
-            
-            // Validate file type
-            $allowed_types = ['jpg', 'jpeg', 'png', 'gif'];
-            if (!in_array(strtolower($file_ext), $allowed_types)) {
+            // Bắt chi tiết lỗi upload từ PHP/Hosting
+            if ($fileError !== UPLOAD_ERR_OK) {
+                $errorMessages = [
+                    UPLOAD_ERR_INI_SIZE   => 'Dung lượng ảnh vượt quá giới hạn máy chủ (tối đa 10MB)',
+                    UPLOAD_ERR_FORM_SIZE  => 'Dung lượng ảnh vượt quá giới hạn cho phép của biểu mẫu',
+                    UPLOAD_ERR_PARTIAL    => 'File ảnh chỉ mới được tải lên một phần',
+                    UPLOAD_ERR_NO_TMP_DIR => 'Máy chủ thiếu thư mục tạm để lưu file',
+                    UPLOAD_ERR_CANT_WRITE => 'Không thể ghi file vào ổ đĩa máy chủ (Lỗi quyền thư mục)',
+                    UPLOAD_ERR_EXTENSION  => 'Quá trình tải file bị chặn bởi PHP extension'
+                ];
+                $msg = $errorMessages[$fileError] ?? 'Lỗi tải ảnh (Mã lỗi: ' . $fileError . ')';
                 http_response_code(400);
-                echo json_encode(['success' => false, 'message' => 'Chỉ hỗ trợ ảnh (jpg, png, gif)']);
+                echo json_encode(['success' => false, 'message' => $msg]);
                 exit();
             }
             
-            // Move file
-            if (move_uploaded_file($_FILES['hinh_anh']['tmp_name'], $target_file)) {
-                $path_img = $target_file;
+            // Đường dẫn vật lý tuyệt đối trên máy chủ (tương thích cả Windows & Linux InfinityFree)
+            $upload_dir_physical = dirname(__DIR__) . '/views/client/img/Anh/SPBC/';
+            if (!is_dir($upload_dir_physical)) {
+                if (!@mkdir($upload_dir_physical, 0777, true) && !is_dir($upload_dir_physical)) {
+                    http_response_code(500);
+                    echo json_encode(['success' => false, 'message' => 'Không thể tạo thư mục lưu ảnh trên máy chủ']);
+                    exit();
+                }
+            }
+            
+            // Kiểm tra đuôi mở rộng file
+            $file_ext = strtolower(pathinfo($_FILES['hinh_anh']['name'], PATHINFO_EXTENSION));
+            $allowed_types = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+            if (!in_array($file_ext, $allowed_types)) {
+                http_response_code(400);
+                echo json_encode(['success' => false, 'message' => 'Chỉ hỗ trợ file ảnh (jpg, jpeg, png, gif, webp)']);
+                exit();
+            }
+            
+            // Đặt tên file ngẫu nhiên an toàn
+            $file_name = 'product_' . time() . '_' . rand(1000, 9999) . '.' . $file_ext;
+            $target_file_physical = $upload_dir_physical . $file_name;
+            
+            // Di chuyển file tạm vào thư mục lưu trữ
+            if (move_uploaded_file($_FILES['hinh_anh']['tmp_name'], $target_file_physical)) {
+                // QUAN TRỌNG: Lưu vào CSDL đường dẫn 'img/Anh/SPBC/...'
+                // vì các trang hiển thị (view) đều nối chuỗi 'app/views/client/' . $product['path_img']
+                $path_img = 'img/Anh/SPBC/' . $file_name;
             } else {
                 http_response_code(500);
-                echo json_encode(['success' => false, 'message' => 'Lỗi upload ảnh']);
+                echo json_encode(['success' => false, 'message' => 'Không thể ghi file ảnh vào thư mục host (vui lòng kiểm tra quyền thư mục app/views/client/img/Anh/SPBC/)']);
                 exit();
             }
         }

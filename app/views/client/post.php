@@ -165,6 +165,7 @@
             <table class="table table-hover table-striped">
               <thead style="background-color: #8B4513; color: white;">
                 <tr>
+                  <th width="60">Ảnh</th>
                   <th>ID</th>
                   <th>Tên Sản Phẩm</th>
                   <th>Giá (VNĐ)</th>
@@ -177,6 +178,12 @@
                 <?php if (!empty($products)): ?>
                   <?php foreach ($products as $product): ?>
                     <tr>
+                      <td>
+                        <?php 
+                          $imgSrc = 'app/views/client/' . ltrim(str_replace('app/views/client/', '', $product['path_img'] ?? ''), '/');
+                        ?>
+                        <img src="<?php echo htmlspecialchars($imgSrc); ?>" width="45" height="45" style="object-fit:cover; border-radius:6px;" class="border" onerror="this.src='app/views/client/img/Anh/Banner/logo.jpg'">
+                      </td>
                       <td><?php echo htmlspecialchars($product['ma_sp']); ?></td>
                       <td><?php echo htmlspecialchars($product['ten_sp']); ?></td>
                       <td><?php echo number_format($product['gia'], 0, ',', '.'); ?> VNĐ</td>
