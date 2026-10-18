@@ -121,7 +121,9 @@ class ThanhToanController extends BaseController {
             echo json_encode([
                 'success' => true,
                 'message' => 'Đặt hàng thành công! Mã hóa đơn: ' . $ma_hd,
-                'ma_hd' => $ma_hd
+                'ma_hd' => $ma_hd,
+                'tong_tien' => $tong_tien,
+                'phuong_thuc_tt' => $phuong_thuc_tt
             ]);
         } catch (Exception $e) {
             http_response_code(500);

@@ -178,11 +178,14 @@
               <option value="bank">Chuyển khoản QR</option>
             </select>
 
-            <!-- QR -->
-            <div id="qr-box" class="text-center mb-3 p-3 border rounded-3" style="display:none; background:#f9f9f9;">
-              <p class="fw-bold mb-2">Quét mã để thanh toán</p>
-              <img src="https://png.pngtree.com/png-clipart/20190924/original/pngtree-qr-code-free-png-png-image_4863862.jpg" width="160" class="mb-2">
-              <p class="small text-muted">Nội dung: THANHTOAN</p>
+            <!-- Thông báo nhỏ khi chọn Chuyển khoản QR -->
+            <div id="qr-box" class="text-center mb-3 p-3 border rounded-3" style="display:none; background:#fdfbf7; border-color:#d9c5b2 !important;">
+              <p class="fw-semibold mb-2 text-brown">
+                <i class="bi bi-qr-code-scan me-1"></i>Thanh toán quét mã VietQR tự động
+              </p>
+              <button type="button" class="btn btn-sm btn-outline-dark rounded-3 px-3" onclick="openQrModal()">
+                <i class="bi bi-eye me-1"></i>Xem mã QR thanh toán
+              </button>
             </div>
 
             <hr>
@@ -216,11 +219,183 @@
   </div>
 </section>
 
+<!-- MODAL POPUP THANH TOÁN QR CODE (GIAO DIỆN Y HỆT ẢNH MẪU) -->
+<div class="modal fade" id="vietQrModal" tabindex="-1" aria-labelledby="vietQrModalLabel" aria-hidden="true" data-bs-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered" style="max-width: 650px;">
+    <div class="modal-content border-0 shadow-lg" style="border-radius: 10px; overflow: hidden;">
+      
+      <!-- Header -->
+      <div class="modal-header border-0 pt-4 px-4 pb-2">
+        <h5 class="modal-title fw-bold text-dark" id="vietQrModalLabel" style="font-size: 1.25rem;">Thanh toán QR code</h5>
+        <button type="button" class="btn-close" onclick="closeQrModal()" aria-label="Close"></button>
+      </div>
+
+      <!-- Body -->
+      <div class="modal-body px-4 pt-2 pb-4">
+        <!-- Đồng hồ đếm ngược góc phải -->
+        <div class="d-flex justify-content-end align-items-center mb-3 pe-md-4" style="font-size: 0.95rem; color: #555;">
+          <span class="me-2">Giao dịch hết hạn sau</span>
+          <span id="qrTimerMin" style="background: #000; color: #fff; font-weight: 700; padding: 5px 10px; border-radius: 8px; min-width: 38px; text-align: center; display: inline-block;">59</span>
+          <span class="mx-1 fw-bold text-dark">:</span>
+          <span id="qrTimerSec" style="background: #000; color: #fff; font-weight: 700; padding: 5px 10px; border-radius: 8px; min-width: 38px; text-align: center; display: inline-block;">59</span>
+        </div>
+
+        <!-- Khung ảnh VietQR chính giữa -->
+        <div class="text-center my-2">
+          <div id="qrLoading" class="py-5" style="display: none;">
+            <div class="spinner-border text-secondary" role="status"></div>
+            <p class="mt-2 text-muted small">Đang tạo mã QR...</p>
+          </div>
+          <img id="vietQrImage"
+               src=""
+               alt="VietQR Payment"
+               style="max-width: 290px; width: 100%; border-radius: 14px; box-shadow: 0 4px 16px rgba(0,0,0,0.08);"
+               onload="document.getElementById('qrLoading').style.display='none'; this.style.display='inline-block';">
+        </div>
+
+        <!-- Nội dung & Tổng tiền bên dưới mã QR -->
+        <div class="mx-auto mt-3" style="max-width: 380px; font-size: 1.05rem; color: #212529;">
+          <div class="d-flex align-items-baseline mb-2">
+            <span class="fw-bold" style="min-width: 105px;">Nội dung:</span>
+            <span id="qrTransferContent" class="fw-normal text-break"></span>
+          </div>
+          <div class="d-flex align-items-baseline">
+            <span class="fw-bold" style="min-width: 105px;">Tổng tiền:</span>
+            <span id="qrTotalAmount" class="fw-normal"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="modal-footer border-0 py-3 px-4" style="background-color: #f3f4f6;">
+        <button type="button" class="btn bg-white border fw-semibold px-4 py-2 rounded-3 shadow-sm" style="color: #212529;" onclick="closeQrModal()">
+          Đóng
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <script>
-// Show/hide QR code based on payment method
-function showQR(value){
+// Cấu hình tài khoản ngân hàng nhận tiền VietQR
+const VIETQR_CONFIG = {
+  bankId: 'VCB', // Ngân hàng Vietcombank
+  accountNo: '9355372409', // Số tài khoản nhận
+  accountName: 'PHAM THANH HAI', // Tên người nhận hiển thị trên QR
+  template: 'compact2' // Template có khung màu VietQR + Napas247 + Chi tiết bên dưới
+};
+
+const CART_TOTAL_AMOUNT = <?php echo (int)$tongTien; ?>;
+let qrCountdownInterval = null;
+let orderCreatedSuccess = false;
+let currentOrderCode = '04420100' + String(Math.floor(1000 + Math.random() * 9000));
+
+// Chuyển chuỗi tiếng Việt có dấu thành IN HOA KHÔNG DẤU, viết liền (VD: "Phạm Thanh Hải" -> "PHAMTHANHHAI")
+function toUpperNoAccentCompact(str) {
+  if (!str) return 'KHACHHANG';
+  return str
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/đ/g, 'd')
+    .replace(/Đ/g, 'D')
+    .replace(/[^a-zA-Z0-9]/g, '')
+    .toUpperCase() || 'KHACHHANG';
+}
+
+// Định dạng số tiền kiểu "1,630,000 VND" giống ảnh mẫu
+function formatCurrencyVND(amount) {
+  return Number(amount).toLocaleString('en-US') + ' VND';
+}
+
+// Tạo nội dung chuyển khoản theo mã đơn và tên khách hàng
+function buildTransferContent(orderCode, customerName) {
+  const cleanName = toUpperNoAccentCompact(customerName);
+  return `${orderCode} ${cleanName}`;
+}
+
+// Bắt đầu bộ đếm ngược 60 phút (59:59 -> 00:00)
+function startQrCountdown(durationSeconds = 3594) {
+  if (qrCountdownInterval) {
+    clearInterval(qrCountdownInterval);
+  }
+  let remaining = durationSeconds;
+  const minEl = document.getElementById('qrTimerMin');
+  const secEl = document.getElementById('qrTimerSec');
+
+  const updateDisplay = () => {
+    const m = Math.floor(remaining / 60);
+    const s = remaining % 60;
+    minEl.textContent = String(m).padStart(2, '0');
+    secEl.textContent = String(s).padStart(2, '0');
+  };
+
+  updateDisplay();
+  qrCountdownInterval = setInterval(() => {
+    if (remaining > 0) {
+      remaining--;
+      updateDisplay();
+    } else {
+      clearInterval(qrCountdownInterval);
+    }
+  }, 1000);
+}
+
+// Hiển thị Modal QR với số tiền & nội dung chuyển tiền
+function openQrModal(customOrderCode = null, customAmount = null) {
+  const tenInput = document.getElementById('ten').value.trim() || '<?php echo addslashes($user['ten_dang_nhap'] ?? 'KHACHHANG'); ?>';
+  const codeToUse = customOrderCode || currentOrderCode;
+  const amountToUse = customAmount !== null ? customAmount : CART_TOTAL_AMOUNT;
+  const transferContent = buildTransferContent(codeToUse, tenInput);
+
+  // Tạo URL VietQR chứa sẵn số tiền & nội dung chuyển khoản
+  const qrUrl = `https://img.vietqr.io/image/${VIETQR_CONFIG.bankId}-${VIETQR_CONFIG.accountNo}-${VIETQR_CONFIG.template}.png`
+    + `?amount=${encodeURIComponent(amountToUse)}`
+    + `&addInfo=${encodeURIComponent(transferContent)}`
+    + `&accountName=${encodeURIComponent(VIETQR_CONFIG.accountName)}`;
+
+  // Cập nhật DOM
+  const imgEl = document.getElementById('vietQrImage');
+  const loadingEl = document.getElementById('qrLoading');
+  imgEl.style.display = 'none';
+  loadingEl.style.display = 'block';
+  imgEl.src = qrUrl;
+
+  document.getElementById('qrTransferContent').textContent = transferContent;
+  document.getElementById('qrTotalAmount').textContent = formatCurrencyVND(amountToUse);
+
+  startQrCountdown(59 * 60 + 54); // 59 : 54 như ảnh mẫu
+
+  const modalEl = document.getElementById('vietQrModal');
+  const modalInstance = bootstrap.Modal.getOrCreateInstance(modalEl);
+  modalInstance.show();
+}
+
+// Đóng Modal QR
+function closeQrModal() {
+  const modalEl = document.getElementById('vietQrModal');
+  const modalInstance = bootstrap.Modal.getInstance(modalEl);
+  if (modalInstance) {
+    modalInstance.hide();
+  }
+  if (qrCountdownInterval) {
+    clearInterval(qrCountdownInterval);
+  }
+  // Nếu đơn hàng đã được tạo thành công trước đó thì chuyển về Trang chủ
+  if (orderCreatedSuccess) {
+    window.location.href = 'index.php?controller=TrangChu&action=index';
+  }
+}
+
+// Khi chọn phương thức thanh toán
+function showQR(value) {
   const qr = document.getElementById("qr-box");
-  qr.style.display = (value === "bank") ? "block" : "none";
+  if (value === "bank") {
+    qr.style.display = "block";
+    openQrModal();
+  } else {
+    qr.style.display = "none";
+  }
 }
 
 // Handle checkout form submission
@@ -272,10 +447,18 @@ document.getElementById('checkoutForm').addEventListener('submit', function(e) {
       const data = JSON.parse(text);
       if (data.success) {
         showAlert('success', data.message || 'Đặt hàng thành công!');
-        // Sau khi hiển thị thông báo, chuyển về trang chủ
-        setTimeout(() => {
-          window.location.href = 'index.php?controller=TrangChu&action=index';
-        }, 2000);
+        if (thanhtoan === 'bank') {
+          // Tạo mã code 12 chữ số dựa trên mã hóa đơn (VD: 044201000015) và mở Popup QR
+          orderCreatedSuccess = true;
+          const officialCode = '04420100' + String(data.ma_hd).padStart(4, '0');
+          currentOrderCode = officialCode;
+          openQrModal(officialCode, data.tong_tien || CART_TOTAL_AMOUNT);
+        } else {
+          // Thanh toán COD: chuyển về trang chủ sau 2 giây
+          setTimeout(() => {
+            window.location.href = 'index.php?controller=TrangChu&action=index';
+          }, 2000);
+        }
       } else {
         showAlert('error', data.message || 'Đặt hàng thất bại');
       }
