@@ -29,6 +29,7 @@ class ThongKeDonHangController extends BaseController {
         // Get statistics
         $thongKe = $hoaDonModel->tinhTongDoanhThuTheoFilter($trang_thai, $thang, $quy, $nam);
         $thongKeTheoTrangThai = $hoaDonModel->layThongKeTheoTrangThai();
+        $danhSachTrangThai = $hoaDonModel->layDanhSachTrangThai();
         
         // Get all years for filter
         $sql = "SELECT DISTINCT YEAR(ngay_dat) as nam FROM hoadon ORDER BY nam DESC";
@@ -41,6 +42,7 @@ class ThongKeDonHangController extends BaseController {
             'hoaDons' => $hoaDons,
             'thongKe' => $thongKe,
             'thongKeTheoTrangThai' => $thongKeTheoTrangThai,
+            'danhSachTrangThai' => $danhSachTrangThai,
             'namList' => $namList,
             'trang_thai' => $trang_thai,
             'thang' => $thang,

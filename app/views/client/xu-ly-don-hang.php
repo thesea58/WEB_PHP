@@ -146,7 +146,20 @@
         <?php foreach ($hoaDons as $hd): ?>
           <tr>
             <td class="fw-bold text-brown">#<?php echo str_pad($hd['ma_hd'], 3, '0', STR_PAD_LEFT); ?></td>
-            <td><?php echo htmlspecialchars($hd['ten_khach_hang'] ?? 'N/A'); ?></td>
+            <td>
+              <strong><?php echo htmlspecialchars($hd['ten_khach_hang'] ?? 'N/A'); ?></strong>
+              <div class="mt-1">
+                <?php 
+                  $rawName = $hd['ten_khach_hang'] ?? 'KHACH';
+                  $asciiName = @iconv('UTF-8', 'ASCII//TRANSLIT', $rawName) ?: $rawName;
+                  $cleanName = preg_replace('/[^A-Za-z0-9]/', '', strtoupper($asciiName)) ?: 'KHACH';
+                  $expectedTransferCode = "DacSan3Mien_" . ($hd['ma_nguoi_dung'] ?? '0') . "_" . $cleanName . "_" . $hd['ma_hd'];
+                ?>
+                <small class="badge bg-light text-dark border font-monospace text-wrap" style="font-size:0.75rem;" title="Mã nội dung khách chuyển khoản">
+                  <i class="bi bi-qr-code me-1 text-primary"></i>CK: <code><?php echo htmlspecialchars($expectedTransferCode); ?></code>
+                </small>
+              </div>
+            </td>
             <td>
               <small class="text-muted"><?php echo htmlspecialchars($hd['dien_thoai'] ?? ''); ?></small><br>
               <?php 
@@ -158,11 +171,13 @@
             <td><?php echo htmlspecialchars($hd['dia_chi'] ?? 'N/A'); ?></td>
             <td class="text-danger fw-bold"><?php echo number_format($hd['tong_tien'] ?? 0, 0, ',', '.'); ?>đ</td>
             <td>
-              <select class="form-select form-select-sm status-dropdown" data-ma-hd="<?php echo $hd['ma_hd']; ?>">
-                <option value="Đang xử lý" <?php echo in_array($hd['trang_thai'], ['Đang xử lý', 'dang_xu_ly', 'Chờ xử lý', 'cho_xu_ly', 'cho xu ly']) ? 'selected' : ''; ?>>Đang xử lý</option>
-                <option value="Đang giao" <?php echo in_array($hd['trang_thai'], ['Đang giao', 'dang_giao']) ? 'selected' : ''; ?>>Đang giao</option>
-                <option value="Hoàn thành" <?php echo in_array($hd['trang_thai'], ['Hoàn thành', 'hoan_thanh']) ? 'selected' : ''; ?>>Hoàn thành</option>
-                <option value="Hủy" <?php echo in_array($hd['trang_thai'], ['Hủy', 'huy']) ? 'selected' : ''; ?>>Hủy</option>
+              <select class="form-select form-select-sm status-dropdown <?php echo ($hd['trang_thai'] === 'Chờ đối soát') ? 'border-warning text-dark fw-bold bg-warning-subtle' : ''; ?>" data-ma-hd="<?php echo $hd['ma_hd']; ?>">
+                <option value="Chờ đối soát" <?php echo ($hd['trang_thai'] === 'Chờ đối soát') ? 'selected' : ''; ?>>⏳ Chờ đối soát</option>
+                <option value="Đã thanh toán" <?php echo ($hd['trang_thai'] === 'Đã thanh toán') ? 'selected' : ''; ?>>✅ Đã thanh toán</option>
+                <option value="Đang xử lý" <?php echo in_array($hd['trang_thai'], ['Đang xử lý', 'dang_xu_ly', 'Chờ xử lý', 'cho_xu_ly', 'cho xu ly']) ? 'selected' : ''; ?>>⚙️ Đang xử lý</option>
+                <option value="Đang giao" <?php echo in_array($hd['trang_thai'], ['Đang giao', 'dang_giao']) ? 'selected' : ''; ?>>🚚 Đang giao</option>
+                <option value="Hoàn thành" <?php echo in_array($hd['trang_thai'], ['Hoàn thành', 'hoan_thanh']) ? 'selected' : ''; ?>>🎉 Hoàn thành</option>
+                <option value="Hủy" <?php echo in_array($hd['trang_thai'], ['Hủy', 'huy']) ? 'selected' : ''; ?>>❌ Hủy</option>
               </select>
             </td>
             <td>

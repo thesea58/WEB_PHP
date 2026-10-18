@@ -12,8 +12,17 @@ class TaiKhoanController extends BaseController {
         $nguoiDungModel = new NguoiDungModel($this->pdo);
         $user = $nguoiDungModel->layNguoiDungTheoId($_SESSION['user']['ma_nguoi_dung']);
         
+        // Load danh sách đơn hàng của người dùng
+        require_once 'app/models/HoaDonModel.php';
+        $hoaDonModel = new HoaDonModel($this->pdo);
+        $hoaDons = $hoaDonModel->layHoaDonCuaNguoiDung($_SESSION['user']['ma_nguoi_dung']);
+        foreach ($hoaDons as &$hd) {
+            $hd['chiTiets'] = $hoaDonModel->layChiTietHoaDon($hd['ma_hd']);
+        }
+        
         $this->render('Tai-khoan', [
-            'user' => $user
+            'user' => $user,
+            'hoaDons' => $hoaDons
         ]);
     }
 

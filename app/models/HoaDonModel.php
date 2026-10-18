@@ -110,7 +110,11 @@ class HoaDonModel {
         // Filter by status
         if (!empty($trang_thai)) {
             $norm = mb_strtolower(trim($trang_thai), 'UTF-8');
-            if (in_array($norm, ['dang_xu_ly', 'dang-xu-ly', 'dang xu ly', 'đang xử lý', 'cho_xu_ly', 'cho-xu-ly', 'cho xu ly', 'chờ xử lý'])) {
+            if (in_array($norm, ['cho_doi_soat', 'cho-doi-soat', 'cho doi soat', 'chờ đối soát'])) {
+                $sql .= " AND (trang_thai IN ('Chờ đối soát', 'cho_doi_soat', 'cho-doi-soat', 'cho doi soat'))";
+            } elseif (in_array($norm, ['da_thanh_toan', 'da-thanh-toan', 'da thanh toan', 'đã thanh toán'])) {
+                $sql .= " AND (trang_thai IN ('Đã thanh toán', 'da_thanh_toan', 'da-thanh-toan', 'da thanh toan'))";
+            } elseif (in_array($norm, ['dang_xu_ly', 'dang-xu-ly', 'dang xu ly', 'đang xử lý', 'cho_xu_ly', 'cho-xu-ly', 'cho xu ly', 'chờ xử lý'])) {
                 $sql .= " AND (trang_thai IN ('Đang xử lý', 'dang_xu_ly', 'dang-xu-ly', 'dang xu ly', 'Chờ xử lý', 'cho_xu_ly', 'cho-xu-ly', 'cho xu ly'))";
             } elseif (in_array($norm, ['dang_giao', 'dang-giao', 'dang giao', 'đang giao'])) {
                 $sql .= " AND (trang_thai IN ('Đang giao', 'dang_giao', 'dang-giao', 'dang giao'))";
@@ -166,6 +170,25 @@ class HoaDonModel {
     }
     
     /**
+     * Lấy danh sách các trạng thái đơn hàng duy nhất từ DB
+     */
+    public function layDanhSachTrangThai() {
+        $sql = "SELECT DISTINCT trang_thai FROM hoadon WHERE trang_thai IS NOT NULL AND TRIM(trang_thai) != '' ORDER BY trang_thai ASC";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $statuses = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+        // Danh sách trạng thái chuẩn hệ thống
+        $standardList = ['Chờ đối soát', 'Đã thanh toán', 'Đang xử lý', 'Đang giao', 'Hoàn thành', 'Hủy'];
+        foreach ($standardList as $s) {
+            if (!in_array($s, $statuses)) {
+                $statuses[] = $s;
+            }
+        }
+        return $statuses;
+    }
+
+    /**
      * Lấy thống kê theo trạng thái
      */
     public function layThongKeTheoTrangThai() {
@@ -189,7 +212,11 @@ class HoaDonModel {
         // Filter by status
         if (!empty($trang_thai)) {
             $norm = mb_strtolower(trim($trang_thai), 'UTF-8');
-            if (in_array($norm, ['dang_xu_ly', 'dang-xu-ly', 'dang xu ly', 'đang xử lý', 'cho_xu_ly', 'cho-xu-ly', 'cho xu ly', 'chờ xử lý'])) {
+            if (in_array($norm, ['cho_doi_soat', 'cho-doi-soat', 'cho doi soat', 'chờ đối soát'])) {
+                $sql .= " AND (trang_thai IN ('Chờ đối soát', 'cho_doi_soat', 'cho-doi-soat', 'cho doi soat'))";
+            } elseif (in_array($norm, ['da_thanh_toan', 'da-thanh-toan', 'da thanh toan', 'đã thanh toán'])) {
+                $sql .= " AND (trang_thai IN ('Đã thanh toán', 'da_thanh_toan', 'da-thanh-toan', 'da thanh toan'))";
+            } elseif (in_array($norm, ['dang_xu_ly', 'dang-xu-ly', 'dang xu ly', 'đang xử lý', 'cho_xu_ly', 'cho-xu-ly', 'cho xu ly', 'chờ xử lý'])) {
                 $sql .= " AND (trang_thai IN ('Đang xử lý', 'dang_xu_ly', 'dang-xu-ly', 'dang xu ly', 'Chờ xử lý', 'cho_xu_ly', 'cho-xu-ly', 'cho xu ly'))";
             } elseif (in_array($norm, ['dang_giao', 'dang-giao', 'dang giao', 'đang giao'])) {
                 $sql .= " AND (trang_thai IN ('Đang giao', 'dang_giao', 'dang-giao', 'dang giao'))";

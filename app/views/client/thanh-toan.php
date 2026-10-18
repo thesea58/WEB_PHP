@@ -267,9 +267,12 @@
       </div>
 
       <!-- Footer -->
-      <div class="modal-footer border-0 py-3 px-4" style="background-color: #f3f4f6;">
-        <button type="button" class="btn bg-white border fw-semibold px-4 py-2 rounded-3 shadow-sm" style="color: #212529;" onclick="closeQrModal()">
+      <div class="modal-footer border-0 py-3 px-4 d-flex justify-content-between align-items-center" style="background-color: #f3f4f6;">
+        <button type="button" class="btn bg-white border fw-semibold px-4 py-2 rounded-3 shadow-sm text-secondary" onclick="closeQrModal()">
           Đóng
+        </button>
+        <button type="button" id="btnConfirmPaid" class="btn btn-success fw-bold px-4 py-2 rounded-3 shadow-sm" onclick="confirmTransferDone()">
+          <i class="bi bi-check2-circle me-1"></i>Tôi đã chuyển khoản
         </button>
       </div>
 
@@ -382,10 +385,62 @@ function closeQrModal() {
   if (qrCountdownInterval) {
     clearInterval(qrCountdownInterval);
   }
-  // Nếu đơn hàng đã được tạo thành công trước đó thì chuyển về Trang chủ
+  // Nếu đơn hàng đã được tạo thành công trước đó thì chuyển về Trang quản lý đơn hàng
   if (orderCreatedSuccess) {
-    window.location.href = 'index.php?controller=TrangChu&action=index';
+    window.location.href = 'index.php?controller=TaiKhoan&action=index';
   }
+}
+
+// Xử lý khi khách bấm nút "Tôi đã chuyển khoản"
+function confirmTransferDone() {
+  if (!orderCreatedSuccess || !currentOrderId || String(currentOrderId).startsWith('DH')) {
+    // Nếu khách mở xem trước mã QR khi chưa bấm Xác nhận đặt hàng
+    // Kích hoạt submit form đặt hàng trước
+    const form = document.getElementById('checkoutForm');
+    if (form.reportValidity && !form.reportValidity()) {
+      return;
+    }
+    const modalEl = document.getElementById('vietQrModal');
+    const modalInstance = bootstrap.Modal.getInstance(modalEl);
+    if (modalInstance) modalInstance.hide();
+    document.getElementById('submitBtn').click();
+    return;
+  }
+
+  const btn = document.getElementById('btnConfirmPaid');
+  const originalHtml = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span>Đang xử lý...';
+
+  const formData = new FormData();
+  formData.append('ma_hd', currentOrderId);
+
+  fetch('index.php?controller=ThanhToan&action=xacNhanChuyenKhoan', {
+    method: 'POST',
+    body: formData
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.success) {
+      showAlert('success', 'Xác nhận thành công! Đơn hàng đã chuyển sang trạng thái "Chờ đối soát".');
+      const modalEl = document.getElementById('vietQrModal');
+      const modalInstance = bootstrap.Modal.getInstance(modalEl);
+      if (modalInstance) modalInstance.hide();
+      setTimeout(() => {
+        window.location.href = 'index.php?controller=TaiKhoan&action=index';
+      }, 1500);
+    } else {
+      alert(data.message || 'Có lỗi xảy ra, vui lòng thử lại');
+      btn.disabled = false;
+      btn.innerHTML = originalHtml;
+    }
+  })
+  .catch(err => {
+    console.error(err);
+    alert('Không thể kết nối đến máy chủ: ' + err.message);
+    btn.disabled = false;
+    btn.innerHTML = originalHtml;
+  });
 }
 
 // Khi chọn phương thức thanh toán

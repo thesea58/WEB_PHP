@@ -5,6 +5,18 @@ if (!function_exists('formatTrangThaiDonHang')) {
         $normalized = mb_strtolower($raw, 'UTF-8');
         
         switch ($normalized) {
+            case 'cho_doi_soat':
+            case 'cho-doi-soat':
+            case 'cho doi soat':
+            case 'chờ đối soát':
+                return ['label' => 'Chờ đối soát', 'badge' => 'warning text-dark'];
+
+            case 'da_thanh_toan':
+            case 'da-thanh-toan':
+            case 'da thanh toan':
+            case 'đã thanh toán':
+                return ['label' => 'Đã thanh toán', 'badge' => 'success'];
+
             case 'dang_xu_ly':
             case 'dang-xu-ly':
             case 'dang xu ly':
@@ -13,13 +25,13 @@ if (!function_exists('formatTrangThaiDonHang')) {
             case 'cho-xu-ly':
             case 'cho xu ly':
             case 'chờ xử lý':
-                return ['label' => 'Đang xử lý', 'badge' => 'warning text-dark'];
+                return ['label' => 'Đang xử lý', 'badge' => 'info text-dark'];
 
             case 'dang_giao':
             case 'dang-giao':
             case 'dang giao':
             case 'đang giao':
-                return ['label' => 'Đang giao', 'badge' => 'info text-dark'];
+                return ['label' => 'Đang giao', 'badge' => 'primary'];
 
             case 'hoan_thanh':
             case 'hoan-thanh':
@@ -35,7 +47,7 @@ if (!function_exists('formatTrangThaiDonHang')) {
 
             default:
                 if (strpos($normalized, 'xu_ly') !== false || strpos($normalized, 'xử lý') !== false) {
-                    return ['label' => 'Đang xử lý', 'badge' => 'warning text-dark'];
+                    return ['label' => 'Đang xử lý', 'badge' => 'info text-dark'];
                 }
                 return ['label' => $raw, 'badge' => 'secondary'];
         }
@@ -158,10 +170,13 @@ if (!function_exists('formatTrangThaiDonHang')) {
           <label class="form-label">Trạng thái đơn:</label>
           <select class="form-select" name="trang_thai">
             <option value="">-- Tất cả --</option>
-            <option value="Đang xử lý" <?php echo ($trang_thai === 'Đang xử lý' || $trang_thai === 'dang_xu_ly' || $trang_thai === 'Chờ xử lý' || $trang_thai === 'cho_xu_ly') ? 'selected' : ''; ?>>Đang xử lý</option>
-            <option value="Đang giao" <?php echo ($trang_thai === 'Đang giao') ? 'selected' : ''; ?>>Đang giao</option>
-            <option value="Hoàn thành" <?php echo ($trang_thai === 'Hoàn thành') ? 'selected' : ''; ?>>Hoàn thành</option>
-            <option value="Hủy" <?php echo ($trang_thai === 'Hủy') ? 'selected' : ''; ?>>Hủy</option>
+            <?php if (!empty($danhSachTrangThai)): ?>
+              <?php foreach ($danhSachTrangThai as $st): ?>
+                <option value="<?php echo htmlspecialchars($st); ?>" <?php echo ($trang_thai === $st) ? 'selected' : ''; ?>>
+                  <?php echo htmlspecialchars($st); ?>
+                </option>
+              <?php endforeach; ?>
+            <?php endif; ?>
           </select>
         </div>
 

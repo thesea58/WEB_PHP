@@ -145,20 +145,147 @@
       </div>
     </nav>
 
-    <!-- Coming Soon -->
-    <div class="coming-soon-container">
-      <div class="coming-soon-card">
-        <div class="coming-soon-icon">
-          <i class="bi bi-wrench-adjustable"></i>
+    <!-- NỘI DUNG QUẢN LÝ TÀI KHOẢN VÀ ĐƠN HÀNG -->
+    <div class="container py-5" style="min-height: 75vh;">
+      <div class="row g-4">
+        
+        <!-- CỘT TRÁI: THÔNG TIN TÀI KHOẢN -->
+        <div class="col-lg-4">
+          <div class="card border-0 shadow-sm rounded-4 p-4 bg-white mb-4">
+            <div class="text-center mb-3">
+              <div class="d-inline-flex align-items-center justify-content-center bg-light text-brown rounded-circle mb-2" style="width: 80px; height: 80px; font-size: 2.5rem;">
+                <i class="bi bi-person-circle"></i>
+              </div>
+              <h5 class="fw-bold mb-1 text-brown"><?php echo htmlspecialchars($user['ten_dang_nhap'] ?? 'Khách hàng'); ?></h5>
+              <span class="badge bg-secondary"><?php echo htmlspecialchars($user['vai_tro'] ?? 'Khách hàng'); ?></span>
+            </div>
+
+            <hr>
+
+            <div class="small">
+              <p class="mb-2"><strong><i class="bi bi-envelope me-2"></i>Email:</strong> <?php echo htmlspecialchars($user['email'] ?? 'Chưa cập nhật'); ?></p>
+              <p class="mb-2"><strong><i class="bi bi-telephone me-2"></i>Điện thoại:</strong> <?php echo htmlspecialchars($user['dien_thoai'] ?? 'Chưa cập nhật'); ?></p>
+              <p class="mb-0"><strong><i class="bi bi-calendar3 me-2"></i>Ngày tham gia:</strong> <?php echo isset($user['ngay_tao']) ? date('d/m/Y', strtotime($user['ngay_tao'])) : 'N/A'; ?></p>
+            </div>
+          </div>
         </div>
-        <h1 class="coming-soon-title">Trang Tài Khoản</h1>
-        <p class="coming-soon-text">
-          Trang này đang được cập nhật với các tính năng mới.<br>
-          Vui lòng quay lại sau!
-        </p>
-        <a href="index.php?controller=TrangChu&action=index" class="btn-back">
-          <i class="bi bi-arrow-left me-2"></i>Quay lại Trang Chủ
-        </a>
+
+        <!-- CỘT PHẢI: QUẢN LÝ ĐƠN HÀNG -->
+        <div class="col-lg-8">
+          <div class="card border-0 shadow-sm rounded-4 bg-white overflow-hidden">
+            <div class="card-header bg-white border-0 py-3 px-4 d-flex justify-content-between align-items-center">
+              <h5 class="fw-bold mb-0 text-brown">
+                <i class="bi bi-bag-check me-2"></i>Đơn hàng của tôi
+              </h5>
+              <span class="badge bg-light text-dark border">
+                Tổng: <?php echo count($hoaDons ?? []); ?> đơn
+              </span>
+            </div>
+
+            <div class="card-body p-0">
+              <?php if (empty($hoaDons)): ?>
+                <div class="text-center py-5">
+                  <i class="bi bi-inbox text-muted" style="font-size: 3rem;"></i>
+                  <p class="text-muted mt-2">Bạn chưa có đơn hàng nào.</p>
+                  <a href="index.php?controller=TrangChu&action=index" class="btn btn-sm text-white px-3 py-2 rounded-3" style="background:#8B4513;">
+                    Mua sắm ngay
+                  </a>
+                </div>
+              <?php else: ?>
+                <div class="table-responsive">
+                  <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                      <tr class="text-center">
+                        <th width="90">Mã đơn</th>
+                        <th class="text-start">Chi tiết sản phẩm</th>
+                        <th>Tổng tiền</th>
+                        <th>Trạng thái</th>
+                        <th>Thời gian</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php foreach ($hoaDons as $hd): ?>
+                        <tr>
+                          <!-- Mã đơn -->
+                          <td class="text-center fw-bold text-brown">
+                            #<?php echo str_pad($hd['ma_hd'], 4, '0', STR_PAD_LEFT); ?>
+                          </td>
+
+                          <!-- Chi tiết sản phẩm -->
+                          <td>
+                            <?php if (!empty($hd['chiTiets'])): ?>
+                              <?php foreach ($hd['chiTiets'] as $ct): ?>
+                                <div class="small">
+                                  • <?php echo htmlspecialchars($ct['ten_sp'] ?? 'Sản phẩm'); ?> 
+                                  <span class="text-muted">x <?php echo (int)$ct['so_luong']; ?></span>
+                                </div>
+                              <?php endforeach; ?>
+                            <?php else: ?>
+                              <span class="text-muted small">Đơn hàng</span>
+                            <?php endif; ?>
+                            
+                            <?php if ($hd['trang_thai'] === 'Chờ đối soát'): ?>
+                              <div class="mt-1">
+                                <small class="text-muted" style="font-size: 0.8rem;">
+                                  <i class="bi bi-qr-code me-1"></i>Nội dung CK: 
+                                  <code>DacSan3Mien_<?php echo $hd['ma_nguoi_dung']; ?>_<?php echo preg_replace('/[^A-Za-z0-9]/', '', strtoupper(iconv('UTF-8', 'ASCII//TRANSLIT', $hd['ten_khach_hang'] ?? 'KHACH'))); ?>_<?php echo $hd['ma_hd']; ?></code>
+                                </small>
+                              </div>
+                            <?php endif; ?>
+                          </td>
+
+                          <!-- Tổng tiền -->
+                          <td class="text-center fw-bold text-danger">
+                            <?php echo number_format($hd['tong_tien'], 0, ',', '.'); ?>đ
+                          </td>
+
+                          <!-- Trạng thái -->
+                          <td class="text-center">
+                            <?php if ($hd['trang_thai'] === 'Chờ đối soát'): ?>
+                              <span class="badge bg-warning text-dark py-2 px-3 rounded-pill">
+                                <i class="bi bi-clock-history me-1"></i>Chờ đối soát
+                              </span>
+                            <?php elseif ($hd['trang_thai'] === 'Đã thanh toán'): ?>
+                              <span class="badge bg-success py-2 px-3 rounded-pill">
+                                <i class="bi bi-check-circle me-1"></i>Đã thanh toán
+                              </span>
+                            <?php elseif (in_array($hd['trang_thai'], ['Đang xử lý', 'dang_xu_ly', 'Chờ xử lý', 'cho_xu_ly', 'cho xu ly'])): ?>
+                              <span class="badge bg-info text-dark py-2 px-3 rounded-pill">
+                                <i class="bi bi-hourglass-split me-1"></i>Đang xử lý
+                              </span>
+                            <?php elseif (in_array($hd['trang_thai'], ['Đang giao', 'dang_giao'])): ?>
+                              <span class="badge bg-primary py-2 px-3 rounded-pill">
+                                <i class="bi bi-truck me-1"></i>Đang giao
+                              </span>
+                            <?php elseif (in_array($hd['trang_thai'], ['Hoàn thành', 'hoan_thanh'])): ?>
+                              <span class="badge bg-success py-2 px-3 rounded-pill">
+                                <i class="bi bi-check2-all me-1"></i>Hoàn thành
+                              </span>
+                            <?php elseif (in_array($hd['trang_thai'], ['Hủy', 'huy'])): ?>
+                              <span class="badge bg-danger py-2 px-3 rounded-pill">
+                                <i class="bi bi-x-circle me-1"></i>Đã hủy
+                              </span>
+                            <?php else: ?>
+                              <span class="badge bg-secondary py-2 px-3 rounded-pill">
+                                <?php echo htmlspecialchars($hd['trang_thai']); ?>
+                              </span>
+                            <?php endif; ?>
+                          </td>
+
+                          <!-- Thời gian đặt -->
+                          <td class="text-center text-muted small">
+                            <?php echo date('H:i d/m/Y', strtotime($hd['ngay_dat'])); ?>
+                          </td>
+                        </tr>
+                      <?php endforeach; ?>
+                    </tbody>
+                  </table>
+                </div>
+              <?php endif; ?>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
 

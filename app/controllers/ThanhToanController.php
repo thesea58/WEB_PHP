@@ -134,4 +134,41 @@ class ThanhToanController extends BaseController {
         }
         exit();
     }
+
+    /**
+     * Khách hàng bấm xác nhận đã chuyển khoản
+     */
+    public function xacNhanChuyenKhoan() {
+        header('Content-Type: application/json; charset=utf-8');
+        if (!isset($_SESSION['user'])) {
+            http_response_code(401);
+            echo json_encode(['success' => false, 'message' => 'Vui lòng đăng nhập']);
+            exit();
+        }
+
+        $ma_hd = isset($_POST['ma_hd']) ? intval($_POST['ma_hd']) : 0;
+        if (!$ma_hd) {
+            http_response_code(400);
+            echo json_encode(['success' => false, 'message' => 'Mã hóa đơn không hợp lệ']);
+            exit();
+        }
+
+        try {
+            require_once 'app/models/HoaDonModel.php';
+            $hoaDonModel = new HoaDonModel($this->pdo);
+            $success = $hoaDonModel->capNhatTrangThai($ma_hd, 'Chờ đối soát');
+            if ($success) {
+                echo json_encode([
+                    'success' => true,
+                    'message' => 'Đã xác nhận chuyển khoản! Đơn hàng đang được chờ đối soát.'
+                ]);
+            } else {
+                throw new Exception('Không thể cập nhật trạng thái đơn hàng');
+            }
+        } catch (Exception $e) {
+            http_response_code(500);
+            echo json_encode(['success' => false, 'message' => 'Lỗi: ' . $e->getMessage()]);
+        }
+        exit();
+    }
 }
