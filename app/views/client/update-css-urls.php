@@ -13,22 +13,28 @@ echo "Processing CSS URLs in style tags...\n\n";
 $updatedCount = 0;
 
 foreach ($files as $file) {
+    $basename = basename($file);
+    if (in_array($basename, ['update-css-urls.php', 'update-asset-paths.php', 'update-login-ui.php', 'update-login-ui-v2.php'])) {
+        continue;
+    }
+
     $content = file_get_contents($file);
     $original = $content;
     
     // Replace CSS url() references
-    // This regex finds url("app/views/client/img/..." and url("app/views/client/img/...' and replaces with absolute path
+    // This regex matches url('img/...'), url("img/..."), and url(img/...) while preserving quotes
     $content = preg_replace_callback(
-        '/url\([\'"]?(img\/)/',
+        '/url\(([\'"]?)(?!app\/)(img\/)/',
         function($matches) {
-            return 'url("app/views/client/' . $matches[1];
+            $quote = $matches[1];
+            return 'url(' . $quote . 'app/views/client/' . $matches[2];
         },
         $content
     );
     
-    // Also handle single quotes
-    $content = str_replace("url("app/views/client/img/", "url('app/views/client/img/", $content);
-    $content = str_replace('url("app/views/client/img/', 'url("app/views/client/img/', $content);
+    // Also handle explicit replacements if needed
+    $content = str_replace("url('img/", "url('app/views/client/img/", $content);
+    $content = str_replace('url("img/', 'url("app/views/client/img/', $content);
     
     // Only write if content changed
     if ($content !== $original) {
